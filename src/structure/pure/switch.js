@@ -16,6 +16,7 @@
  */
 
 define( ['_common'], function( design ) {
+  "use strict";
    var basicdesign = design.basicdesign;
  
 design.basicdesign.addCreator('switch', {
@@ -23,27 +24,16 @@ design.basicdesign.addCreator('switch', {
     var $e = $(element);
     
     // create the main structure
-    var ret_val = $( basicdesign.createDefaultWidget( 'switch', $e, path, flavour, type, this.update ) + '</div>' );
+    var ret_val = basicdesign.createDefaultWidget( 'switch', $e, path, flavour, type, this.update );
     // and fill in widget specific data
     var data = templateEngine.widgetDataInsert( path, {
       'on_value'  : $e.attr('on_value' ) || 1,
       'off_value' : $e.attr('off_value') || 0
     } );
     
-    // create the actor
-    var $actor = $('<div class="actor switchUnpressed"><div class="value"></div></div>');
-    ret_val.append( $actor );
+    ret_val += '<div class="actor switchUnpressed"><div class="value">-</div></div>';
     
-    // bind to user action
-    var bindClickToWidget = templateEngine.bindClickToWidget;
-    if ( data['bind_click_to_widget'] ) bindClickToWidget = data['bind_click_to_widget']==='true';
-    var clickable = bindClickToWidget ? ret_val : $actor;
-    clickable.bind( 'click', this.action );
-    
-    // initially setting a value
-    basicdesign.defaultUpdate( undefined, undefined, ret_val, true, path );
-    
-    return ret_val;
+    return ret_val + '</div>';
   },
   update: function( ga, d ) { 
     var 
@@ -55,10 +45,12 @@ design.basicdesign.addCreator('switch', {
     actor.removeClass( value == off ? 'switchPressed' : 'switchUnpressed' );
     actor.addClass(    value == off ? 'switchUnpressed' : 'switchPressed' );
   },
-  action: function() {
+  action: function( path, actor, isCaneled ) {
+    if( isCaneled ) return;
+    
     var 
-      widgetData  = templateEngine.widgetDataGetByElement( this );
-                       
+      widgetData  = templateEngine.widgetDataGet( path );
+    
     for( var addr in widgetData.address )
     {
       if( !(widgetData.address[addr][1] & 2) ) continue; // skip when write flag not set

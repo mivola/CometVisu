@@ -16,6 +16,7 @@
  */
 
 define( [], function() {
+  "use strict";
 
 (function( window, undefined ){
   // "global" functions (=> state less)
@@ -123,7 +124,7 @@ define( [], function() {
           return; // done, already recolored
           
         var
-          width  = tmpCanvas.width  = thisIcon.width;
+          width  = tmpCanvas.width  = thisIcon.width,
           height = tmpCanvas.height = thisIcon.height;
         tmpCtx.drawImage( thisIcon, 0, 0 );
     
@@ -203,7 +204,7 @@ define( [], function() {
       
       var newElement = $(newCanvas)[0];
       if( iconCache[url].icon.complete )
-        fillCanvas( newElement );
+        fillCanvas( newElement, iconCache[url].colors[ color ] );
       else
         iconDelayed( newElement, iconCache[url].colors, color );
       

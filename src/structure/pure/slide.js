@@ -16,14 +16,32 @@
  */
 
 define( ['_common'], function( design ) {
-   var basicdesign = design.basicdesign;
- 
+  "use strict";
+  var 
+    basicdesign = design.basicdesign,
+    $main = $('#main');
+
+  function transformSlider( value, handle )
+  {
+    if (!$main.data('disableSliderTransform')) {
+      if (!isNaN(value)) {
+        var handleWidth = $(handle).outerWidth();
+        var sliderMax = $(handle).parent().slider("option","max")+($(handle).parent().slider("option","min")*-1);
+        var percent = Math.round((100/sliderMax)*(value+($(handle).parent().slider("option","min")*-1)));
+        var translate = Math.round(handleWidth * percent/100);
+        //console.log("Width: "+handleWidth+", Value: "+value+", Max/Min: "+sliderMax+", %: "+percent+" => "+percent);
+        $(handle).css('transform', 'translateX(-'+translate+'px)');
+      }
+    }
+  }
+
 design.basicdesign.addCreator('slide', {
   create: function( element, path, flavour, type ) {
-    var $e = $(element);
+    var self = this,
+        $e = $(element);
     
     // create the main structure
-    var ret_val = $( basicdesign.createDefaultWidget( 'slide', $e, path, flavour, type, this.update ) + '</div>' );
+    var ret_val = basicdesign.createDefaultWidget( 'slide', $e, path, flavour, type, this.update );
     // and fill in widget specific data
     var datatype_min = undefined;
     var datatype_max = undefined;
@@ -40,36 +58,42 @@ design.basicdesign.addCreator('slide', {
     var min  = parseFloat( $e.attr('min')  || datatype_min || 0   );
     var max  = parseFloat( $e.attr('max')  || datatype_max || 100 );
     var step = parseFloat( $e.attr('step') || 0.5 );
+    var send_on_finish = $e.attr('send_on_finish') || 'false';
     var data = templateEngine.widgetDataInsert( path, {
       //???///'events':   $(actor).data( 'events' ),
-      'min'     : min,
-      'max'     : max,
-      'step'    : step,
-      'valueInternal': true,
-      'inAction': false,
+      'min'            : min,
+      'max'            : max,
+      'step'           : step,
+      'send_on_finish' : send_on_finish,
+      'valueInternal'  : true,
+      'inAction'       : false,
     });
     
     // create the actor
-    var $actor = $('<div class="actor">');
-    ret_val.append( $actor );
-    
-    $actor.slider({
-      step:    step,
-      min:     min,
-      max:     max, 
-      range:   'min', 
-      animate: true,
-      start:   this.slideStart,
-      change:  this.slideChange
-    });
-    if( data['format']) {
-      $actor.on( 'slide', this.slideUpdateValue );
+    templateEngine.postDOMSetupFns.push( function(){
+      var $actor = $( '#' + path + ' .actor' );
+      $actor.slider({
+        step:    step,
+        min:     min,
+        max:     max, 
+        range:   'min', 
+        animate: true,
+        send_on_finish : send_on_finish,
+        start:   self.slideStart,
+        change:  self.slideChange
+      });
+      $actor.on( 'slide', self.slideUpdateValue );
       
-      // initially setting a value
-      $actor.children('.ui-slider-handle').text(sprintf(data['format'],templateEngine.map( undefined, data['mapping'] )));
-    }
+      if( data['format']) {
+        // initially setting a value
+        $actor.children('.ui-slider-handle').text(sprintf(data['format'],templateEngine.map( undefined, data['mapping'] )));
+      }
+      // Mark all horizontal sliders for correct transformation
+      $actor.children('.ui-slider-horizontal .ui-slider-handle').addClass('untransformed');
+      $(window).bind("scrolltopage",self.sliderVisible);
+    });
     
-    return ret_val;
+    return ret_val + '<div class="actor"/></div>';
   },
   update: function( ga, d ) { 
     var element = $(this),
@@ -89,13 +113,16 @@ design.basicdesign.addCreator('slide', {
       if( data.format != null )
         actor.children('.ui-slider-handle').text(sprintf( data.format, templateEngine.map( value, data.mapping )));
     }
+    transformSlider(value,actor.children('.ui-slider-handle'));
   },
   slideUpdateValue:function(event,ui) {
     var element = $(this).parent(),
-        actor   = element.find('.actor'),
-        data    = templateEngine.widgetDataGetByElement( this );
-    if( data.format)
+      actor   = element.find('.actor'),
+      data    = templateEngine.widgetDataGetByElement( this );
+    if( data.format) {
       $(ui.handle).text(sprintf( data.format, templateEngine.map( ui.value, data.mapping )));
+    }
+    transformSlider(ui.value,ui.handle);
   },
   /*
   * Start a thread that regularily sends the silder position to the bus
@@ -105,6 +132,9 @@ design.basicdesign.addCreator('slide', {
     var element = $(this).parent(),
         actor   = element.find('.actor'),
         data    = templateEngine.widgetDataGetByElement( this );
+
+    if ( data.send_on_finish == 'true') return;
+
     data.inAction      = true;
     data.valueInternal = true;
     data.updateFn      = setInterval( function(){
@@ -120,7 +150,7 @@ design.basicdesign.addCreator('slide', {
           templateEngine.visu.write( addr, dv );
       }
       data.value = asv;
-    }, 250 ); // update KNX every 250 ms 
+    }, 250 ); // update KNX every 250 ms
   },
   /*
   * Delete the update thread and send the final value of the slider to the bus
@@ -131,6 +161,7 @@ design.basicdesign.addCreator('slide', {
     clearInterval( data.updateFn, ui.value);
     data.inAction = false;
     if( data.valueInternal && data.value != ui.value )
+    {
       for( var addr in data.address )
       {
         if( !(data.address[addr][1] & 2) ) continue; // skip when write flag not set
@@ -138,7 +169,19 @@ design.basicdesign.addCreator('slide', {
         if( uv != templateEngine.transformEncode( data.address[addr][0], data.value ) )
           templateEngine.visu.write( addr, uv );
       }
-  }
+    }
+    transformSlider(ui.value,ui.handle);
+  },
+  sliderVisible:function(event,page_id)
+  {
+    $('.ui-slider-handle.untransformed', '#'+page_id).each(function(i) {
+      $(this).removeClass('untransformed');
+      var actor = $(this).parent();
+      var val = actor.slider("value");
+      transformSlider(val,this);
+    });
+  },
+  
 });
 
 }); // end define

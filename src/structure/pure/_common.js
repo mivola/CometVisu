@@ -21,6 +21,7 @@
  * @title  CometVisu Structure "pure"
 */
 define( ['jquery'], function($) {
+  "use strict";
 
 // Define ENUM of maturity levels for features, so that e.g. the editor can 
 // ignore some widgets when they are not supported yet
@@ -118,13 +119,17 @@ function VisuDesign() {
       ret_val.css( 'left', placement.x );
       ret_val.css( 'top' , placement.y );
 
-      ret_val.bind("click", function() {
-          ret_val.remove();
-          return false;
+      ret_val.bind( 'close', this.close );
+      ret_val.bind( 'click', function() {
+        ret_val.trigger( 'close' );
+        return false;
       });
 
       ret_val.css( 'display', 'block' );
       return ret_val;
+    },
+    close: function( event ) {
+      event.currentTarget.remove();
     }
   });
 
@@ -170,6 +175,12 @@ function VisuDesign() {
         case 'DPT:11.001':
           value = value.toLocaleDateString();
           break;
+        case 'OH:datetime':
+          value = value.toLocaleDateString();
+          break;
+        case 'OH:time':
+          value = value.toLocaleTimeString();
+          break;
         }
     }
     
@@ -198,16 +209,23 @@ function VisuDesign() {
     var valueElement = element.find('.value');
     valueElement.empty();
     if (undefined !== value) {
-      if (('string' == typeof value) || ('number' == typeof value))
+      if (('string' === typeof value) || ('number' === typeof value))
         valueElement.append( value );
       else if ('function' === typeof value)
         value( valueElement );
-      else {
+      else if( !Array.isArray( value ) ) {
+        var element = value.cloneNode();
+        if( value.getContext )
+        {
+          fillRecoloredIcon( element );
+        }
+        valueElement.append( element );
+      } else {
         for (var i = 0; i < value.length; i++) {
           var thisValue = value[i];
           if (!thisValue) continue;
   
-          if( ('string' == typeof thisValue) || ('number' == typeof thisValue) )
+          if( ('string' === typeof thisValue) || ('number' === typeof thisValue)  )
             valueElement.append( thisValue );
           else if( 'function' === typeof thisValue )
             thisValue(valueElement);
@@ -353,17 +371,6 @@ function VisuDesign() {
   };
   
   /**
-   * this function implements the widget label (JNK)
-   */
-  this.makeWidgetLabel = function( element, page, flavour ) { 
-    var labelElement = page.find('label')[0]; // get first label element
-    if (labelElement) { // if exists, add it
-      element.append( this.extractLabel( labelElement, flavour ) );
-    }
-    return element;
-  };
-  
-  /**
    * Create a default widget to be filled by the creator afterwards.
    * Note: the reciever of the returned string must add an </div> closing element!
    * 
@@ -387,12 +394,12 @@ function VisuDesign() {
     if($element.attr('class')) classes += ' custom_' + $element.attr('class');
     var label = this.extractLabel( $element.find('label')[0], flavour );
     var address = this.makeAddressList( $element, makeAddressListFn, path );
-    //var bindClickToWidget = templateEngine.bindClickToWidget;
-    //if ($element.attr("bind_click_to_widget")) bindClickToWidget = $element.attr("bind_click_to_widget")=="true";
+    var bindClickToWidget = templateEngine.bindClickToWidget;
+    if ($element.attr("bind_click_to_widget")) bindClickToWidget = $element.attr("bind_click_to_widget")=="true";
 
     templateEngine.widgetDataInsert( path, {
       'address' : address,
-      'bind_click_to_widget' : $element.attr('bind_click_to_widget'),
+      'bind_click_to_widget': bindClickToWidget,
       'mapping' : $element.attr('mapping'),
       'styling' : $element.attr('styling'),
       'format'  : $element.attr('format'),
@@ -400,43 +407,67 @@ function VisuDesign() {
       'path'    : path
     });
     var ret_val = '<div class="'+classes+'" ' + style + '>' + label;
-    
+    if (address && updateFn!=undefined) {
+      templateEngine.postDOMSetupFns.push( function() {
+        // initially setting a value
+        basicdesign.defaultUpdate( undefined, undefined, $("#"+path), true, path );
+      });
+    }
     return ret_val;
   };
   
   /**
-   * Create an action handling that shows a button click animation, i.e. 
-   * pressing the mouse button will look like pressing the buttion and 
-   * releaseing the button will trigger the action. Pulling out will cancel
-   * the action.
+   * Create an action handling that shows a button press animation.
+   * Note: use this function when multiple action elements are used and thus
+   * bind_click_to_widget is not available.
    */
-  this.createDefaultButtonAction = (function() {
-    // closure, the actions:
-    var isTouchDevice = !!('ontouchstart' in window) // works on most browsers 
-                     || !!('onmsgesturechange' in window), // works on ie10
-        mousedown = function( event ) {
-          event.preventDefault();
-          var action = event.data.action,
-              actor  = event.data.actor;
-          if( action )
-            $.proxy( action, actor )( event );
-          actor.removeClass('switchUnpressed').addClass('switchPressed');
-        },
-        mouseaway = function( event ) {
-          event.preventDefault();
-          var action = event.data.action,
-              actor  = event.data.actor;
-          if( action )
-            $.proxy( action, actor )( event );
-          actor.removeClass('switchPressed').addClass('switchUnpressed');
-        };
-    // the real function
-    return function( clickableElement, $actorElement, downAction, clickAction ) {
-      clickableElement.bind( isTouchDevice ? 'touchstart' : 'mousedown', { actor: $actorElement, action: downAction  }, mousedown )
-                      .bind( isTouchDevice ? 'touchend'   : 'mouseup'  , { actor: $actorElement, action: clickAction }, mouseaway )
-                      .bind( isTouchDevice ? 'touchout'   : 'mouseout' , { actor: $actorElement }                     , mouseaway );
-    };
-  })();
+  this.defaultButtonDownAnimation = function( path, actor )
+  {
+    if( actor )
+    {
+      actor.classList.remove('switchUnpressed');
+      actor.classList.add('switchPressed');
+    }
+  };
+  /**
+   * Create an action handling that shows a button press animation.
+   * When the action is not set, it will be searched for - so that widgets
+   * with bind_click_to_widget will also work.
+   */
+  this.defaultButtonDownAnimationInheritAction = function( path, actor )
+  {
+    if( !actor )
+      actor = templateEngine.handleMouseEvent.widget.getElementsByClassName('actor')[0];
+    
+    actor.classList.remove('switchUnpressed');
+    actor.classList.add('switchPressed');
+  };
+  /**
+   * Create an action handling that shows a button unpress animation.
+   * Note: use this function when multiple action elements are used and thus
+   * bind_click_to_widget is not available.
+   */
+  this.defaultButtonUpAnimation = function( path, actor )
+  {
+    if( actor )
+    {
+      actor.classList.remove('switchPressed');
+      actor.classList.add('switchUnpressed');
+    }
+  };
+  /**
+   * Create an action handling that shows a button unpress animation.
+   * When the action is not set, it will be searched for - so that widgets
+   * with bind_click_to_widget will also work.
+   */
+  this.defaultButtonUpAnimationInheritAction = function( path, actor )
+  {
+    if( !actor )
+      actor = templateEngine.handleMouseEvent.widget.getElementsByClassName('actor')[0];
+    
+    actor.classList.remove('switchPressed');
+    actor.classList.add('switchUnpressed');
+  };
 };
 
 /*
@@ -450,7 +481,7 @@ function placementStrategy( anchor, popup, page, preference )
   var position_order = [ 8, 2, 6, 4, 9, 3, 7, 1, 5, 0 ];
   if( preference !== undefined ) position_order.unshift( preference );
   
-  for( pos in position_order )
+  for( var pos in position_order )
   {
     var xy = {};
     switch(position_order[pos])
