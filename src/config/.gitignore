@@ -3,3 +3,4 @@ visu_*
 
 # but keep default configs
 !visu_config.xml
+!visu_config_handy.xml
