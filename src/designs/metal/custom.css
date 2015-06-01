@@ -1,3 +1,65 @@
 /*
  * custom local css to overload declarations in each design (basic.css)
  */
+
+
+
+.custom_timebig {
+    padding: 0;
+    margin: 0;
+    color: #75d5ff;
+    min-height: 0mm;
+    line-height: 8mm;
+    font: bold 12mm "Lucida Grande", Lucida, Verdana, sans-serif;
+}
+ 
+.custom_timebig > div.strftime_value {
+    text-align: center;
+    line-height: 14mm;
+}
+ 
+.custom_timedate {
+    padding: 0;
+    margin: 0;
+    min-height: 0mm;
+    line-height: 8mm;
+    font: bold 3mm "Lucida Grande", Lucida, Verdana, sans-serif;
+}
+ 
+.custom_timedate > div.strftime_value {
+        text-align: center;
+}
+
+/*
+//.navbar .pagejump .actor .value {
+//    line-height: 1.8em;
+//}
+
+
+//.navbar .pagejump .label > img, .navbar .pagejump .label > canvas {
+//    height: 34px !important;
+ //   width: 34px !important;
+//}
+
+//body {
+  //  font-size: 4.5mm;
+//}
+*/
+.label .value {
+    font-size: 5mm;
+}
+
+#navbarLeft .navbar .pagejump .label > img, #navbarLeft .navbar .pagejump .label > canvas {
+    height: 32px !important;
+    width: 32px !important;
+
+}
+#navbarLeft .navbar .pagejump .label, #navbarLeft .navbar .pagejump .actor .value {
+    font-size: 0.8em;
+}
+#navbarLeft .navbar .widget {
+    min-height: 0px;
+}
+#navbarLeft .navbar .widget_container:not(.widgetinfo) > .widget > .actor .value {
+  padding-left: 3em;
+}
