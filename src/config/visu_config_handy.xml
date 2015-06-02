@@ -1068,9 +1068,9 @@
       </group>
     </page>
     <page name="System" visible="false" shownavbar-left="false">
-	
-<refresh mapping="Refresh"></refresh>
-  
+	  <group name="Refresh KNX Values">
+      <refresh mapping="Refresh"></refresh>
+    </group>  
 	  <group name="CPU Load">
 	    <layout colspan="12"/>
 	    <diagram popup="true" previewlabels="true" height="200" series="hour" period="24" refresh="300" gridcolor="#707070" legendposition="nw">

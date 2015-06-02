@@ -65,11 +65,6 @@
           <icon name="audio_play"/>
         </entry>
       </mapping>
-      <mapping name="Refresh">
-        <entry default="true">
-          <icon name="audio_repeat"/>
-        </entry>
-      </mapping>
       <mapping name="XMas">
         <entry default="true">
           <icon name="scene_x-mas"/>
@@ -999,6 +994,7 @@
         <layout colspan="0"/>
         <label><icon name="sani_sprinkling"/>Bewässerung</label>
       </pagejump>
+      <!--
       <line>
         <layout colspan="0"/>
       </line>
@@ -1014,6 +1010,7 @@
         <layout colspan="0"/>
         <label><icon name="control_building_modern_s_okg_dg" color="#333333"/>Dach</label>
       </pagejump>
+    -->
       <line>
         <layout colspan="0"/>
       </line>
@@ -1055,7 +1052,10 @@
         <layout colspan="0"/>
         <label><icon name="edit_settings"/>System</label>
       </pagejump>
-      <!--<refresh mapping="Refresh"></refresh>-->
+      <refresh value="Refresh">
+        <layout colspan="0"/>
+        <label><icon name="audio_repeat"/></label>
+      </refresh>
     </navbar>
     <page name="Kueche" visible="false">
       <layout colspan="3"/>
@@ -1814,9 +1814,6 @@
       </group>
     </page>
     <page name="System" visible="false" shownavbar-left="false">
-	
-<refresh mapping="Refresh"></refresh>
-
 	  <group name="CPU Load">
 	    <layout colspan="12"/>
 	    <diagram popup="true" previewlabels="true" height="200" series="hour" period="24" refresh="300" gridcolor="#707070" legendposition="nw">
