@@ -9,9 +9,9 @@
 // There are diffentent modes of operation
 // 1. Creating a new log line:
 //    URL parameter "c":   the content of the log
-//    URL parameter "t[]": a tag for later filtering. Multiple might be given, 
+//    URL parameter "tags": a tag for later filtering. Multiple might be given, 
 //                          separated by COMMA, usage &t[]=tag1,tag2 
-//    URL parameter "h":   a header(title) for the entry; maybe empty 
+//    URL parameter "t":   a header(title) for the entry; maybe empty 
 //    URL parameter "state": (optional) state
 // 2. Receive the log as RSS:
 //    URL parameter "f":   The (optional) filter, only log lines with a tag
@@ -57,15 +57,13 @@ if( isset($_GET['c']) )
   // store a new log
   $store = true;
   $log_content = $_GET['c'] ? $_GET['c'] : '<no content>';
-  $log_title = $_GET['h'] ? $_GET['h'] : '';
+  $log_title = $_GET['t'] ? $_GET['t'] : '';
   $log_state = $_GET['state'] ? $_GET['state'] : 0;
   if( mb_detect_encoding($log_content, 'UTF-8', true) != 'UTF-8' )
     $log_content = utf8_encode($log_content);
   if( mb_detect_encoding($log_title, 'UTF-8', true) != 'UTF-8' )
     $log_title = utf8_encode($log_title);
-  $log_tags    = $_GET['t'] ? $_GET['t'] : array();
-  if(! is_array($log_tags))
-    die("wrong format - use one or more t[]= for tags");
+  $log_tags    = $_GET['tags'] ? $_GET['tags'] : "";
   insert( $db, $log_content, $log_title, $log_tags, $log_state );
 } else if( isset($_GET['dump']) )
 {
@@ -130,7 +128,7 @@ if( isset($_GET['c']) )
     echo '"id": "' . $row['id'] . '",';
     echo '"title": "' . $row['title'] . '",';
     echo '"content": "' . $row['content'] . '",';
-    echo '"tags": ' . json_encode(explode(",", $row['tags'])) . ',';
+    echo '"tags": ' . json_encode($row['tags']) . ',';
     echo '"state": "' . $row['state'] . '",';
     echo '"publishedDate": "' . date( DATE_ATOM, $row['t'] ) . '"';
     echo '}';
@@ -232,7 +230,7 @@ function insert( $db, $content, $title, $tags, $state )
   $q = 'INSERT INTO Logs(content, title, tags, t, state) VALUES( ' .
        "  '" . sqlite_escape_string( $content ) . "'," .
        "  '" . sqlite_escape_string( $title ) . "'," .
-       "  '" . sqlite_escape_string( implode(",",$tags) ) . "'," .
+       "  '" . sqlite_escape_string( $tags ) . "'," .
        "  datetime('now')," .
        "  $state" .
        ')';
