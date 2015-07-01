@@ -2,8 +2,6 @@
  * custom local css to overload declarations in each design (basic.css)
  */
 
-
-
 .custom_timebig {
     padding: 0;
     margin: 0;
@@ -30,21 +28,6 @@
         text-align: center;
 }
 
-/*
-//.navbar .pagejump .actor .value {
-//    line-height: 1.8em;
-//}
-
-
-//.navbar .pagejump .label > img, .navbar .pagejump .label > canvas {
-//    height: 34px !important;
- //   width: 34px !important;
-//}
-
-//body {
-  //  font-size: 4.5mm;
-//}
-*/
 .label .value {
     font-size: 5mm;
 }
@@ -62,4 +45,13 @@
 }
 #navbarLeft .navbar .widget_container:not(.widgetinfo) > .widget > .actor .value {
   padding-left: 3em;
+}
+
+.diagram .axisLabels { 
+    color: #ffffff !important; 
+}
+
+.diagram .flot-y1-axis, .diagram .flot-x1-axis, .diagram .legendLabel, .diagram_inline .legendLabel { 
+    color: #ffffff; 
+/*    font-size: 1.1em; */
 }

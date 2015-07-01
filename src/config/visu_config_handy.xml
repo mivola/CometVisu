@@ -702,7 +702,7 @@
         </group>
       <group name="Ereignisse">
         <layout colspan="6" rowspan="7"/>
-        <rsslog src="plugins/rsslog/rsslog.php" refresh="60" filter="garage,hwr,aussen,garten" limit="5" mode="last" timeformat="%d.%m. %H:%M">
+        <rsslog src="plugins/rsslog/rsslog.php" refresh="60" filter="garage,hwr,aussen,garten,alarm" limit="5" mode="last" timeformat="%d.%m. %H:%M">
           <layout rowspan="7" colspan="6"/>
         </rsslog>
       </group>
@@ -1587,7 +1587,7 @@
           <layout colspan="3"/>
           <trigger mapping="Lueften" styling="GreyGrey" value="50">
             <label>Lüften</label>
-            <address transform="DPT:5.001" mode="read">3/1/104</address>
+            <address transform="DPT:5.001" mode="write">3/1/104</address>
           </trigger>
         </group>
         <group nowidget="true" flavour="sodium">
@@ -1635,14 +1635,14 @@
           <layout colspan="3"/>
           <trigger mapping="Lueften" styling="GreyGrey" value="50">
             <label>Lüften</label>
-            <address transform="DPT:5.001" mode="read">3/1/84</address>
+            <address transform="DPT:5.001" mode="write">3/1/84</address>
           </trigger>
         </group>
         <group nowidget="true" flavour="sodium">
           <layout colspan="6"/>
           <info mapping="Jalousie">
             <layout colspan="2"/>
-            <label>Küchentür</label>
+            <label>Küche Tür</label>
             <address transform="DPT:5.001" mode="read">3/1/125</address>
           </info>
           <info format="%.0f %" align="center">
@@ -1673,7 +1673,45 @@
           <layout colspan="3"/>
           <trigger mapping="Lueften" styling="GreyGrey" value="50">
             <label>Lüften</label>
-            <address transform="DPT:5.001" mode="read">3/1/124</address>
+            <address transform="DPT:5.001" mode="write">3/1/124</address>
+          </trigger>
+        </group>
+        <group nowidget="true" flavour="sodium">
+          <layout colspan="6"/>
+          <info mapping="Jalousie">
+            <layout colspan="2"/>
+            <label>Küche Fenster</label>
+            <address transform="DPT:5.001" mode="read">3/1/145</address>
+          </info>
+          <info format="%.0f %" align="center">
+            <layout colspan="1"/>
+            <address transform="DPT:5.001" mode="read">3/1/145</address>
+          </info>
+          <trigger value="0" styling="GreyGrey" mapping="UpDown">
+            <layout colspan="1"/>
+            <address transform="DPT:1.001" mode="write">3/1/141</address>
+          </trigger>
+          <trigger value="1" styling="GreyGrey" mapping="Stop">
+            <layout colspan="1"/>
+            <address transform="DPT:1.001" mode="write">3/1/142</address>
+          </trigger>
+          <trigger value="1" styling="GreyGrey" mapping="UpDown">
+            <layout colspan="1"/>
+            <address transform="DPT:1.001" mode="write">3/1/141</address>
+          </trigger>
+        </group>
+        <group nowidget="true" flavour="sodium">
+          <layout colspan="3"/>
+          <switch mapping="UnlockLock" styling="GreyRed">
+            <label>Sperre</label>
+            <address transform="DPT:1.001" mode="readwrite">3/1/147</address>
+          </switch>
+        </group>
+        <group nowidget="true" flavour="sodium">
+          <layout colspan="3"/>
+          <trigger mapping="Lueften" styling="GreyGrey" value="50">
+            <label>Lüften</label>
+            <address transform="DPT:5.001" mode="write">3/1/144</address>
           </trigger>
         </group>
         <group nowidget="true" flavour="sodium">
@@ -1711,7 +1749,7 @@
           <layout colspan="3"/>
           <trigger mapping="Lueften" styling="GreyGrey" value="50">
             <label>Lüften</label>
-            <address transform="DPT:5.001" mode="read">3/1/184</address>
+            <address transform="DPT:5.001" mode="write">3/1/184</address>
           </trigger>
         </group>
       </group>
@@ -1752,7 +1790,7 @@
           <layout colspan="3"/>
           <trigger mapping="Lueften" styling="GreyGrey" value="50">
             <label>Lüften</label>
-            <address transform="DPT:5.001" mode="read">3/2/184</address>
+            <address transform="DPT:5.001" mode="write">3/2/184</address>
           </trigger>
         </group>
         <group nowidget="true" flavour="sodium">
@@ -1790,7 +1828,45 @@
           <layout colspan="3"/>
           <trigger mapping="Lueften" styling="GreyGrey" value="50">
             <label>Lüften</label>
-            <address transform="DPT:5.001" mode="read">3/2/64</address>
+            <address transform="DPT:5.001" mode="write">3/2/64</address>
+          </trigger>
+        </group>
+        <group nowidget="true" flavour="sodium">
+          <layout colspan="6"/>
+          <info mapping="Jalousie">
+            <layout colspan="2"/>
+            <label>KZ2</label>
+            <address transform="DPT:5.001" mode="read">3/2/95</address>
+          </info>
+          <info format="%.0f %" align="center">
+            <layout colspan="1"/>
+            <address transform="DPT:5.001" mode="read">3/2/95</address>
+          </info>
+          <trigger value="0" styling="GreyGrey" mapping="UpDown">
+            <layout colspan="1"/>
+            <address transform="DPT:1.001" mode="write">3/2/91</address>
+          </trigger>
+          <trigger value="1" styling="GreyGrey" mapping="Stop">
+            <layout colspan="1"/>
+            <address transform="DPT:1.001" mode="write">3/2/92</address>
+          </trigger>
+          <trigger value="1" styling="GreyGrey" mapping="UpDown">
+            <layout colspan="1"/>
+            <address transform="DPT:1.001" mode="write">3/2/91</address>
+          </trigger>
+        </group>
+        <group nowidget="true" flavour="sodium">
+          <layout colspan="3"/>
+          <switch mapping="UnlockLock" styling="GreyRed">
+            <label>Sperre</label>
+            <address transform="DPT:1.001" mode="readwrite">3/2/97</address>
+          </switch>
+        </group>
+        <group nowidget="true" flavour="sodium">
+          <layout colspan="3"/>
+          <trigger mapping="Lueften" styling="GreyGrey" value="50">
+            <label>Lüften</label>
+            <address transform="DPT:5.001" mode="write">3/2/94</address>
           </trigger>
         </group>
         <group nowidget="true" flavour="sodium">
@@ -1828,7 +1904,7 @@
           <layout colspan="3"/>
           <trigger mapping="Lueften" styling="GreyGrey" value="50">
             <label>Lüften</label>
-            <address transform="DPT:5.001" mode="read">3/2/154</address>
+            <address transform="DPT:5.001" mode="write">3/2/154</address>
           </trigger>
         </group>
       </group>
