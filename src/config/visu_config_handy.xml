@@ -78,9 +78,6 @@
       <mapping name="FahrenStop">
         <entry default="true">Fahren/Stop</entry>
       </mapping>
-      <mapping name="Off">
-        <entry default="true">Off</entry>
-      </mapping>
       <mapping name="Lueften">
         <entry default="true">
           <icon name="fts_blade_arc_10"/>
@@ -608,12 +605,15 @@
             <address transform="DPT:1.001" mode="readwrite">5/3/40</address>
           </info>
         -->
-          <trigger value="0" mapping="Off" styling="GreenRed">
-            <layout colspan="3"/>
+          <trigger value="0" mapping="Text_AusEin">
+            <layout colspan="2"/>
             <label>Trigger</label>
-            <address transform="DPT:1.001" mode="write">5/3/40</address>
-            <address transform="DPT:1.001" mode="read">5/3/40</address>
+            <address transform="DPT:1.001" mode="write">5/3/40</address>            
           </trigger>
+          <info mapping="Text_AusEin" styling="GreenRed" flavour="lithium">
+            <layout colspan="1" />
+            <address transform="DPT:1.001" mode="read">5/3/40</address>
+          </info>
           <switch mapping="Text_AusEin" styling="RedGreen" flavour="lithium">
             <layout colspan="3"/>
             <label>Motor</label>
@@ -635,15 +635,39 @@
           <layout colspan="6"/>
           <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
             <layout colspan="3"/>
+            <label>Terrasse li</label>
+            <address transform="DPT:1.001" mode="readwrite">1/4/1</address>
+            <address transform="DPT:1.001" mode="read">1/4/2</address>
+          </switch>
+          <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
+            <layout colspan="3"/>
             <label>Haustür</label>
             <address transform="DPT:1.001" mode="readwrite">1/4/62</address>
             <address transform="DPT:1.001" mode="read">1/4/63</address>
           </switch>
           <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
             <layout colspan="3"/>
-            <label>Garage</label>
+            <label>Terrasse Mi</label>
+            <address transform="DPT:1.001" mode="readwrite">1/4/3</address>
+            <address transform="DPT:1.001" mode="read">1/4/4</address>
+          </switch>
+          <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
+            <layout colspan="3"/>
+            <label>Garage Nord</label>
             <address transform="DPT:1.001" mode="readwrite">1/4/60</address>
             <address transform="DPT:1.001" mode="read">1/4/61</address>
+          </switch>
+          <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
+            <layout colspan="3"/>
+            <label>Terrasse re</label>
+            <address transform="DPT:1.001" mode="readwrite">1/4/5</address>
+            <address transform="DPT:1.001" mode="read">1/4/6</address>
+          </switch>
+          <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
+            <layout colspan="3"/>
+            <label>Garage Süd</label>
+            <address transform="DPT:1.001" mode="readwrite">1/4/120</address>
+            <address transform="DPT:1.001" mode="read">1/4/121</address>
           </switch>
           <diagram_info series="day" period="3" refresh="300" format="%.1f °C" tooltip="true">
             <layout colspan="3"/>
@@ -1867,6 +1891,82 @@
           <trigger mapping="Lueften" styling="GreyGrey" value="50">
             <label>Lüften</label>
             <address transform="DPT:5.001" mode="write">3/2/94</address>
+          </trigger>
+        </group>
+        <group nowidget="true" flavour="sodium">
+          <layout colspan="6"/>
+          <info mapping="Jalousie">
+            <layout colspan="2"/>
+            <label>GZ li</label>
+            <address transform="DPT:5.001" mode="read">3/2/125</address>
+          </info>
+          <info format="%.0f %" align="center">
+            <layout colspan="1"/>
+            <address transform="DPT:5.001" mode="read">3/2/125</address>
+          </info>
+          <trigger value="0" styling="GreyGrey" mapping="UpDown">
+            <layout colspan="1"/>
+            <address transform="DPT:1.001" mode="write">3/2/121</address>
+          </trigger>
+          <trigger value="1" styling="GreyGrey" mapping="Stop">
+            <layout colspan="1"/>
+            <address transform="DPT:1.001" mode="write">3/2/122</address>
+          </trigger>
+          <trigger value="1" styling="GreyGrey" mapping="UpDown">
+            <layout colspan="1"/>
+            <address transform="DPT:1.001" mode="write">3/2/121</address>
+          </trigger>
+        </group>
+        <group nowidget="true" flavour="sodium">
+          <layout colspan="3"/>
+          <switch mapping="UnlockLock" styling="GreyRed">
+            <label>Sperre</label>
+            <address transform="DPT:1.001" mode="readwrite">3/2/127</address>
+          </switch>
+        </group>
+        <group nowidget="true" flavour="sodium">
+          <layout colspan="3"/>
+          <trigger mapping="Lueften" styling="GreyGrey" value="50">
+            <label>Lüften</label>
+            <address transform="DPT:5.001" mode="write">3/2/124</address>
+          </trigger>
+        </group>
+        <group nowidget="true" flavour="sodium">
+          <layout colspan="6"/>
+          <info mapping="Jalousie">
+            <layout colspan="2"/>
+            <label>GZ re</label>
+            <address transform="DPT:5.001" mode="read">3/2/135</address>
+          </info>
+          <info format="%.0f %" align="center">
+            <layout colspan="1"/>
+            <address transform="DPT:5.001" mode="read">3/2/135</address>
+          </info>
+          <trigger value="0" styling="GreyGrey" mapping="UpDown">
+            <layout colspan="1"/>
+            <address transform="DPT:1.001" mode="write">3/2/131</address>
+          </trigger>
+          <trigger value="1" styling="GreyGrey" mapping="Stop">
+            <layout colspan="1"/>
+            <address transform="DPT:1.001" mode="write">3/2/132</address>
+          </trigger>
+          <trigger value="1" styling="GreyGrey" mapping="UpDown">
+            <layout colspan="1"/>
+            <address transform="DPT:1.001" mode="write">3/2/131</address>
+          </trigger>
+        </group>
+        <group nowidget="true" flavour="sodium">
+          <layout colspan="3"/>
+          <switch mapping="UnlockLock" styling="GreyRed">
+            <label>Sperre</label>
+            <address transform="DPT:1.001" mode="readwrite">3/2/137</address>
+          </switch>
+        </group>
+        <group nowidget="true" flavour="sodium">
+          <layout colspan="3"/>
+          <trigger mapping="Lueften" styling="GreyGrey" value="50">
+            <label>Lüften</label>
+            <address transform="DPT:5.001" mode="write">3/2/134</address>
           </trigger>
         </group>
         <group nowidget="true" flavour="sodium">
