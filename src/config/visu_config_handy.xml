@@ -1244,16 +1244,16 @@
 	
 	  <group name="Links">
 	    <layout colspan="12"/>
-		<text><layout colspan="3"/><label>&lt;a href="http://fritz.box/" target="_blank"&gt;Fritz!Box&lt;/a&gt;</label></text>
-		<text><layout colspan="3"/><label>&lt;a href="http://mediaserver:9000/" target="_blank"&gt;SqueezeBox&lt;/a&gt;</label></text>
-		<text><layout colspan="3"/><label>&lt;a href="http://wiregate302:10000/wiregate/view_log.cgi?view=1&amp;file=/var/log/eib.log" target="_blank"&gt;EIB Log&lt;/a&gt;</label></text>
-		<text><layout colspan="3"/><label>&lt;a href="http://wiregate302:10000/wiregate/view_log.cgi?view=1&amp;file=/var/log/wiregate_plugin.log" target="_blank"&gt;Plugin Log&lt;/a&gt;</label></text>
-		<text><layout colspan="3"/><label>&lt;a href="http://wiregate302:10000/wiregate/edit_owsensorconf.cgi" target="_blank"&gt;Sensoren&lt;/a&gt;</label></text>
-		<text><layout colspan="3"/><label>&lt;a href="http://wiregate302:10000/wiregate/graph2.cgi" target="_blank"&gt;Graph&lt;/a&gt;</label></text>
-		<text><layout colspan="3"/><label>&lt;a href="http://admin:monit@wiregate302:2812" target="_blank"&gt;Monit WG&lt;/a&gt;</label></text>
-		<text><layout colspan="3"/><label>&lt;a href="http://admin:monit@mediaserver:2812" target="_blank"&gt;Monit Mediacenter&lt;/a&gt;</label></text>
-		<text><layout colspan="3"/><label>&lt;a href="http://wiregate302/visu-svn/plugins/rsslog/rsslog.php?dump" target="_blank"&gt;RSS Dump&lt;/a&gt;</label></text>
-		<text><layout colspan="3"/><label>&lt;a href="http://wiregate302/movieList/movieList.html" target="_blank"&gt;Movie List&lt;/a&gt;</label></text>
+    <text><layout colspan="3"/><label>&lt;a href="http://fritz.box/" target="_blank"&gt;Fritz!Box&lt;/a&gt;</label></text>
+    <text><layout colspan="3"/><label>&lt;a href="http://mediaserver:9000/" target="_blank"&gt;SqueezeBox&lt;/a&gt;</label></text>
+    <text><layout colspan="3"/><label>&lt;a href="http://wiregate302:10000/wiregate/view_log.cgi?view=1&amp;file=/var/log/eib.log" target="_blank"&gt;EIB Log&lt;/a&gt;</label></text>
+    <text><layout colspan="3"/><label>&lt;a href="http://wiregate302:10000/wiregate/view_log.cgi?view=1&amp;file=/var/log/wiregate_plugin.log" target="_blank"&gt;Plugin Log&lt;/a&gt;</label></text>
+    <text><layout colspan="3"/><label>&lt;a href="http://wiregate302:10000/wiregate/edit_owsensorconf.cgi" target="_blank"&gt;Sensoren&lt;/a&gt;</label></text>
+    <text><layout colspan="3"/><label>&lt;a href="http://wiregate302:10000/wiregate/graph2.cgi" target="_blank"&gt;Graph&lt;/a&gt;</label></text>
+    <text><layout colspan="3"/><label>&lt;a href="http://admin:monit@wiregate302:2812" target="_blank"&gt;Monit WG&lt;/a&gt;</label></text>
+    <text><layout colspan="3"/><label>&lt;a href="http://admin:monit@mediaserver:2812" target="_blank"&gt;Monit Mediacenter&lt;/a&gt;</label></text>
+    <text><layout colspan="3"/><label>&lt;a href="http://wiregate302/visu.git/plugins/rsslog/rsslog.php?dump" target="_blank"&gt;RSS Dump&lt;/a&gt;</label></text>
+    <text><layout colspan="3"/><label>&lt;a href="http://wiregate302/visu.git/latestMovies.php" target="_blank"&gt;Movie List&lt;/a&gt;</label></text>
 	  </group>
       <group name="/var/log/eib.log">
         <layout colspan="11"/>
