@@ -1361,7 +1361,7 @@
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/1/125</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="2"/>
             <address transform="DPT:5.001" mode="read">3/1/125</address>
           </info>
@@ -1394,7 +1394,7 @@
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/1/145</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="2"/>
             <address transform="DPT:5.001" mode="read">3/1/145</address>
           </info>
@@ -1503,7 +1503,7 @@
             <layout colspan="2"/>
             <address transform="DPT:5.001" mode="read">3/1/105</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="2"/>
             <address transform="DPT:5.001" mode="read">3/1/105</address>
           </info>
@@ -1541,7 +1541,7 @@
             <layout colspan="2"/>
             <address transform="DPT:5.001" mode="read">3/1/85</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="2"/>
             <address transform="DPT:5.001" mode="read">3/1/85</address>
           </info>
@@ -1665,7 +1665,7 @@
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/1/185</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/1/185</address>
           </info>
@@ -1774,7 +1774,7 @@
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/2/155</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/2/155</address>
           </info>
@@ -2092,7 +2092,7 @@
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/1/45</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="2"/>
             <address transform="DPT:5.001" mode="read">3/1/45</address>
           </info>
@@ -2125,7 +2125,7 @@
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/1/65</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="2"/>
             <address transform="DPT:5.001" mode="read">3/1/65</address>
           </info>
@@ -2647,7 +2647,7 @@
             <label>EZ</label>
             <address transform="DPT:5.001" mode="read">3/1/105</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/1/105</address>
           </info>
@@ -2686,7 +2686,7 @@
             <label>EZ Lam</label>
             <address transform="DPT:5.001" mode="read">3/1/106</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/1/106</address>
           </info>
@@ -2725,7 +2725,7 @@
             <label>WZ</label>
             <address transform="DPT:5.001" mode="read">3/1/85</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/1/85</address>
           </info>
@@ -2774,7 +2774,7 @@
             <label>Kü Tür</label>
             <address transform="DPT:5.001" mode="read">3/1/125</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/1/125</address>
           </info>
@@ -2819,7 +2819,7 @@
             <label>K Tür Lam</label>
             <address transform="DPT:5.001" mode="read">3/1/126</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/1/126</address>
           </info>
@@ -2858,7 +2858,7 @@
             <label>Kü Fenst</label>
             <address transform="DPT:5.001" mode="read">3/1/145</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/1/145</address>
           </info>
@@ -2896,7 +2896,7 @@
             <label>Bad EG</label>
             <address transform="DPT:5.001" mode="read">3/1/185</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/1/185</address>
           </info>
@@ -2937,7 +2937,7 @@
             <label>SZ</label>
             <address transform="DPT:5.001" mode="read">3/2/185</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/2/185</address>
           </info>
@@ -2975,7 +2975,7 @@
             <label>KZ1</label>
             <address transform="DPT:5.001" mode="read">3/2/65</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/2/65</address>
           </info>
@@ -3013,7 +3013,7 @@
             <label>KZ2</label>
             <address transform="DPT:5.001" mode="read">3/2/95</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/2/95</address>
           </info>
@@ -3051,7 +3051,7 @@
             <label>GZ</label>
             <address transform="DPT:5.001" mode="read">3/2/125</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/2/125</address>
           </info>
@@ -3090,7 +3090,7 @@
             <label>GZ li</label>
             <address transform="DPT:5.001" mode="read">3/2/125</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/2/125</address>
           </info>
@@ -3128,7 +3128,7 @@
             <label>GZ re</label>
             <address transform="DPT:5.001" mode="read">3/2/135</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/2/135</address>
           </info>
@@ -3167,7 +3167,7 @@
             <label>Bad OG</label>
             <address transform="DPT:5.001" mode="read">3/2/155</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/2/155</address>
           </info>
