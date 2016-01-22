@@ -172,6 +172,14 @@
           <icon name="fts_shutter_manual"/>
         </entry>
       </mapping>
+      <mapping name="Wintermodus_Raffstores">
+        <entry value="0">
+          <icon name="weather_summer"/>
+        </entry>
+        <entry value="1">
+          <icon name="weather_winter"/>
+        </entry>
+      </mapping>
       <mapping name="OnOff_Licht">
         <entry value="0">
           <icon name="light_light" flavour="white"/>
@@ -660,13 +668,13 @@
             <label>Strom</label>
             <axis position="right" unit=" mA">Stromwert</axis>
             <rrd color="red" label="Stromwert Gardena Pumpe Zisterne">zisternenPumpeStromwert</rrd>
-            <address transform="DPT:5.010" mode="read">2/1/186</address>
+            <address transform="DPT:9.021" mode="read">2/1/186</address>
           </diagram_info>
           <diagram_info series="day" period="3" refresh="300" format="%.1f Wh" tooltip="true">
             <layout colspan="3" />
             <axis position="right" unit=" Wh">Energieverbrauch</axis>
             <rrd color="red" label="Energieverbrauch Gardena Pumpe Zisterne">zisternenPumpeEnergieverbrauch</rrd>
-            <address transform="DPT:5.010" mode="read">2/1/187</address>
+            <address transform="DPT:12.001" mode="read">2/1/187</address>
           </diagram_info>
         </group>
       </group>
@@ -1463,6 +1471,29 @@
           <address transform="DPT:1.001" mode="readwrite">2/1/90</address>
           <address transform="DPT:1.001" mode="read">2/1/91</address>
         </switch>
+        <switch mapping="OnOff" styling="GreyGreen">
+          <layout colspan="3"/>
+          <label>Laptop</label>
+          <address transform="DPT:1.001" mode="readwrite">2/1/98</address>
+          <address transform="DPT:1.001" mode="read">2/1/99</address>
+        </switch>
+         <diagram_info series="day" period="1" refresh="300" format="%.1f mA" tooltip="true">
+            <layout colspan="3"/>
+            <label>Strom</label>
+            <axis position="right" unit=" mA">Stromwert</axis>
+            <axis position="right" unit=" Wh">Energieverbrauch</axis>
+            <rrd color="red" label="Stromwert" yaxis="Stromwert">laptopWZStromwert</rrd>
+            <rrd color="red" label="Energieverbrauch" yaxis="Energieverbrauch">laptopWZEnergieverbrauch</rrd>
+            <address transform="DPT:9.021" mode="read">2/1/100</address>
+          </diagram_info>
+          <diagram_info series="day" period="3" refresh="300" format="%.1f Wh" tooltip="true">
+            <layout colspan="3" />
+            <axis position="right" unit=" mA">Stromwert</axis>
+            <axis position="right" unit=" Wh">Energieverbrauch</axis>
+            <rrd color="red" label="Stromwert" yaxis="Stromwert">laptopWZStromwert</rrd>
+            <rrd color="red" label="Energieverbrauch" yaxis="Energieverbrauch">laptopWZEnergieverbrauch</rrd>
+            <address transform="DPT:12.001" mode="read">2/1/101</address>
+          </diagram_info>
       </group>
       <group name="Esszimmer">
         <layout colspan="12"/>
@@ -1569,7 +1600,7 @@
       </group>
     <group name="Neue Filme">
       <layout colspan="12"/>
-      <web src="http://wiregate302/movieList/movieList.html" height="280px" frameborder="false" refresh="600" scrolling="yes" width="745px"/>
+      <web src="http://wiregate302/visu.git/latestMovies.php" height="280px" frameborder="false" refresh="600" scrolling="yes" width="745px"/>
     </group>
 
 	</page>
@@ -1789,7 +1820,7 @@
         </info>
         <info format="%.1f °C">
           <label><icon name="scene_shower"/>Badewanne</label>
-          <address transform="DPT:9.001" mode="read">5/2/156</address>
+          <address transform="DPT:9.001" mode="read">5/2/155</address>
         </info>
         <info format="%.1f g/m³">
           <label><icon name="weather_humidity"/>abs. Luftfeuchte</label>
@@ -1911,12 +1942,12 @@
           <label><icon name="temp_outside"/>aktuell</label>
           <address transform="DPT:9.001" mode="read">5/4/120</address>
         </info>
-		<diagram_info series="day" period="7" refresh="300" format="%.1f °C" tooltip="true">
+		<diagram_info series="custom" seriesStart="end-2week" seriesEnd="now" seriesResolution="300" refresh="300" format="%.1f °C" tooltip="true">
 		  <layout colspan="3"/>
           <label><icon name="temp_outside"/>gestern</label>
           <axis unit=" °C"/>
 		  <!-- TODO: fix problem with resolution: http://knx-user-forum.de/forum/supportforen/cometvisu/41036-diagram-rra-direkt-adressieren/page5 -->
-          <rrd color="red" label="24h" resolution="86400">26.E0AF30010000_temp</rrd>
+          <rrd color="red" label="24h" resolution="86400">aussenTemperatur24h</rrd>
           <address transform="DPT:9.001" mode="read">5/4/125</address>
         </diagram_info>
         <info format="%.1f °C">
@@ -2017,7 +2048,7 @@
 		<text><layout colspan="3"/><label>&lt;a href="http://admin:monit@wiregate302:2812" target="_blank"&gt;Monit WG&lt;/a&gt;</label></text>
 		<text><layout colspan="3"/><label>&lt;a href="http://admin:monit@mediaserver:2812" target="_blank"&gt;Monit Mediacenter&lt;/a&gt;</label></text>
 		<text><layout colspan="3"/><label>&lt;a href="http://wiregate302/visu-svn/plugins/rsslog/rsslog.php?dump" target="_blank"&gt;RSS Dump&lt;/a&gt;</label></text>
-		<text><layout colspan="3"/><label>&lt;a href="http://wiregate302/movieList/movieList.html" target="_blank"&gt;Movie List&lt;/a&gt;</label></text>
+		<text><layout colspan="3"/><label>&lt;a href="http://wiregate302/visu.git/latestMovies.php" target="_blank"&gt;Movie List&lt;/a&gt;</label></text>
 	  </group>
       <group name="/var/log/eib.log">
         <layout colspan="11"/>
@@ -2324,18 +2355,20 @@
         <layout colspan="12"/>
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="3"/>
-          <label>Auto-Timer</label>
-          <address transform="DPT:1.001" mode="readwrite">2/0/3</address>
+          <label>ALLES</label>
+          <address transform="DPT:1.001" mode="readwrite">2/0/1</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="3"/>
           <label>WZ</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/94</address>
+          <address transform="DPT:1.001" mode="read">2/1/95</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="3"/>
           <label>Küche</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/156</address>
+          <address transform="DPT:1.001" mode="read">2/1/157</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="3"/>
@@ -2347,18 +2380,25 @@
           <layout colspan="3"/>
           <label>Flur OG</label>
           <address transform="DPT:1.001" mode="readwrite">2/2/30</address>
+          <address transform="DPT:1.001" mode="read">2/2/31</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="3"/>
           <label>Kinderzimmer</label>
           <address transform="DPT:1.001" mode="readwrite">2/2/10</address>
+          <address transform="DPT:1.001" mode="read">2/2/11</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="3"/>
           <label>Stern &amp; Baum</label>
           <address transform="DPT:1.001" mode="readwrite">2/4/62</address>
+          <address transform="DPT:1.001" mode="read">2/4/63</address>
         </switch>
-
+        <switch mapping="OnOff" styling="GreyGreen">
+          <layout colspan="3"/>
+          <label>Auto-Timer</label>
+          <address transform="DPT:1.001" mode="readwrite">2/0/3</address>
+        </switch>
 		<!--
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="3"/>
@@ -2379,7 +2419,7 @@
       <group name="Einstellungen">
         <layout colspan="12"/>
         <group nowidget="true">
-          <layout colspan="6" rowspan="9"/>
+          <layout colspan="6" rowspan="10"/>
           <switch mapping="AutomatikSperre_Raffstores" styling="GreenRed">
             <layout colspan="6"/>
             <label>Automatisch runter (WS)</label>
@@ -2391,6 +2431,12 @@
             <label>Automatisch hoch (Zeit)</label>
             <!-- 1=gesperrt -->
             <address transform="DPT:1.001" mode="readwrite">9/4/1</address>
+          </switch>
+          <switch mapping="Wintermodus_Raffstores">
+            <layout colspan="6"/>
+            <label>Wintermodus</label>
+            <!-- 1=gesperrt -->
+            <address transform="DPT:1.001" mode="readwrite">9/4/2</address>
           </switch>
           <diagram_info series="day" period="1" refresh="300" format="%.1f m/s" styling="GreenRedSpeed" tooltip="true">
             <layout colspan="3"/>
@@ -2589,7 +2635,7 @@
 		  </diagram>
 		</group>
         <rsslog src="plugins/rsslog/rsslog.php" refresh="60" limit="20" mode="last" filter="raffstores" timeformat="%d.%m. %H:%M">
-          <layout colspan="6" rowspan="9"/>
+          <layout colspan="6" rowspan="10"/>
         </rsslog>
       </group>
       <group name="EG">

@@ -146,6 +146,14 @@
           <icon name="fts_shutter_manual"/>
         </entry>
       </mapping>
+      <mapping name="Wintermodus_Raffstores">
+        <entry value="0">
+          <icon name="weather_summer"/>
+        </entry>
+        <entry value="1">
+          <icon name="weather_winter"/>
+        </entry>
+      </mapping>
       <mapping name="OnOff_Licht">
         <entry value="0">
           <icon name="light_light" flavour="white"/>
@@ -1352,6 +1360,12 @@
           <address transform="DPT:1.001" mode="readwrite">2/1/96</address>
           <address transform="DPT:1.001" mode="read">2/1/97</address>
         </switch>
+        <switch mapping="OnOff" styling="GreyGreen">
+          <layout colspan="3"/>
+          <label>Laptop</label>
+          <address transform="DPT:1.001" mode="readwrite">2/1/98</address>
+          <address transform="DPT:1.001" mode="read">2/1/99</address>
+        </switch>
       </group>
       <group name="Kinder">
         <layout colspan="12"/>
@@ -1444,18 +1458,20 @@
         <layout colspan="12"/>
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="3"/>
-          <label>Auto-Timer</label>
-          <address transform="DPT:1.001" mode="readwrite">2/0/3</address>
+          <label>ALLES</label>
+          <address transform="DPT:1.001" mode="readwrite">2/0/1</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="3"/>
           <label>WZ</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/94</address>
+          <address transform="DPT:1.001" mode="read">2/1/95</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="3"/>
           <label>Küche</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/156</address>
+          <address transform="DPT:1.001" mode="read">2/1/157</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="3"/>
@@ -1467,16 +1483,24 @@
           <layout colspan="3"/>
           <label>Flur OG</label>
           <address transform="DPT:1.001" mode="readwrite">2/2/30</address>
+          <address transform="DPT:1.001" mode="read">2/2/31</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="3"/>
           <label>Kinderzimmer</label>
           <address transform="DPT:1.001" mode="readwrite">2/2/10</address>
+          <address transform="DPT:1.001" mode="read">2/2/11</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="3"/>
           <label>Stern &amp; Baum</label>
           <address transform="DPT:1.001" mode="readwrite">2/4/62</address>
+          <address transform="DPT:1.001" mode="read">2/4/63</address>
+        </switch>
+        <switch mapping="OnOff" styling="GreyGreen">
+          <layout colspan="3"/>
+          <label>Auto-Timer</label>
+          <address transform="DPT:1.001" mode="readwrite">2/0/3</address>
         </switch>
       </group>
     </page>
@@ -1496,6 +1520,12 @@
             <label>Auto up (Zeit)</label>
             <!-- 1=gesperrt -->
             <address transform="DPT:1.001" mode="readwrite">9/4/1</address>
+          </switch>
+          <switch mapping="Wintermodus_Raffstores">
+            <layout colspan="3"/>
+            <label>Wintermodus</label>
+            <!-- 1=gesperrt -->
+            <address transform="DPT:1.001" mode="readwrite">9/4/2</address>
           </switch>
           <diagram_info series="day" period="1" refresh="300" format="%.1f m/s" styling="GreenRedSpeed" tooltip="true">
             <layout colspan="3"/>
