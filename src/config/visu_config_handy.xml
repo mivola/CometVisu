@@ -504,7 +504,7 @@
         <rrd color="red">26.E0AF30010000_temp</rrd>
         <address transform="DPT:9.001" mode="read">5/4/120</address>
       </diagram_info>
-      <diagram_info series="week" refresh="300" format="%.1f %" styling="BlueGreenRedHum" tooltip="true">
+      <diagram_info series="week" refresh="300" format="%.1f %%" styling="BlueGreenRedHum" tooltip="true">
         <layout colspan="3"/>
         <label>außen</label>
         <axis unit="%"/>
@@ -519,7 +519,7 @@
         <rrd color="blue" label="außen">26.E0AF30010000_temp</rrd>
         <address transform="DPT:9.001" mode="read">5/3/30</address>
       </diagram_info>
-      <diagram_info series="week" refresh="300" format="%.1f %" styling="BlueGreenRedHum" tooltip="true">
+      <diagram_info series="week" refresh="300" format="%.1f %%" styling="BlueGreenRedHum" tooltip="true">
         <layout colspan="3"/>
         <label>Garage</label>
         <axis unit="%"/>
@@ -534,7 +534,7 @@
         <rrd color="blue" label="außen">26.E0AF30010000_temp</rrd>
         <address transform="DPT:9.001" mode="read">5/3/60</address>
       </diagram_info>
-      <diagram_info series="week" refresh="300" format="%.1f %" styling="BlueGreenRedHum" tooltip="true">
+      <diagram_info series="week" refresh="300" format="%.1f %%" styling="BlueGreenRedHum" tooltip="true">
         <layout colspan="3"/>
         <label>G.Dach</label>
         <axis unit="%"/>
@@ -549,14 +549,14 @@
         <rrd color="blue" label="außen">26.E0AF30010000_temp</rrd>
         <address transform="DPT:9.001" mode="read">5/2/210</address>
       </diagram_info>
-      <diagram_info series="week" refresh="300" format="%.1f %" styling="BlueGreenRedHum" tooltip="true">
+      <diagram_info series="week" refresh="300" format="%.1f %%" styling="BlueGreenRedHum" tooltip="true">
         <layout colspan="3"/>
         <label>Spitzboden</label>
         <axis unit="%"/>
         <rrd color="red">26.D29730010000_hum</rrd>
         <address transform="DPT:5.001" mode="read">5/2/212</address>
       </diagram_info>
-      <diagram_info series="day" period="3" refresh="300" format="%.1f %" styling="BlueGreenRedHum" tooltip="true">
+      <diagram_info series="day" period="3" refresh="300" format="%.1f %%" styling="BlueGreenRedHum" tooltip="true">
         <layout colspan="3"/>
         <label>Bad EG</label>
         <axis unit="%"/>
@@ -566,7 +566,7 @@
         <!--<rrd yaxis="hum" color="red" label="HWR"></rrd>-->
         <address transform="DPT:5.001" mode="read">5/1/213</address>
       </diagram_info>
-      <diagram_info series="week" period="1" refresh="300" format="%.1f %" styling="BlueGreenRedHum" tooltip="true">
+      <diagram_info series="week" period="1" refresh="300" format="%.1f %%" styling="BlueGreenRedHum" tooltip="true">
         <layout colspan="3"/>
         <label>Bad OG</label>
         <axis unit="%"/>
@@ -576,7 +576,7 @@
         <!--<rrd yaxis="hum" color="red" label="HWR"></rrd>-->
         <address transform="DPT:5.001" mode="read">5/2/153</address>
       </diagram_info>
-      <diagram_info series="week" period="3" refresh="300" format="%.1f %" styling="BlueGreenRedHum" tooltip="true">
+      <diagram_info series="week" period="3" refresh="300" format="%.1f %%" styling="BlueGreenRedHum" tooltip="true">
         <layout colspan="3"/>
         <label>WZ</label>
         <axis unit="%"/>
@@ -586,7 +586,7 @@
         <!--<rrd yaxis="hum" color="red" label="HWR"></rrd>-->
         <address transform="DPT:5.001" mode="read">5/1/123</address>
       </diagram_info>
-      <diagram_info series="week" period="8" refresh="300" format="%.1f %" styling="BlueGreenRedHum" tooltip="true">
+      <diagram_info series="week" period="8" refresh="300" format="%.1f %%" styling="BlueGreenRedHum" tooltip="true">
         <layout colspan="3"/>
         <label>HWR???</label>
         <axis unit="%"/>
@@ -1106,7 +1106,7 @@
 	  </group>
       <group name="Luftfeuchte">
 	    <layout colspan="12"/>
-        <diagram_info format="%.1f %" series="week" period="2" refresh="300" styling="BlueGreenRedHum" gridcolor="#707070" tooltip="true" legendposition="nw">
+        <diagram_info format="%.1f %%" series="week" period="2" refresh="300" styling="BlueGreenRedHum" gridcolor="#707070" tooltip="true" legendposition="nw">
           <layout colspan="3"/>
           <label><icon name="weather_humidity_rel"/>EZ</label>
           <axis position="left" label="Luftfeuchte" unit=" %">hum</axis>
@@ -1115,7 +1115,7 @@
           <rrd yaxis="hum" color="#00CCFF" label="Bad OG">26.86AB30010000_hum</rrd>
 		  <address transform="DPT:5.001" mode="read">5/1/123</address>
         </diagram_info>
-        <diagram_info format="%.1f %" series="day" period="5" refresh="300" styling="BlueGreenRedHum" gridcolor="#707070" tooltip="true" legendposition="nw">
+        <diagram_info format="%.1f %%" series="day" period="5" refresh="300" styling="BlueGreenRedHum" gridcolor="#707070" tooltip="true" legendposition="nw">
           <layout colspan="3"/>
           <label><icon name="weather_humidity_rel"/>Bad EG</label>
           <axis position="left" label="Luftfeuchte" unit=" °C">hum</axis>
@@ -1123,7 +1123,7 @@
           <rrd yaxis="hum" color="#FFCC00" label="EZ">26.AAB82E010000_hum</rrd>
           <rrd yaxis="hum" color="#00CCFF" label="Bad OG">26.86AB30010000_hum</rrd><address transform="DPT:5.001" mode="read">5/1/213</address>
         </diagram_info>
-	    <diagram_info format="%.1f %" series="day" period="2" refresh="300" styling="BlueGreenRedHum" gridcolor="#707070" tooltip="true" legendposition="nw">
+	    <diagram_info format="%.1f %%" series="day" period="2" refresh="300" styling="BlueGreenRedHum" gridcolor="#707070" tooltip="true" legendposition="nw">
           <layout colspan="3"/>
           <label><icon name="weather_humidity_rel"/>Bad OG</label>
           <axis position="left" label="Luftfeuchte" unit=" °C">hum</axis>
@@ -1132,7 +1132,7 @@
           <rrd yaxis="hum" color="#00CCFF" label="Bad OG">26.86AB30010000_hum</rrd>
           <address transform="DPT:5.001" mode="read">5/2/153</address>
         </diagram_info>
-	    <diagram_info format="%.1f %" series="day" period="2" refresh="300" styling="BlueGreenRedHum" gridcolor="#707070" tooltip="true" legendposition="nw">
+	    <diagram_info format="%.1f %%" series="day" period="2" refresh="300" styling="BlueGreenRedHum" gridcolor="#707070" tooltip="true" legendposition="nw">
           <layout colspan="3"/>
           <label><icon name="weather_humidity_rel"/>SB Haus</label>
           <axis position="left" label="Luftfeuchte" unit=" °C">hum</axis>
@@ -1203,7 +1203,7 @@
           <label><icon name="temp_temperature"/>Temp</label>
           <address transform="DPT:9.001" mode="read">9/1/0</address>
         </info>
-        <info format="%.1f %">
+        <info format="%.1f %%">
           <layout colspan="3"/>
           <label><icon name="weather_humidity_rel"/>Feuchte</label>
           <address transform="DPT:9.007" mode="read">9/1/1</address>
@@ -1734,7 +1734,7 @@
             <label>EZ</label>
             <address transform="DPT:5.001" mode="read">3/1/105</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/1/105</address>
           </info>
@@ -1772,7 +1772,7 @@
             <label>WZ</label>
             <address transform="DPT:5.001" mode="read">3/1/85</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/1/85</address>
           </info>
@@ -1820,7 +1820,7 @@
             <label>Küche Tür</label>
             <address transform="DPT:5.001" mode="read">3/1/125</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/1/125</address>
           </info>
@@ -1858,7 +1858,7 @@
             <label>Küche Fenster</label>
             <address transform="DPT:5.001" mode="read">3/1/145</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/1/145</address>
           </info>
@@ -1896,7 +1896,7 @@
             <label>Bad EG</label>
             <address transform="DPT:5.001" mode="read">3/1/185</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/1/185</address>
           </info>
@@ -1937,7 +1937,7 @@
             <label>SZ</label>
             <address transform="DPT:5.001" mode="read">3/2/185</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/2/185</address>
           </info>
@@ -1975,7 +1975,7 @@
             <label>KZ1</label>
             <address transform="DPT:5.001" mode="read">3/2/65</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/2/65</address>
           </info>
@@ -2013,7 +2013,7 @@
             <label>KZ2</label>
             <address transform="DPT:5.001" mode="read">3/2/95</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/2/95</address>
           </info>
@@ -2051,7 +2051,7 @@
             <label>GZ li</label>
             <address transform="DPT:5.001" mode="read">3/2/125</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/2/125</address>
           </info>
@@ -2089,7 +2089,7 @@
             <label>GZ re</label>
             <address transform="DPT:5.001" mode="read">3/2/135</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/2/135</address>
           </info>
@@ -2127,7 +2127,7 @@
             <label>Bad OG</label>
             <address transform="DPT:5.001" mode="read">3/2/155</address>
           </info>
-          <info format="%.0f %" align="center">
+          <info format="%.0f %%" align="center">
             <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/2/155</address>
           </info>
