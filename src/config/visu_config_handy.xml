@@ -472,6 +472,16 @@
         <label>Kühlschrank</label>
         <address transform="DPT:1.001" mode="readwrite">5/1/154</address>
       </info>
+      <info mapping="LeackageOpenClose">
+        <layout colspan="3"/>
+        <label>Dusche</label>
+        <address transform="DPT:1.001" mode="readwrite">5/2/157</address>
+      </info>
+      <info mapping="LeackageOpenClose">
+        <layout colspan="3"/>
+        <label>Badewanne</label>
+        <address transform="DPT:1.001" mode="readwrite">5/2/156</address>
+      </info>
 	  <!--
       <info mapping="LeackageOpenClose">
         <layout colspan="3"/>
@@ -487,11 +497,6 @@
         <layout colspan="3"/>
         <label>Kühltruhe</label>
         <address transform="DPT:1.001" mode="readwrite">5/1/183</address>
-      </info>
-      <info mapping="LeackageOpenClose">
-        <layout colspan="3"/>
-        <label>Badewanne</label>
-        <address transform="DPT:1.001" mode="readwrite">5/2/157</address>
       </info>
 	  -->
     </group>
@@ -1075,8 +1080,8 @@
         </info>
         <info format="%.1f °C">
           <layout colspan="3"/>
-          <label>Garagendach</label>
-          <address transform="DPT:9.001" mode="read">5/3/60</address>
+          <label><icon name="scene_bath"/>Bad OG</label>
+          <address transform="DPT:9.001" mode="read">5/2/150</address>
         </info>
         <info format="%.1f °C">
           <layout colspan="3"/>
@@ -2305,24 +2310,24 @@
           <label></label>
           <address transform="DPT:1.001" mode="write">9/3/1</address>
         </multitrigger>
-        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
+        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%.0f °C" change="absolute" min="15" max="25">
           <label>Komfort-Temperatur</label>
-          <address transform="DPT:9.001" mode="write">9/3/120</address>
+          <address transform="DPT:9.001" mode="readwrite">9/3/120</address>
           <address transform="DPT:9.001" mode="read">9/2/120</address>
         </infotrigger>
-        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
+        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%.0f °C" change="absolute" min="15" max="25">
           <label>Ferien-Temperatur</label>
-          <address transform="DPT:9.001" mode="write">9/3/122</address>
+          <address transform="DPT:9.001" mode="readwrite">9/3/122</address>
           <address transform="DPT:9.001" mode="read">9/2/122</address>
         </infotrigger>
-        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
+        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%.0f °C" change="absolute" min="15" max="25">
           <label>Absenk-Temperatur</label>
-          <address transform="DPT:9.001" mode="write">9/3/121</address>
+          <address transform="DPT:9.001" mode="readwrite">9/3/121</address>
           <address transform="DPT:9.001" mode="read">9/2/121</address>
         </infotrigger>
-        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
+        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%.0f °C" change="absolute" min="15" max="25">
           <label>AT-Abschalttemperatur</label>
-          <address transform="DPT:9.001" mode="write">9/3/11</address>
+          <address transform="DPT:9.001" mode="readwrite">9/3/11</address>
           <address transform="DPT:9.001" mode="read">9/2/11</address>
         </infotrigger>
 	  </group>
@@ -2526,7 +2531,7 @@
           <rrd yaxis="temp" color="#6600CC" label="GZ">28.2D5ADE030000_temp</rrd>
           <rrd yaxis="temp" color="#FFCC00" label="Bad AMS">26.86AB30010000_temp</rrd>
           <rrd yaxis="temp" color="#006295" label="Bad Luft">TODO_temp</rrd>
-          <rrd yaxis="temp" color="#70822E" label="Schlafzimmer">TODO_temp</rrd>
+          <rrd yaxis="temp" color="#70822E" label="Schlafzimmer">28.396FDE030000_temp</rrd>
           <address transform="DPT:9.001" mode="read">9/2/82</address>
         </diagram_info>
         <diagram_info format="%.1f °C" series="day" period="4" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">

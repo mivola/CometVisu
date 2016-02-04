@@ -18,6 +18,12 @@
           <icon name="sani_water_tap" color="green"/>
         </entry>
       </mapping>
+      <mapping name="RSS_LeackageOpenClose0">
+        <entry value="0"><icon name="sani_water_tap" color="green"/></entry>
+      </mapping>
+      <mapping name="RSS_LeackageOpenClose1">
+        <entry value="0"><icon name="sani_leakage" color="red"/></entry>
+      </mapping>
       <mapping name="PumpOnOff">
         <entry value="1">
           <icon name="sani_garden_pump" color="green"/>
@@ -26,6 +32,12 @@
           <icon name="sani_garden_pump" color="red"/>
         </entry>
       </mapping>
+      <mapping name="RSS_DoorOpenClose0">
+        <entry value="0"><icon name="fts_door_open" color="red"/></entry>
+      </mapping>
+      <mapping name="RSS_DoorOpenClose1">
+        <entry value="0"><icon name="fts_door_locked" color="green"/></entry>
+      </mapping>
       <mapping name="DoorOpenClose">
         <entry value="0">
           <icon name="fts_door_open" color="red"/>
@@ -33,6 +45,12 @@
         <entry value="1">
           <icon name="fts_door_locked" color="green"/>
         </entry>
+      </mapping>
+      <mapping name="RSS_GarageDoorOpenClose0">
+        <entry value="0"><icon name="fts_garage_door_10" color="red"/></entry>
+      </mapping>
+      <mapping name="RSS_GarageDoorOpenClose1">
+        <entry value="0"><icon name="fts_garage_door_100" color="green"/></entry>
       </mapping>
       <mapping name="GarageDoorOpenClose">
         <entry value="0">
@@ -179,6 +197,12 @@
         <entry value="1">
           <icon name="weather_winter"/>
         </entry>
+      </mapping>
+      <mapping name="RSS_OnOff_Licht0">
+        <entry value="0"><icon name="light_light" flavour="white"/></entry>
+      </mapping>
+      <mapping name="RSS_OnOff_Licht1">
+        <entry value="0"><icon name="light_light" flavour="sodium" color="orange"/></entry>
       </mapping>
       <mapping name="OnOff_Licht">
         <entry value="0">
@@ -542,7 +566,7 @@
       </group>
       <group name="Ereignisse">
         <layout colspan="6" rowspan="7"/>
-        <rsslog src="plugins/rsslog/rsslog.php" refresh="60" filter="garage,hwr" limit="5" mode="last" timeformat="%d.%m. %H:%M">
+        <rsslog src="plugins/rsslog/rsslog.php" refresh="60" filter="garage,hwr" limit="10" mode="last" timeformat="%d.%m. %H:%M">
           <layout rowspan="7" colspan="6"/>
         </rsslog>
       </group>
@@ -680,7 +704,7 @@
       </group>
       <group name="Ereignisse">
         <layout colspan="6" rowspan="7"/>
-        <rsslog src="plugins/rsslog/rsslog.php" refresh="60" filter="aussen,garten" limit="5" mode="last" timeformat="%d.%m. %H:%M">
+        <rsslog src="plugins/rsslog/rsslog.php" refresh="60" filter="aussen,garten" limit="10" mode="last" timeformat="%d.%m. %H:%M">
           <layout rowspan="7" colspan="6"/>
         </rsslog>
       </group>
@@ -992,18 +1016,18 @@
       </info>
       <info mapping="LeackageOpenClose">
         <layout colspan="3"/>
-        <label>Trockner</label>
-        <address transform="DPT:1.001" mode="readwrite">5/1/181</address>
-      </info>
-      <info mapping="LeackageOpenClose">
-        <layout colspan="3"/>
         <label>Kühltruhe</label>
         <address transform="DPT:1.001" mode="readwrite">5/1/183</address>
       </info>
       <info mapping="LeackageOpenClose">
         <layout colspan="3"/>
-        <label>Badewanne</label>
+        <label>Dusche</label>
         <address transform="DPT:1.001" mode="readwrite">5/2/157</address>
+      </info>
+      <info mapping="LeackageOpenClose">
+        <layout colspan="3"/>
+        <label>Badewanne</label>
+        <address transform="DPT:1.001" mode="readwrite">5/2/156</address>
       </info>
     </group>
     <group name="Temperaturen und Luftfeuchte">
@@ -1138,7 +1162,7 @@
         <layout colspan="6"/>
         <web src="https://www.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=280&amp;wkst=2&amp;hl=de&amp;bgcolor=%23FFFFFF&amp;src=4voigts%40gmail.com&amp;color=%232952A3&amp;src=q1nnkb0j4nd56a2d01vdujs9j0%40group.calendar.google.com&amp;color=%23125A12&amp;src=ks7j7q2s7vt8kq7dsgd3298bos%40group.calendar.google.com&amp;color=%2323164E&amp;src=hj6lbn70vdh4dvdmq284gmfqvs%40group.calendar.google.com&amp;color=%23AB8B00&amp;src=pkett5psoihb9556bf9jq5ot2c%40group.calendar.google.com&amp;color=%23711616&amp;src=0p724904o1mkqt1f2uc7mdrdps%40group.calendar.google.com&amp;color=%231B887A&amp;src=cb1khvekqg59p7bfdkj1ql4oa4%40group.calendar.google.com&amp;color=%238C500B&amp;src=82cc4eltune4ttgra9igcbu6as%40group.calendar.google.com&amp;color=%23691426&amp;src=24n6jmifv4qere61v0vio3u0co%40group.calendar.google.com&amp;color=%236B3304&amp;src=de.german%23holiday%40group.v.calendar.google.com&amp;color=%23853104&amp;src=e_2_de%23weeknum%40group.v.calendar.google.com&amp;color=%235F6B02&amp;ctz=Europe%2FBerlin" height="280px" frameborder="0" refresh="600" scrolling="no"/>
       </group>
-      <rsslog src="plugins/rsslog/rsslog.php" refresh="60" filter="security, alarm" limit="5" mode="last" timeformat="%d.%m. %H:%M">
+      <rsslog src="plugins/rsslog/rsslog.php" refresh="60" filter="security, alarm" limit="10" mode="last" timeformat="%d.%m. %H:%M">
         <layout rowspan="5" colspan="6"/>
       </rsslog>
     </group>
@@ -1867,8 +1891,8 @@
         </info>
         <info format="%.1f °C">
           <layout colspan="3"/>
-          <label>Garagendach</label>
-          <address transform="DPT:9.001" mode="read">5/3/60</address>
+          <label><icon name="scene_bath"/>Bad OG</label>
+          <address transform="DPT:9.001" mode="read">5/2/150</address>
         </info>
         <info format="%.1f °C">
           <layout colspan="3"/>
@@ -2060,7 +2084,7 @@
       </group>
 	  <group name="RSS System">
         <layout colspan="11"/>
-		<rsslog src="plugins/rsslog/rsslog.php" refresh="60" limit="6" mode="last" filter="system,1-Wire" timeformat="%d.%m. %H:%M">
+		<rsslog src="plugins/rsslog/rsslog.php" refresh="60" limit="10" mode="last" filter="system,1-Wire" timeformat="%d.%m. %H:%M">
           <layout colspan="11" rowspan="6"/>
         </rsslog>
       </group>
@@ -2262,6 +2286,12 @@
           <label>Stehlampe</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/96</address>
           <address transform="DPT:1.001" mode="read">2/1/97</address>
+        </switch>
+        <switch mapping="OnOff" styling="GreyGreen">
+          <layout colspan="3"/>
+          <label>Laptop</label>
+          <address transform="DPT:1.001" mode="readwrite">2/1/98</address>
+          <address transform="DPT:1.001" mode="read">2/1/99</address>
         </switch>
       </group>
       <group name="Kinder">
@@ -3332,24 +3362,24 @@
           <label>Speicherladung</label>
           <address transform="DPT:1.001" mode="write">9/3/1</address>
         </multitrigger>
-        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
+        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%.0f °C" change="absolute" min="15" max="25">
           <label>Komfort-Temperatur</label>
-          <address transform="DPT:9.001" mode="write">9/3/120</address>
+          <address transform="DPT:9.001" mode="readwrite">9/3/120</address>
           <address transform="DPT:9.001" mode="read">9/2/120</address>
         </infotrigger>
-        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
+        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%.0f °C" change="absolute" min="15" max="25">
           <label>Ferien-Temperatur</label>
-          <address transform="DPT:9.001" mode="write">9/3/122</address>
+          <address transform="DPT:9.001" mode="readwrite">9/3/122</address>
           <address transform="DPT:9.001" mode="read">9/2/122</address>
         </infotrigger>
-        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
+        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%.0f °C" change="absolute" min="15" max="25">
           <label>Absenk-Temperatur</label>
-          <address transform="DPT:9.001" mode="write">9/3/121</address>
+          <address transform="DPT:9.001" mode="readwrite">9/3/121</address>
           <address transform="DPT:9.001" mode="read">9/2/121</address>
         </infotrigger>
-        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
+        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%.0f °C" change="absolute" min="15" max="25">
           <label>AT-Abschalttemperatur</label>
-          <address transform="DPT:9.001" mode="write">9/3/11</address>
+          <address transform="DPT:9.001" mode="readwrite">9/3/11</address>
           <address transform="DPT:9.001" mode="read">9/2/11</address>
         </infotrigger>
 	  </group>
@@ -3553,7 +3583,7 @@
           <rrd yaxis="temp" color="#6600CC" label="GZ">28.2D5ADE030000_temp</rrd>
           <rrd yaxis="temp" color="#FFCC00" label="Bad AMS">26.86AB30010000_temp</rrd>
           <rrd yaxis="temp" color="#006295" label="Bad Luft">TODO_temp</rrd>
-          <rrd yaxis="temp" color="#70822E" label="Schlafzimmer">TODO_temp</rrd>
+          <rrd yaxis="temp" color="#70822E" label="Schlafzimmer">28.396FDE030000_temp</rrd>
           <address transform="DPT:9.001" mode="read">9/2/82</address>
         </diagram_info>
         <diagram_info format="%.1f °C" series="day" period="4" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
@@ -3613,7 +3643,7 @@
       </group>
       <group name="Ereignisse">
         <layout colspan="6" rowspan="5"/>
-        <rsslog src="plugins/rsslog/rsslog.php" refresh="60" filter="heizung" limit="5" mode="last" timeformat="%d.%m. %H:%M">
+        <rsslog src="plugins/rsslog/rsslog.php" refresh="60" filter="heizung" limit="10" mode="last" timeformat="%d.%m. %H:%M">
           <layout colspan="6" rowspan="5"/>
         </rsslog>
       </group>	  
