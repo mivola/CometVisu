@@ -270,6 +270,16 @@ function TemplateEngine( undefined ) {
   };
   
   /**
+   * Structure where a design can set a default value that a widget or plugin
+   * can use.
+   * This is especially important for design relevant information like colors
+   * that can not be set though CSS.
+   * 
+   * Useage: templateEngine.defaults.plugin.foo = {bar: 'baz'};
+   */
+  this.defaults = { widget: {}, plugin: {} };
+
+  /**
    * Function to test if the path is in a valid form.
    * Note: it doesn't check if it exists!
    */
@@ -451,6 +461,10 @@ function TemplateEngine( undefined ) {
    * 
    * For touch it's a little different as a touchmove cancels the current
    * action and translates into a scroll.
+   * 
+   * All of this is the default or when the mousemove callback is returning
+   * restrict=true (or undefined).
+   * When restrict=false the widget captures the mouse until it is released.
    */
   (function( outerThis ){ // closure to keep namespace clean
     // helper function to get the current actor and widget out of an event:
@@ -507,19 +521,32 @@ function TemplateEngine( undefined ) {
       scrollElement,
       // object to hold the coordinated of the current mouse / touch event
       mouseEvent = outerThis.handleMouseEvent = { 
+        moveFn:          undefined,
+        moveRestrict:    true,
         actor:           undefined,
         widget:          undefined,
         widgetCreator:   undefined,
         downtime:        0,
         alreadyCanceled: false
-      };
-    
+      },
+      touchStartX = null,
+      touchStartY = null;
+
     window.addEventListener( isTouchDevice ? 'touchstart' : 'mousedown', function( event ){
       var 
         element = event.target,
         // search if a widget was hit
         widgetActor = getWidgetActor( event.target ),
         bindWidget  = widgetActor.widget ? thisTemplateEngine.widgetDataGet( widgetActor.widget.id ).bind_click_to_widget : false;
+      
+      var touchobj;
+      
+      if (isTouchDevice){
+        touchobj = event.changedTouches[0];
+        
+        touchStartX = parseInt(touchobj.clientX);
+        touchStartY = parseInt(touchobj.clientY);
+      }
       
       isWidget = widgetActor.widget !== undefined && (bindWidget || widgetActor.actor !== undefined);
       if( isWidget )
@@ -535,13 +562,19 @@ function TemplateEngine( undefined ) {
           
         if( actionFn !== undefined )
         {
-          actionFn.call( mouseEvent.widget, mouseEvent.widget.id, mouseEvent.actor );
+          var moveFnInfo = actionFn.call( mouseEvent.widget, mouseEvent.widget.id, mouseEvent.actor, false, event );
+          if( moveFnInfo )
+          {
+            mouseEvent.moveFn       = moveFnInfo.callback;
+            mouseEvent.moveRestrict = moveFnInfo.restrict !== undefined ? moveFnInfo.restrict : true;
+          }
         }
       } else {
         mouseEvent.actor = undefined;
       }
-      
-      scrollElement = getScrollElement( event.target );
+
+      if( mouseEvent.moveRestrict )
+        scrollElement = getScrollElement( event.target );
       // stop the propagation if scrollable is at the end
       // inspired by 
       if( scrollElement )
@@ -572,8 +605,11 @@ function TemplateEngine( undefined ) {
           !mouseEvent.alreadyCanceled
         )
         {
-          actionFn.call( widget, widget.id, mouseEvent.actor, !inCurrent );
+          actionFn.call( widget, widget.id, mouseEvent.actor, !inCurrent, event );
         }
+        mouseEvent.moveFn = undefined;
+        mouseEvent.moveRestrict = true;
+        scrollElement = undefined;
         isWidget = false;
       }
     });
@@ -587,19 +623,23 @@ function TemplateEngine( undefined ) {
           widgetActor = getWidgetActor( event.target ),
           widget      = mouseEvent.widget,
           bindWidget  = thisTemplateEngine.widgetDataGet( widget.id ).bind_click_to_widget,
-          inCurrent   = widgetActor.widget === widget && (bindWidget || widgetActor.actor === mouseEvent.actor);
+          inCurrent   = !mouseEvent.moveRestrict || (widgetActor.widget === widget && (bindWidget || widgetActor.actor === mouseEvent.actor));
+          
+        if( inCurrent && mouseEvent.moveFn )
+          mouseEvent.moveFn( event );
+        
         if( inCurrent && mouseEvent.alreadyCanceled )
         { // reactivate
           mouseEvent.alreadyCanceled = false;
           var
             actionFn  = mouseEvent.widgetCreator.downaction;
-          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor );
+          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, false, event );
         } else if( (!inCurrent && !mouseEvent.alreadyCanceled) )
         { // cancel
           mouseEvent.alreadyCanceled = true;
           var
             actionFn  = mouseEvent.widgetCreator.action;
-          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, true );
+          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, true, event );
         }
       }
     });
@@ -609,17 +649,23 @@ function TemplateEngine( undefined ) {
       if( isWidget )
       {
         var
-          widget      = mouseEvent.widget;
+          widget      = mouseEvent.widget,
+          touchobj = event.changedTouches[0];
           
-        if( !mouseEvent.alreadyCanceled )
+        if( mouseEvent.moveFn )
+          mouseEvent.moveFn( event );
+        
+        if( mouseEvent.moveRestrict && !mouseEvent.alreadyCanceled
+          && ((touchStartX + 5 < parseInt(touchobj.clientX) || touchStartX - 5 > parseInt(touchobj.clientX))
+            ||(touchStartY + 5 < parseInt(touchobj.clientY) || touchStartY - 5 > parseInt(touchobj.clientY))))
         { // cancel
           mouseEvent.alreadyCanceled = true;
           var
             actionFn  = mouseEvent.widgetCreator.action;
-          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, true );
+          actionFn && actionFn.call( widget, widget.id, mouseEvent.actor, true, event );
         }
       }
-      
+
       // take care to prevent overscroll
       if( scrollElement )
       {
