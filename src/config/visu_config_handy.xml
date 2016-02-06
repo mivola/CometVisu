@@ -18,6 +18,12 @@
           <icon name="sani_water_tap" color="green"/>
         </entry>
       </mapping>
+      <mapping name="RSS_LeackageOpenClose0">
+        <entry value="0"><icon name="sani_water_tap" color="green"/></entry>
+      </mapping>
+      <mapping name="RSS_LeackageOpenClose1">
+        <entry value="0"><icon name="sani_leakage" color="red"/></entry>
+      </mapping>
       <mapping name="PumpOnOff">
         <entry value="1">
           <icon name="sani_garden_pump" color="green"/>
@@ -34,6 +40,12 @@
           <icon name="fts_door_locked" color="green"/>
         </entry>
       </mapping>
+      <mapping name="RSS_DoorOpenClose0">
+        <entry value="0"><icon name="fts_door_open" color="red"/></entry>
+      </mapping>
+      <mapping name="RSS_DoorOpenClose1">
+        <entry value="0"><icon name="fts_door_locked" color="green"/></entry>
+      </mapping>
       <mapping name="GarageDoorOpenClose">
         <entry value="0">
           <icon name="fts_garage_door_10" color="red"/>
@@ -41,6 +53,12 @@
         <entry value="1">
           <icon name="fts_garage_door_100" color="green"/>
         </entry>
+      </mapping>
+      <mapping name="RSS_GarageDoorOpenClose0">
+        <entry value="0"><icon name="fts_garage_door_10" color="red"/></entry>
+      </mapping>
+      <mapping name="RSS_GarageDoorOpenClose1">
+        <entry value="0"><icon name="fts_garage_door_100" color="green"/></entry>
       </mapping>
       <mapping name="UpDown">
         <entry value="0">
@@ -161,6 +179,12 @@
         <entry value="1">
           <icon name="light_light" flavour="sodium" color="orange"/>
         </entry>
+      </mapping>
+      <mapping name="RSS_OnOff_Licht0">
+        <entry value="0"><icon name="light_light" flavour="white"/></entry>
+      </mapping>
+      <mapping name="RSS_OnOff_Licht1">
+        <entry value="0"><icon name="light_light" flavour="sodium" color="orange"/></entry>
       </mapping>
       <mapping name="OnOff_Licht_XMas">
         <entry value="0">
