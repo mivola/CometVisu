@@ -3362,22 +3362,22 @@
           <label>Speicherladung</label>
           <address transform="DPT:1.001" mode="write">9/3/1</address>
         </multitrigger>
-        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%2$.0f °C" change="absolute" min="15" max="25">
+        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%1$.0f °C" change="absolute" min="15" max="25">
           <label>Komfort-Temperatur</label>
           <address transform="DPT:9.001" mode="write">9/3/120</address>
           <address transform="DPT:9.001" mode="read">9/2/120</address>
         </infotrigger>
-        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%2$.0f °C" change="absolute" min="15" max="25">
+        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%.1f °C" change="absolute" min="15" max="25">
           <label>Ferien-Temperatur</label>
           <address transform="DPT:9.001" mode="write">9/3/122</address>
           <address transform="DPT:9.001" mode="read">9/2/122</address>
         </infotrigger>
-        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%2$.0f °C" change="absolute" min="15" max="25">
+        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%1$.0f °C" change="absolute" min="15" max="25">
           <label>Absenk-Temperatur</label>
           <address transform="DPT:9.001" mode="write">9/3/121</address>
           <address transform="DPT:9.001" mode="read">9/2/121</address>
         </infotrigger>
-        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%2$.0f °C" change="absolute" min="15" max="25">
+        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%1$.0f °C" change="absolute" min="15" max="25">
           <label>AT-Abschalttemperatur</label>
           <address transform="DPT:9.001" mode="write">9/3/11</address>
           <address transform="DPT:9.001" mode="read">9/2/11</address>
