@@ -445,6 +445,21 @@
         <label><icon name="edit_settings"/>Sys</label>
       </pagejump>
     </navbar>
+  <group name="Klingel / Telefon">
+      <layout colspan="12"/>
+      <switch mapping="GongMute" styling="RedGrey" bind_click_to_widget="false">
+        <layout colspan="3"/>
+        <label>Haustür</label>
+        <address transform="DPT:1.001" mode="readwrite">8/0/10</address>
+        <address transform="DPT:1.001" mode="read">8/0/11</address>
+      </switch>
+      <switch mapping="GongMute" styling="RedGrey" bind_click_to_widget="false">
+        <layout colspan="3"/>
+        <label>Hoftor</label>
+        <address transform="DPT:1.001" mode="readwrite">8/0/12</address>
+        <address transform="DPT:1.001" mode="read">8/0/13</address>
+      </switch>
+  </group>
 	<group name="Tür/Tor">
       <layout colspan="12"/>
       <info mapping="DoorOpenClose" styling="GreyGreen">
@@ -2334,24 +2349,24 @@
           <label></label>
           <address transform="DPT:1.001" mode="write">9/3/1</address>
         </multitrigger>
-        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%.0f °C" change="absolute" min="15" max="25">
+        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%2$.0f °C" change="absolute" min="15" max="25">
           <label>Komfort-Temperatur</label>
-          <address transform="DPT:9.001" mode="readwrite">9/3/120</address>
+          <address transform="DPT:9.001" mode="write">9/3/120</address>
           <address transform="DPT:9.001" mode="read">9/2/120</address>
         </infotrigger>
-        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%.0f °C" change="absolute" min="15" max="25">
+        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%2$.0f °C" change="absolute" min="15" max="25">
           <label>Ferien-Temperatur</label>
-          <address transform="DPT:9.001" mode="readwrite">9/3/122</address>
+          <address transform="DPT:9.001" mode="write">9/3/122</address>
           <address transform="DPT:9.001" mode="read">9/2/122</address>
         </infotrigger>
-        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%.0f °C" change="absolute" min="15" max="25">
+        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%2$.0f °C" change="absolute" min="15" max="25">
           <label>Absenk-Temperatur</label>
-          <address transform="DPT:9.001" mode="readwrite">9/3/121</address>
+          <address transform="DPT:9.001" mode="write">9/3/121</address>
           <address transform="DPT:9.001" mode="read">9/2/121</address>
         </infotrigger>
-        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%.0f °C" change="absolute" min="15" max="25">
+        <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%2$.0f °C" change="absolute" min="15" max="25">
           <label>AT-Abschalttemperatur</label>
-          <address transform="DPT:9.001" mode="readwrite">9/3/11</address>
+          <address transform="DPT:9.001" mode="write">9/3/11</address>
           <address transform="DPT:9.001" mode="read">9/2/11</address>
         </infotrigger>
 	  </group>
