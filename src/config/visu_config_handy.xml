@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" design="metal" enable_column_adjustment="true" lib_version="8" xsi:noNamespaceSchemaLocation="../visu_config.xsd">
+<pages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" design="metal" lib_version="8" xsi:noNamespaceSchemaLocation="../visu_config.xsd">
   <meta>
     <mappings>
       <mapping name="OpenClose">
@@ -648,15 +648,21 @@
           <layout colspan="6"/>
           <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
             <layout colspan-s="6"/>
-            <label>Werkbank</label>
-            <address transform="DPT:1.001" mode="readwrite">1/3/32</address>
-            <address transform="DPT:1.001" mode="read">1/3/33</address>
-          </switch>
-          <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
-            <layout colspan-s="6"/>
             <label>Decke</label>
             <address transform="DPT:1.001" mode="readwrite">1/3/30</address>
             <address transform="DPT:1.001" mode="read">1/3/31</address>
+          </switch>
+          <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
+            <layout colspan-s="6"/>
+            <label>Decke groß</label>
+            <address transform="DPT:1.001" mode="readwrite">1/3/28</address>
+            <address transform="DPT:1.001" mode="read">1/3/29</address>
+          </switch>
+          <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
+            <layout colspan-s="6"/>
+            <label>Werkbank</label>
+            <address transform="DPT:1.001" mode="readwrite">1/3/32</address>
+            <address transform="DPT:1.001" mode="read">1/3/33</address>
           </switch>
           <info mapping="DoorOpenClose" styling="GreyGreen">
             <layout colspan-s="6"/>
@@ -1120,7 +1126,7 @@
         <info format="%.1f °C">
           <layout colspan-s="6"/>
           <label><icon name="scene_bath"/>Bad OG</label>
-          <address transform="DPT:9.001" mode="read">5/2/150</address>
+          <address transform="DPT:9.001" mode="read">5/2/170</address>
         </info>
         <info format="%.1f °C">
           <layout colspan-s="6"/>
@@ -1162,7 +1168,7 @@
         <diagram_info format="%.1f %%" series="day" period="5" refresh="300" styling="BlueGreenRedHum" gridcolor="#707070" tooltip="true" legendposition="nw">
           <layout colspan-s="6"/>
           <label><icon name="weather_humidity_rel"/>Bad EG</label>
-          <axis position="left" label="Luftfeuchte" unit=" °C">hum</axis>
+          <axis position="left" label="Luftfeuchte" unit=" %">hum</axis>
 		  <rrd yaxis="hum" color="#ff0000" label="Bad EG">26.F6B92E010000_hum</rrd>
           <rrd yaxis="hum" color="#FFCC00" label="EZ">26.AAB82E010000_hum</rrd>
           <rrd yaxis="hum" color="#00CCFF" label="Bad OG">26.86AB30010000_hum</rrd><address transform="DPT:5.001" mode="read">5/1/213</address>
@@ -1170,7 +1176,7 @@
 	    <diagram_info format="%.1f %%" series="day" period="2" refresh="300" styling="BlueGreenRedHum" gridcolor="#707070" tooltip="true" legendposition="nw">
           <layout colspan-s="6"/>
           <label><icon name="weather_humidity_rel"/>Bad OG</label>
-          <axis position="left" label="Luftfeuchte" unit=" °C">hum</axis>
+          <axis position="left" label="Luftfeuchte" unit=" %">hum</axis>
           <rrd yaxis="hum" color="#ff0000" label="Bad EG">26.F6B92E010000_hum</rrd>
           <rrd yaxis="hum" color="#FFCC00" label="EZ">26.AAB82E010000_hum</rrd>
           <rrd yaxis="hum" color="#00CCFF" label="Bad OG">26.86AB30010000_hum</rrd>
@@ -1179,7 +1185,7 @@
 	    <diagram_info format="%.1f %%" series="day" period="2" refresh="300" styling="BlueGreenRedHum" gridcolor="#707070" tooltip="true" legendposition="nw">
           <layout colspan-s="6"/>
           <label><icon name="weather_humidity_rel"/>SB Haus</label>
-          <axis position="left" label="Luftfeuchte" unit=" °C">hum</axis>
+          <axis position="left" label="Luftfeuchte" unit=" %">hum</axis>
 		  <rrd yaxis="hum" color="white" label="aussen">26.E0AF30010000_hum</rrd>
           <rrd yaxis="hum" color="yellow" label="Garage">26.968E30010000_hum</rrd>
           <rrd yaxis="hum" color="blue" label="G.Dach">26.81B62E010000_hum</rrd>
