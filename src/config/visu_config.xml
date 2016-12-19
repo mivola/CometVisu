@@ -489,20 +489,20 @@
           <layout colspan="6" colspan-m="6"/>
           <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
             <layout colspan="3" colspan-m="3"/>
-            <label>Decke</label>
-            <address transform="DPT:1.001" mode="readwrite">1/3/30</address>
+            <label>Decke kl</label>
+            <address transform="DPT:1.001" mode="write">1/3/30</address>
             <address transform="DPT:1.001" mode="read">1/3/31</address>
           </switch>
           <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
             <layout colspan="3" colspan-m="3"/>
-            <label>Decke groß</label>
-            <address transform="DPT:1.001" mode="readwrite">1/3/28</address>
+            <label>Decke gr</label>
+            <address transform="DPT:1.001" mode="write">1/3/28</address>
             <address transform="DPT:1.001" mode="read">1/3/29</address>
           </switch>
           <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
             <layout colspan="3" colspan-m="3"/>
             <label>Werkbank</label>
-            <address transform="DPT:1.001" mode="readwrite">1/3/32</address>
+            <address transform="DPT:1.001" mode="write">1/3/32</address>
             <address transform="DPT:1.001" mode="read">1/3/33</address>
           </switch>
           <info mapping="DoorOpenClose" styling="GreyGreen">
@@ -571,9 +571,9 @@
         </group>
       </group>
       <group name="Ereignisse">
-        <layout colspan="6" colspan-m="6" rowspan="7"/>
-        <rsslog src="plugins/rsslog/rsslog.php" refresh="60" filter="garage,hwr" limit="10" mode="last" timeformat="%d.%m. %H:%M">
-          <layout rowspan="7" colspan="6" colspan-m="6"/>
+        <layout colspan="6" colspan-m="6" rowspan="10"/>
+        <rsslog src="plugins/rsslog/rsslog.php" refresh="60" filter="garage,hwr" limit="20" mode="last" timeformat="%d.%m. %H:%M">
+          <layout rowspan="10" colspan="6" colspan-m="6"/>
         </rsslog>
       </group>
     </page>
@@ -585,37 +585,37 @@
           <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
             <layout colspan="3" colspan-m="3"/>
             <label>Terrasse li</label>
-            <address transform="DPT:1.001" mode="readwrite">1/4/1</address>
+            <address transform="DPT:1.001" mode="write">1/4/1</address>
             <address transform="DPT:1.001" mode="read">1/4/2</address>
           </switch>
           <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
             <layout colspan="3" colspan-m="3"/>
             <label>Haustür</label>
-            <address transform="DPT:1.001" mode="readwrite">1/4/62</address>
+            <address transform="DPT:1.001" mode="write">1/4/62</address>
             <address transform="DPT:1.001" mode="read">1/4/63</address>
           </switch>
           <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
             <layout colspan="3" colspan-m="3"/>
             <label>Terrasse Mi</label>
-            <address transform="DPT:1.001" mode="readwrite">1/4/3</address>
+            <address transform="DPT:1.001" mode="write">1/4/3</address>
             <address transform="DPT:1.001" mode="read">1/4/4</address>
           </switch>
           <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
             <layout colspan="3" colspan-m="3"/>
             <label>Garage Nord</label>
-            <address transform="DPT:1.001" mode="readwrite">1/4/60</address>
+            <address transform="DPT:1.001" mode="write">1/4/60</address>
             <address transform="DPT:1.001" mode="read">1/4/61</address>
           </switch>
           <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
             <layout colspan="3" colspan-m="3"/>
             <label>Terrasse re</label>
-            <address transform="DPT:1.001" mode="readwrite">1/4/5</address>
+            <address transform="DPT:1.001" mode="write">1/4/5</address>
             <address transform="DPT:1.001" mode="read">1/4/6</address>
           </switch>
           <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
             <layout colspan="3" colspan-m="3"/>
             <label>Garage Süd</label>
-            <address transform="DPT:1.001" mode="readwrite">1/4/120</address>
+            <address transform="DPT:1.001" mode="write">1/4/120</address>
             <address transform="DPT:1.001" mode="read">1/4/121</address>
           </switch>
           <!--
@@ -709,9 +709,9 @@
         </group>
       </group>
       <group name="Ereignisse">
-        <layout colspan="6" colspan-m="6" rowspan="7"/>
-        <rsslog src="plugins/rsslog/rsslog.php" refresh="60" filter="aussen,garten" limit="10" mode="last" timeformat="%d.%m. %H:%M">
-          <layout rowspan="7" colspan="6" colspan-m="6"/>
+        <layout colspan="6" colspan-m="6" rowspan="10"/>
+        <rsslog src="plugins/rsslog/rsslog.php" refresh="60" filter="aussen,garten" limit="20" mode="last" timeformat="%d.%m. %H:%M">
+          <layout rowspan="10" colspan="6" colspan-m="6"/>
         </rsslog>
       </group>
     </page>
@@ -935,6 +935,16 @@
           <layout colspan="6" colspan-m="6"/>
           <label>Licht OG</label>
           <address transform="DPT:1.001" mode="readwrite">1/2/0</address>
+        </switch>
+        <switch mapping="OnOff_Licht" styling="GreyGrey" bind_click_to_widget="false">
+          <layout colspan="6" colspan-m="6"/>
+          <label>Licht Garage</label>
+          <address transform="DPT:1.001" mode="readwrite">1/3/0</address>
+        </switch>
+        <switch mapping="OnOff_Licht" styling="GreyGrey" bind_click_to_widget="false">
+          <layout colspan="6" colspan-m="6"/>
+          <label>Licht Außen</label>
+          <address transform="DPT:1.001" mode="readwrite">1/4/0</address>
         </switch>
       </group>
     </page>
@@ -1168,8 +1178,8 @@
         <layout colspan="6" colspan-m="6"/>
         <web src="https://www.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;mode=AGENDA&amp;height=280&amp;wkst=2&amp;hl=de&amp;bgcolor=%23FFFFFF&amp;src=4voigts%40gmail.com&amp;color=%232952A3&amp;src=q1nnkb0j4nd56a2d01vdujs9j0%40group.calendar.google.com&amp;color=%23125A12&amp;src=ks7j7q2s7vt8kq7dsgd3298bos%40group.calendar.google.com&amp;color=%2323164E&amp;src=hj6lbn70vdh4dvdmq284gmfqvs%40group.calendar.google.com&amp;color=%23AB8B00&amp;src=pkett5psoihb9556bf9jq5ot2c%40group.calendar.google.com&amp;color=%23711616&amp;src=0p724904o1mkqt1f2uc7mdrdps%40group.calendar.google.com&amp;color=%231B887A&amp;src=cb1khvekqg59p7bfdkj1ql4oa4%40group.calendar.google.com&amp;color=%238C500B&amp;src=82cc4eltune4ttgra9igcbu6as%40group.calendar.google.com&amp;color=%23691426&amp;src=24n6jmifv4qere61v0vio3u0co%40group.calendar.google.com&amp;color=%236B3304&amp;src=de.german%23holiday%40group.v.calendar.google.com&amp;color=%23853104&amp;src=e_2_de%23weeknum%40group.v.calendar.google.com&amp;color=%235F6B02&amp;ctz=Europe%2FBerlin" height="280px" frameborder="0" refresh="600" scrolling="no"/>
       </group>
-      <rsslog src="plugins/rsslog/rsslog.php" refresh="60" filter="security, alarm" limit="10" mode="last" timeformat="%d.%m. %H:%M">
-        <layout rowspan="5" colspan="6" colspan-m="6"/>
+      <rsslog src="plugins/rsslog/rsslog.php" refresh="60" filter="security, alarm" limit="20" mode="last" timeformat="%d.%m. %H:%M">
+        <layout rowspan="6" colspan="6" colspan-m="6"/>
       </rsslog>
     </group>
     <navbar position="top">
@@ -2096,7 +2106,7 @@
       </group>
 	  <group name="RSS System">
         <layout colspan="11"/>
-		<rsslog src="plugins/rsslog/rsslog.php" refresh="60" limit="10" mode="last" filter="system,1-Wire" timeformat="%d.%m. %H:%M">
+		<rsslog src="plugins/rsslog/rsslog.php" refresh="60" limit="50" mode="last" filter="system,1-Wire" timeformat="%d.%m. %H:%M">
           <layout colspan="11" rowspan="6"/>
         </rsslog>
       </group>
@@ -3509,16 +3519,12 @@
           <rrd yaxis="temp_out" color="#00ff00" label="AMS">aussenTemperatur24h</rrd>
           <address transform="DPT:9.001" mode="read">9/2/10</address>
         </diagram_info>
-        <diagram_info format="%.0f °C" series="day" period="2" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
+        <diagram_info format="%.1f °min" series="day" period="2" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
           <layout colspan="6" colspan-m="6"/>
-          <label>VF2</label>
-          <axis position="left" label="Temperatur °C" unit=" °C">temp</axis>
-          <rrd yaxis="temp" color="#ff00ff" label="VF2">eBus_mv_VF2_temp_temp</rrd>
-          <!--
-        <rrd yaxis="temp" color="#ff0000" label="VF1">eBus_mv_VF1_temp_temp</rrd>
-        <rrd yaxis="temp" color="#ffff00" label="RF1">eBus_mv_RF1_temp_temp</rrd>
-        -->
-          <address transform="DPT:9.001" mode="read">9/2/82</address>
+          <label>Energieintegral</label>
+          <axis position="right" label="Energieintegral" unit=" °min">energie</axis>
+          <rrd yaxis="energie" color="#ff0000" label="Energieintegral">eBus_mv_EI_current</rrd>
+          <address transform="DPT:9.001" mode="read">9/2/20</address>
         </diagram_info>
         <diagram_info format="%.1f °C" series="day" period="2" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
           <layout colspan="6" colspan-m="6"/>
@@ -3543,31 +3549,34 @@
           <rrd yaxis="druck" color="#ffaa00" label="Soledruck">eBus_mv_brine_press_press</rrd>
           <address transform="DPT:9.001" mode="read">9/2/43</address>
         </diagram_info>
-        <diagram_info format="%.1f °min" series="day" period="2" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
+        <diagram_info format="%.1f °C" series="hour" period="12" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
           <layout colspan="6" colspan-m="6"/>
-          <label>Energieintegral</label>
-          <axis position="right" label="Energieintegral" unit=" °min">energie</axis>
-          <rrd yaxis="energie" color="#ff0000" label="Energieintegral">eBus_mv_EI_current</rrd>
-          <address transform="DPT:13.001" mode="read">9/2/20</address>
+          <label>HK Rücklauf</label>
+          <axis position="left" label="Temperatur °C" unit=" °C">temp</axis>
+          <rrd yaxis="temp" color="#0088ff" label="Rücklauf">eBus_mv_T5_temp</rrd>
+          <rrd yaxis="temp" color="#FF00FF" label="Vorlauf Soll">eBus_ci_cir2_set_temp</rrd>
+          <rrd yaxis="temp" color="#ff0000" label="Vorlauf Ist">eBus_mv_VF2_temp_temp</rrd>
+          <address transform="DPT:9.001" mode="read">9/2/52</address>
         </diagram_info>
         <diagram_info format="%.1f °C" series="day" period="2" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
           <layout colspan="6" colspan-m="6"/>
-          <label>Vorlauf Soll</label>
+          <label>HK Vorlauf Soll</label>
           <axis position="right" label="°C" unit=" °C">temp</axis>
-          <rrd yaxis="temp" color="#FF00FF" label="Vorlauf Soll">eBus_ci_cir2_set_temp</rrd>
-          <rrd yaxis="temp" color="#0000FF" label="Vorlauf Ist">eBus_mv_VF2_temp_temp</rrd>
+          <rrd yaxis="temp" color="#0088ff" label="Rücklauf">eBus_mv_T5_temp</rrd>
+          <rrd yaxis="temp" color="#FFFF00" label="Vorlauf Soll">eBus_ci_cir2_set_temp</rrd>
+          <rrd yaxis="temp" color="#ff0000" label="Vorlauf Ist">eBus_mv_VF2_temp_temp</rrd>
           <address transform="DPT:9.001" mode="read">9/2/150</address>
         </diagram_info>
         <diagram_info format="%.1f °C" series="day" period="1" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
           <layout colspan="6" colspan-m="6"/>
-          <label>Vorlauf Ist</label>
+          <label>HK Vorlauf Ist</label>
           <axis position="right" label="Temperatur °C" unit=" °C">temp</axis>
           <axis position="left" min="0" max="2" label="Kompressor">io</axis>
           <rrd yaxis="io" color="#ffaa00" label="Kompressor">eBus_mv_comp_io</rrd>
           <rrd yaxis="temp" color="#ffff00" label="Außentemperatur">eBus_mv_at_temp_temp</rrd>
-          <rrd yaxis="temp" color="#ff0000" label="HK-VL">eBus_mv_VF2_temp_temp</rrd>
-          <rrd yaxis="temp" color="#0088ff" label="HK-RL">eBus_mv_T5_temp</rrd>
-          <rrd yaxis="temp" color="#0000ff" label="VL-Soll">eBus_ci_cir2_set_temp</rrd>
+          <rrd yaxis="temp" color="#0088ff" label="T5 (HK-RL?)">eBus_mv_T5_temp</rrd>
+          <rrd yaxis="temp" color="#FFFF00" label="cir2 (HK-VL-Soll?)">eBus_ci_cir2_set_temp</rrd>
+          <rrd yaxis="temp" color="#ff0000" label="VF2 (HK-VL Ist?)">eBus_mv_VF2_temp_temp</rrd>          
           <address transform="DPT:9.001" mode="read">9/2/82</address>
         </diagram_info>
       </group>
@@ -3644,7 +3653,7 @@
         </info>
         <info>
           <layout colspan="6" colspan-m="6"/>
-          <label>getcir2heatpumpstat: 9/2/111</label>
+          <label>heatpumpstat: 9/2/111</label><!-- getcir2heatpumpstat -->
           <address transform="DPT:6.020" mode="read">9/2/111</address>
         </info>
         <info>
@@ -3654,9 +3663,9 @@
         </info>
       </group>
       <group name="Ereignisse">
-        <layout colspan="6" colspan-m="6" rowspan="5"/>
-        <rsslog src="plugins/rsslog/rsslog.php" refresh="60" filter="heizung" limit="10" mode="last" timeformat="%d.%m. %H:%M">
-          <layout colspan="6" colspan-m="6" rowspan="5"/>
+        <layout colspan="6" colspan-m="6" rowspan="6"/>
+        <rsslog src="plugins/rsslog/rsslog.php" refresh="60" filter="heizung" limit="20" mode="last" timeformat="%d.%m. %H:%M">
+          <layout colspan="6" colspan-m="6" rowspan="6"/>
         </rsslog>
       </group>	  
 	</group>
