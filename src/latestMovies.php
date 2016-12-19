@@ -1,6 +1,6 @@
 <?php
-	//http://openelec/jsonrpc?request={"jsonrpc": "2.0", "method": "VideoLibrary.GetRecentlyAddedMovies", "id": 1}
-    $url="http://openelec/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22method%22:%20%22VideoLibrary.GetRecentlyAddedMovies%22,%20%22id%22:%201}";
+	//http://libreelec/jsonrpc?request={"jsonrpc": "2.0", "method": "VideoLibrary.GetRecentlyAddedMovies", "id": 1}
+    $url="http://libreelec/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22method%22:%20%22VideoLibrary.GetRecentlyAddedMovies%22,%20%22id%22:%201}";
 
     $json = file_get_contents($url);
     $data = json_decode($json, TRUE);
@@ -16,8 +16,8 @@
 	echo "<title>Filme</title>";
 
     foreach($data['result']['movies'] as $item) {
-    	//http://openelec/jsonrpc?request={"jsonrpc": "2.0", "method": "VideoLibrary.GetMovieDetails", "params": {"movieid": 238, "properties": ["dateadded", "lastplayed", "playcount"]}, "id": 1}
-		$urlDetails="http://openelec/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22method%22:%20%22VideoLibrary.GetMovieDetails%22,%20%22params%22:%20{%22movieid%22:%20".$item['movieid'].",%20%22properties%22:%20[%22dateadded%22,%20%22lastplayed%22,%20%22playcount%22]},%20%22id%22:%201}";
+    	//http://libreelec/jsonrpc?request={"jsonrpc": "2.0", "method": "VideoLibrary.GetMovieDetails", "params": {"movieid": 238, "properties": ["dateadded", "lastplayed", "playcount"]}, "id": 1}
+		$urlDetails="http://libreelec/jsonrpc?request={%22jsonrpc%22:%20%222.0%22,%20%22method%22:%20%22VideoLibrary.GetMovieDetails%22,%20%22params%22:%20{%22movieid%22:%20".$item['movieid'].",%20%22properties%22:%20[%22dateadded%22,%20%22lastplayed%22,%20%22playcount%22]},%20%22id%22:%201}";
 
 	    $jsonDetails = file_get_contents($urlDetails);
 	    $dataDetails = json_decode($jsonDetails, TRUE);
@@ -28,8 +28,10 @@
 		    print " - ";
 		//    print utf8_decode ($item['movieid']);
 		//    print " - ";
-		//    print utf8_decode ($dataDetails['result']['moviedetails']['playcount']);
-		//    print " - ";
+//		    print $dataDetails['result']['moviedetails']['playcount'];
+//		    print " - ";
+//		    print utf8_decode ($dataDetails['result']['moviedetails']['lastplayed']);
+//		    print " - ";
 		    print utf8_decode ($item['label']);
 		    print '</div><br>';	
 	    }
