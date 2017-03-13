@@ -521,23 +521,23 @@
         <label>Badewanne</label>
         <address transform="DPT:1.001" mode="readwrite">5/2/156</address>
       </info>
-	  <!--
       <info mapping="LeackageOpenClose">
         <layout colspan-s="6"/>
         <label>Waschm.</label>
         <address transform="DPT:1.001" mode="readwrite">5/1/181</address>
       </info>
+    <!--
       <info mapping="LeackageOpenClose">
         <layout colspan-s="6"/>
         <label>Trockner</label>
         <address transform="DPT:1.001" mode="readwrite">5/1/181</address>
       </info>
+    -->
       <info mapping="LeackageOpenClose">
         <layout colspan-s="6"/>
-        <label>Kühltruhe</label>
-        <address transform="DPT:1.001" mode="readwrite">5/1/183</address>
+        <label>in WP</label>
+        <address transform="DPT:1.001" mode="readwrite">5/1/184</address>
       </info>
-	  -->
     </group>
     <group name="Temperaturen und Luftfeuchte">
       <layout colspan-s="12"/>

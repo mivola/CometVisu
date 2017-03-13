@@ -1032,8 +1032,8 @@
       </info>
       <info mapping="LeackageOpenClose">
         <layout colspan="3" colspan-m="3"/>
-        <label>Kühltruhe</label>
-        <address transform="DPT:1.001" mode="readwrite">5/1/183</address>
+        <label>in WP</label>
+        <address transform="DPT:1.001" mode="readwrite">5/1/184</address>
       </info>
       <info mapping="LeackageOpenClose">
         <layout colspan="3" colspan-m="3"/>
