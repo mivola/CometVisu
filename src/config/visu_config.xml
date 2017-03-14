@@ -2110,10 +2110,6 @@
           <layout colspan="11" rowspan="6"/>
         </rsslog>
       </group>
-      <group name="logitech">
-        <layout colspan="11"/>
-        <web src="http://mediaserver:9000" height="700px" frameborder="0" scrolling="yes" width="900px"/>
-      </group>
     </page>
     <page name="Arbeitszimmer" visible="false">
       <layout colspan="3" colspan-m="3"/>
@@ -3669,14 +3665,6 @@
         </rsslog>
       </group>	  
 	</group>
-    </page>
-    <page name="Alarm" visible="false" shownavbar-left="false">
-      <group name="Alarm">
-        <layout colspan="12" colspan-m="12" rowspan="8"/>
-        <rsslog src="plugins/rsslog/rsslog.php" refresh="60" filter="alarm" limit="20" mode="last" timeformat="%d.%m. %H:%M">
-          <layout colspan="12" colspan-m="12" rowspan="8"/>
-        </rsslog>
-      </group>    
     </page>
     <page name="Schema" visible="false" type="2d" backdrop="config/heizung_neu.svg" shownavbar-left="false">
       <!-- Außentemperatur -->
