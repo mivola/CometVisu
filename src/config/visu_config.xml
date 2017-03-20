@@ -1481,35 +1481,32 @@
       <layout colspan="3" colspan-m="3"/>
       <group name="Licht">
         <layout colspan="12" colspan-m="12"/>
-        <group nowidget="true" flavour="lithium">
-          <layout colspan="12" colspan-m="12"/>
-          <switch mapping="OnOff_Licht" styling="GreyGrey" bind_click_to_widget="false">
-            <layout colspan="3" colspan-m="3"/>
-            <label>Decke EZ</label>
-            <address transform="DPT:1.001" mode="readwrite">1/1/120</address>
-            <address transform="DPT:1.001" mode="readwrite">1/1/121</address>
-          </switch>
-          <switch mapping="OnOff_Licht" styling="GreyGrey" bind_click_to_widget="false">
-            <layout colspan="3" colspan-m="3"/>
-            <label>Decke WZ</label>
-            <address transform="DPT:1.001" mode="readwrite">1/1/90</address>
-            <address transform="DPT:1.001" mode="readwrite">1/1/91</address>
-          </switch>
-          <switch mapping="OnOff_Licht" styling="GreyGrey">
-            <layout colspan="3" colspan-m="3"/>
-            <label>TV-Licht</label>
-            <address transform="DPT:1.001" mode="readwrite">2/1/92</address>
-            <address transform="DPT:1.001" mode="readwrite">2/1/93</address>
-          </switch>
-          <switch mapping="OnOff_Licht" styling="GreyGrey" bind_click_to_widget="false">
-            <layout colspan="3" colspan-m="3"/>
-            <label>Stehlampe</label>
-            <address transform="DPT:1.001" mode="readwrite">2/1/96</address>
-            <address transform="DPT:1.001" mode="readwrite">2/1/97</address>
-          </switch>
-        </group>
+        <switch mapping="OnOff_Licht" styling="GreyGrey" bind_click_to_widget="false">
+          <layout colspan="3" colspan-m="3"/>
+          <label>Decke EZ</label>
+          <address transform="DPT:1.001" mode="readwrite">1/1/120</address>
+          <address transform="DPT:1.001" mode="readwrite">1/1/121</address>
+        </switch>
+        <switch mapping="OnOff_Licht" styling="GreyGrey" bind_click_to_widget="false">
+          <layout colspan="3" colspan-m="3"/>
+          <label>Decke WZ</label>
+          <address transform="DPT:1.001" mode="readwrite">1/1/90</address>
+          <address transform="DPT:1.001" mode="readwrite">1/1/91</address>
+        </switch>
+        <switch mapping="OnOff_Licht" styling="GreyGrey">
+          <layout colspan="3" colspan-m="3"/>
+          <label>TV-Licht</label>
+          <address transform="DPT:1.001" mode="readwrite">2/1/92</address>
+          <address transform="DPT:1.001" mode="readwrite">2/1/93</address>
+        </switch>
+        <switch mapping="OnOff_Licht" styling="GreyGrey" bind_click_to_widget="false">
+          <layout colspan="3" colspan-m="3"/>
+          <label>Stehlampe</label>
+          <address transform="DPT:1.001" mode="readwrite">2/1/96</address>
+          <address transform="DPT:1.001" mode="readwrite">2/1/97</address>
+        </switch>
       </group>
-      <group name="Steckdosen">
+      <group name="Fernseher">
         <layout colspan="12" colspan-m="12"/>
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="3" colspan-m="3"/>
@@ -1517,29 +1514,26 @@
           <address transform="DPT:1.001" mode="readwrite">2/1/90</address>
           <address transform="DPT:1.001" mode="read">2/1/91</address>
         </switch>
-        <switch mapping="OnOff" styling="GreyGreen">
+        <switch mapping="UnlockLock" styling="GreyRed">
           <layout colspan="3" colspan-m="3"/>
-          <label>Laptop</label>
-          <address transform="DPT:1.001" mode="readwrite">2/1/98</address>
-          <address transform="DPT:1.001" mode="read">2/1/99</address>
+          <label>Schalter</label>
+          <address transform="DPT:1.001" mode="readwrite">10/1/92</address>
         </switch>
-         <diagram_info series="day" period="1" refresh="300" format="%.1f mA" tooltip="true">
+          <switch mapping="OnOff_Licht" styling="GreyGrey">
             <layout colspan="3" colspan-m="3"/>
-            <label>Strom</label>
-            <axis position="right" unit=" mA">Stromwert</axis>
-            <axis position="right" unit=" Wh">Energieverbrauch</axis>
-            <rrd color="red" label="Stromwert" yaxis="Stromwert">laptopWZStromwert</rrd>
-            <rrd color="red" label="Energieverbrauch" yaxis="Energieverbrauch">laptopWZEnergieverbrauch</rrd>
-            <address transform="DPT:9.021" mode="read">2/1/100</address>
-          </diagram_info>
-          <diagram_info series="day" period="3" refresh="300" format="%.1f Wh" tooltip="true">
-            <layout colspan="3" colspan-m="3" />
-            <axis position="right" unit=" mA">Stromwert</axis>
-            <axis position="right" unit=" Wh">Energieverbrauch</axis>
-            <rrd color="red" label="Stromwert" yaxis="Stromwert">laptopWZStromwert</rrd>
-            <rrd color="red" label="Energieverbrauch" yaxis="Energieverbrauch">laptopWZEnergieverbrauch</rrd>
-            <address transform="DPT:12.001" mode="read">2/1/101</address>
-          </diagram_info>
+            <label>TV-Licht</label>
+            <address transform="DPT:1.001" mode="readwrite">2/1/92</address>
+            <address transform="DPT:1.001" mode="readwrite">2/1/93</address>
+          </switch>
+          <switch mapping="OnOff" styling="GreyGreen">
+            <layout colspan="3" colspan-m="3"/>
+            <label>Laptop</label>
+            <address transform="DPT:1.001" mode="readwrite">2/1/98</address>
+            <address transform="DPT:1.001" mode="read">2/1/99</address>
+          </switch>
+      </group>
+      <group name="Steckdosen">
+        <layout colspan="12" colspan-m="12"/>
       </group>
       <group name="Esszimmer">
         <layout colspan="12" colspan-m="12"/>
