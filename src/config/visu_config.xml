@@ -2100,7 +2100,7 @@
       </group>
 	  <group name="RSS System">
         <layout colspan="11"/>
-		<rsslog src="plugins/rsslog/rsslog.php" refresh="60" limit="50" mode="last" filter="system,1-Wire" timeformat="%d.%m. %H:%M">
+		<rsslog src="plugins/rsslog/rsslog.php" refresh="60" limit="50" mode="last" filter="system,1-Wire,multimedia" timeformat="%d.%m. %H:%M">
           <layout colspan="11" rowspan="6"/>
         </rsslog>
       </group>

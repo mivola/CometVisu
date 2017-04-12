@@ -2490,7 +2490,7 @@
         </diagram_info>
         <diagram_info format="%.1f °C" series="month" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
           <layout colspan-s="6"/>
-          <label>AT<icon name="zeit_diagramm"/></label>
+          <label>AT</label>
           <axis position="left" label="Aussentemperatur °C" unit=" °C">temp_out</axis>
           <rrd yaxis="temp_out" color="#ffff00" label="WP">eBus_mv_at_temp_temp</rrd>
           <rrd yaxis="temp_out" color="#ff00ff" label="WP 24h">eBus_cir2_outdoor_24h_average</rrd>
