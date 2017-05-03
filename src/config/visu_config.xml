@@ -125,7 +125,6 @@
         <entry value="100">
           <icon name="fts_blade_arc_100"/>
         </entry>
-
       </mapping>
       <mapping name="Jalousie">
         <entry value="0">
@@ -160,6 +159,41 @@
         </entry>
         <entry value="100">
           <icon name="fts_shutter_100"/>
+        </entry>
+      </mapping>
+      <mapping name="Zisterne">
+        <entry range_min="0" range_max="9.99">
+          <icon name="measure_cistern_0"/>
+        </entry>
+        <entry range_min="10" range_max="19.99">
+          <icon name="measure_cistern_10"/>
+        </entry>
+        <entry range_min="20" range_max="29.99">
+          <icon name="measure_cistern_20"/>
+        </entry>
+        <entry range_min="30" range_max="39.99">
+          <icon name="measure_cistern_30"/>
+        </entry>
+        <entry range_min="40" range_max="49.99">
+          <icon name="measure_cistern_40"/>
+        </entry>
+        <entry range_min="50" range_max="59.99">
+          <icon name="measure_cistern_50"/>
+        </entry>
+        <entry range_min="60" range_max="69.99">
+          <icon name="measure_cistern_60"/>
+        </entry>
+        <entry range_min="70" range_max="79.99">
+          <icon name="measure_cistern_70"/>
+        </entry>
+        <entry range_min="80" range_max="89.99">
+          <icon name="measure_cistern_80"/>
+        </entry>
+        <entry range_min="90" range_max="96.99">
+          <icon name="measure_cistern_90"/>
+        </entry>
+        <entry range_min="97" range_max="100">
+          <icon name="measure_cistern_100"/>
         </entry>
       </mapping>
       <mapping name="PM_EinAus">
@@ -407,6 +441,11 @@
       <styling name="GreyRed">
         <entry value="0">grey</entry>
         <entry value="1">red</entry>
+      </styling>
+      <styling name="Zisterne">
+        <entry range_min="0" range_max="20">red</entry>
+        <entry range_min="21" range_max="80">blue</entry>
+        <entry range_min="81" range_max="100">green</entry>
       </styling>
     </stylings>
     <plugins>
@@ -691,22 +730,31 @@
             <address transform="DPT:9.004" mode="read">7/4/61</address>
           </diagram_info>
 		    </group>
-        <group name="Zisternenpumpe">
+        <group name="Zisterne">
           <layout colspan="6" colspan-m="6"/>
           <diagram_info series="day" period="3" refresh="300" format="%.1f mA" tooltip="true">
-            <layout colspan="3" colspan-m="3"/>
-            <label>Strom</label>
+            <layout colspan="2" colspan-m="2"/>
             <axis position="right" unit=" mA">Stromwert</axis>
             <rrd color="red" label="Stromwert Gardena Pumpe Zisterne">zisternenPumpeStromwert</rrd>
             <address transform="DPT:9.021" mode="read">2/1/186</address>
           </diagram_info>
           <diagram_info series="day" period="3" refresh="300" format="%.1f Wh" tooltip="true">
-            <layout colspan="3" colspan-m="3" />
+            <layout colspan="2" colspan-m="2" />
             <axis position="right" unit=" Wh">Energieverbrauch</axis>
             <rrd color="red" label="Energieverbrauch Gardena Pumpe Zisterne">zisternenPumpeEnergieverbrauch</rrd>
             <address transform="DPT:12.001" mode="read">2/1/187</address>
           </diagram_info>
-        </group>
+          <info mapping="Zisterne" styling="Zisterne">
+            <layout colspan="1" colspan-m="1"/>
+            <address transform="DPT:5.001" mode="read">6/4/32</address>
+          </info>
+          <diagram_info series="week" period="3" refresh="300" format="%.1f %%" tooltip="true">
+            <layout colspan="1" colspan-m="1" />
+            <axis position="right" unit=" %">Füllstand</axis>
+            <rrd color="red" label="Füllstand Zisterne">fuellstandZisterne</rrd>
+            <address transform="DPT:5.001" mode="read">6/4/32</address>
+          </diagram_info>
+      </group>
       </group>
       <group name="Ereignisse">
         <layout colspan="6" colspan-m="6" rowspan="10"/>
@@ -950,7 +998,7 @@
     </page>
     <group name="Wetter">
       <layout colspan="12" colspan-m="12"/>
-      <web src="http://wiregate302/wunder/wunderground_weather.html" height="280px" frameborder="false" refresh="600" scrolling="no" width="745px"/>
+      <web src="http://wiregate302/wunder/wunderground_weather.html" height="220px" frameborder="false" refresh="600" scrolling="no" width="650px"/>
     </group>
     <group name="Klingel / Telefon">
       <layout colspan="12" colspan-m="12"/>
