@@ -73,6 +73,11 @@
           <icon name="message_stop"/>
         </entry>
       </mapping>
+      <mapping name="Sonnenschutz">
+        <entry value="1">
+          <icon name="fts_blade_arc_sun"/>
+        </entry>
+      </mapping>
       <mapping name="AudioStop">
         <entry default="true">
           <icon name="audio_stop"/>
@@ -1615,13 +1620,37 @@
       </group>
     </page>
     <page name="Raffstores" visible="false" shownavbar-left="false">
+      <group name="Sonnenschutz">
+        <layout colspan-s="12"/>
+        <group nowidget="true" flavour="sodium">
+          <layout colspan-s="4"/>
+          <trigger mapping="Sonnenschutz" value="1">
+            <label>Ost</label>
+            <address transform="DPT:1.001" mode="write">10/0/21</address>
+          </trigger>
+        </group>
+        <group nowidget="true" flavour="sodium">
+          <layout colspan-s="4"/>
+          <trigger mapping="Sonnenschutz" value="1">
+            <label>Süd</label>
+            <address transform="DPT:1.001" mode="write">10/0/22</address>
+          </trigger>
+        </group>
+        <group nowidget="true" flavour="sodium">
+          <layout colspan-s="4"/>
+          <trigger mapping="Sonnenschutz" value="1">
+            <label>West</label>
+            <address transform="DPT:1.001" mode="write">10/0/23</address>
+          </trigger>
+        </group>
+      </group>
       <group name="Einstellungen">
         <layout colspan-s="12"/>
         <group nowidget="true">
           <layout colspan-s="12"/>
           <switch mapping="AutomatikSperre_Raffstores" styling="GreenRed">
             <layout colspan-s="6"/>
-            <label>Auto down (WS)</label>
+            <label>Auto down</label>
             <!-- 1=gesperrt -->
             <address transform="DPT:1.003" mode="readwrite">6/5/60</address>
           </switch>
@@ -1681,7 +1710,7 @@
             <address transform="DPT:1.001" mode="readwrite">6/5/52</address>
           </info>
           <page name="Verschattung" align="center" bind_click_to_widget="false">
-            <layout colspan-s="6"/>
+            <layout colspan-s="12"/>
             <group name="Verschattung">
               <layout colspan-s="12"/>
               <diagram popup="true" previewlabels="true" height="200" series="day" period="3" refresh="300" gridcolor="#707070" legendposition="nw">

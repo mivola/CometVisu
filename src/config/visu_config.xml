@@ -73,6 +73,11 @@
           <icon name="message_stop"/>
         </entry>
       </mapping>
+      <mapping name="Sonnenschutz">
+        <entry value="1">
+          <icon name="fts_blade_arc_sun"/>
+        </entry>
+      </mapping>
       <mapping name="AudioStop">
         <entry default="true">
           <icon name="audio_stop"/>
@@ -673,12 +678,12 @@
         <group name="Bewegungsmelder">
           <layout colspan="6" colspan-m="6"/>
           <switch mapping="PM_EinAus" align="center" flavour="lithium">
-		        <layout colspan="3" colspan-m="3"/>
+		        <layout colspan="3" colspan-m="3" rowspan="1" />
             <label>Garage N</label>
             <address transform="DPT:1.001" mode="readwrite">7/4/122</address>
           </switch>
 		      <diagram_info series="day" period="1" refresh="300" format="%.1f lx" tooltip="true">
-            <layout colspan="3" colspan-m="3"/>
+            <layout colspan="3" colspan-m="3" rowspan="1" />
             <label>
               <icon name="weather_light_meter"/>
             </label>
@@ -692,12 +697,12 @@
             <address transform="DPT:9.004" mode="read">7/4/121</address>
           </diagram_info>
           <switch mapping="PM_EinAus" align="center" flavour="lithium">
-            <layout colspan="3" colspan-m="3"/>
+            <layout colspan="3" colspan-m="3" rowspan="1" />
             <label>Garage S</label>
             <address transform="DPT:1.001" mode="readwrite">7/4/182</address>
           </switch>
           <diagram_info series="week" period="1" refresh="300" format="%.1f lx" tooltip="true">
-            <layout colspan="3" colspan-m="3"/>
+            <layout colspan="3" colspan-m="3" rowspan="1" />
             <label>
               <icon name="weather_light_meter"/>
             </label>
@@ -711,12 +716,12 @@
             <address transform="DPT:9.004" mode="read">7/4/181</address>
           </diagram_info>
           <switch mapping="PM_EinAus" align="center" flavour="lithium">
-            <layout colspan="3" colspan-m="3"/>
+            <layout colspan="3" colspan-m="3" />
             <label>Terrasse</label>
             <address transform="DPT:1.001" mode="readwrite">7/4/62</address>
           </switch>
           <diagram_info series="week" period="2" refresh="300" format="%.1f lx" tooltip="true">
-            <layout colspan="3" colspan-m="3"/>
+            <layout colspan="3" colspan-m="3" />
             <label>
               <icon name="weather_light_meter"/>
             </label>
@@ -731,9 +736,9 @@
           </diagram_info>
 		    </group>
         <group name="Zisterne">
-          <layout colspan="6" colspan-m="6"/>
+          <layout colspan="6" colspan-m="6" />
           <diagram_info series="day" period="3" refresh="300" format="%.1f mA" tooltip="true">
-            <layout colspan="2" colspan-m="2"/>
+            <layout colspan="2" colspan-m="2" />
             <axis position="right" unit=" mA">Stromwert</axis>
             <rrd color="red" label="Stromwert Gardena Pumpe Zisterne">zisternenPumpeStromwert</rrd>
             <address transform="DPT:9.021" mode="read">2/1/186</address>
@@ -998,7 +1003,7 @@
     </page>
     <group name="Wetter">
       <layout colspan="12" colspan-m="12"/>
-      <web src="http://wiregate302/wunder/wunderground_weather.html" height="220px" frameborder="false" refresh="600" scrolling="no" width="650px"/>
+      <web src="http://wiregate302/wunder/wunderground_weather.html" height="224px" frameborder="false" refresh="600" scrolling="no" width="650px"/>
     </group>
     <group name="Klingel / Telefon">
       <layout colspan="12" colspan-m="12"/>
@@ -2134,7 +2139,7 @@
 		<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://wiregate302:10000/wiregate/edit_owsensorconf.cgi" target="_blank"&gt;Sensoren&lt;/a&gt;</label></text>
 		<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://wiregate302:10000/wiregate/graph2.cgi" target="_blank"&gt;Graph&lt;/a&gt;</label></text>
 		<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://admin:monit@wiregate302:2812" target="_blank"&gt;Monit WG&lt;/a&gt;</label></text>
-		<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://admin:monit@mediaserver:2812" target="_blank"&gt;Monit Mediacenter&lt;/a&gt;</label></text>
+		<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://admin:monit@ebusd-raspi:2812" target="_blank"&gt;Monit ebusd-raspi&lt;/a&gt;</label></text>
 		<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://wiregate302/visu.git/plugins/rsslog/rsslog.php?dump" target="_blank"&gt;RSS Dump&lt;/a&gt;</label></text>
 		<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://wiregate302/visu.git/latestMovies.php" target="_blank"&gt;Movie List&lt;/a&gt;</label></text>
 	  </group>
@@ -2510,26 +2515,41 @@
         <layout colspan="12" colspan-m="12"/>
         <group nowidget="true">
           <layout colspan="6" colspan-m="6" rowspan="10"/>
+            <trigger mapping="Sonnenschutz" value="1">
+              <layout colspan="2" />
+              <label>Ost</label>
+              <address transform="DPT:1.001" mode="write">10/0/21</address>
+            </trigger>
+            <trigger mapping="Sonnenschutz" value="1">
+              <layout colspan="2" />
+              <label>Süd</label>
+              <address transform="DPT:1.001" mode="write">10/0/22</address>
+            </trigger>
+            <trigger mapping="Sonnenschutz" value="1">
+              <layout colspan="2" />
+              <label>West</label>
+              <address transform="DPT:1.001" mode="write">10/0/23</address>
+            </trigger>
           <switch mapping="AutomatikSperre_Raffstores" styling="GreenRed">
-            <layout colspan="6" colspan-m="6"/>
-            <label>Automatisch runter (WS)</label>
+            <layout colspan="3" colspan-m="6"/>
+            <label>Auto down</label>
             <!-- 1=gesperrt -->
             <address transform="DPT:1.003" mode="readwrite">6/5/60</address>
           </switch>
           <switch mapping="AutomatikSperre_Raffstores" styling="GreenRed">
-            <layout colspan="6" colspan-m="6"/>
-            <label>Automatisch hoch (Zeit)</label>
+            <layout colspan="3" colspan-m="6"/>
+            <label>Auto up (Zeit)</label>
             <!-- 1=gesperrt -->
             <address transform="DPT:1.001" mode="readwrite">9/4/1</address>
           </switch>
           <switch mapping="Wintermodus_Raffstores">
-            <layout colspan="6" colspan-m="6"/>
+            <layout colspan="3" colspan-m="6" />
             <label>Wintermodus</label>
             <!-- 1=gesperrt -->
             <address transform="DPT:1.001" mode="readwrite">9/4/2</address>
           </switch>
           <diagram_info series="day" period="1" refresh="300" format="%.1f m/s" styling="GreenRedSpeed" tooltip="true">
-            <layout colspan="3" colspan-m="3"/>
+            <layout colspan="3" colspan-m="3" rowspan="1" />
             <label><icon name="weather_wind_speed_ms"/>Wind</label>
             <axis unit="m/s"/>
             <rrd color="red" label="Wetterstation">wetterStationWind</rrd>
@@ -2572,7 +2592,7 @@
             <address transform="DPT:1.001" mode="readwrite">6/5/52</address>
           </info>
           <page name="Verschattung" align="center" bind_click_to_widget="false">
-            <layout colspan="3" colspan-m="3"/>
+            <layout colspan="6" colspan-m="3"/>
             <group name="Verschattung">
               <layout colspan="12" colspan-m="12"/>
               <diagram popup="true" previewlabels="true" height="200" series="day" period="3" refresh="300" gridcolor="#707070" legendposition="nw">
