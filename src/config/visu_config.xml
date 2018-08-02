@@ -68,6 +68,14 @@
           <icon name="control_arrow_down"/>
         </entry>
       </mapping>
+      <mapping name="TelevisionOnOff">
+        <entry value="0">
+          <icon name="it_television" color="red"/>
+        </entry>
+        <entry value="1">
+          <icon name="it_television" color="green"/>
+        </entry>
+      </mapping>
       <mapping name="Stop">
         <entry value="1">
           <icon name="message_stop"/>
@@ -95,6 +103,9 @@
       </mapping>
       <mapping name="FahrenStop">
         <entry default="true">Fahren/Stop</entry>
+      </mapping>
+      <mapping name="WindalarmAus">
+        <entry default="true">Aus</entry>
       </mapping>
       <mapping name="Lueften">
         <!--<entry default="true">
@@ -267,14 +278,6 @@
           <icon name="light_dressing_room" flavour="sodium" color="orange"/>
         </entry>
       </mapping>
-      <mapping name="OnOff_tv">
-        <entry value="0">
-          <icon name="control_standby" flavour="white"/>
-        </entry>
-        <entry value="1">
-          <icon name="control_standby" flavour="white"/>
-        </entry>
-      </mapping>
       <mapping name="GongMute">
         <entry value="0">
           <icon name="message_bell_door_disabled"/>
@@ -349,7 +352,11 @@
         <entry value="6">Standby<icon name="status_standby"/></entry>
         <entry value="7">WW/AT-Abschaltung<icon name="sani_water_hot"/></entry>
         <entry value="8">Warmwasser<icon name="sani_water_hot"/></entry>
-        <entry value="11">Abschaltzeit<icon name="control_all_on_off"/></entry>
+        <entry value="10">Sperrzeit Warmwasser<icon name="time_alarm_clock_snooze"/></entry>
+        <entry value="11">Abschaltzeit<icon name="time_alarm_clock_snooze"/></entry>
+        <entry value="13">Frostschutz Heizung<icon name="temp_frost"/></entry>
+        <entry value="18">Soledruck niedrig<icon name="measure_pressure_bar" color="orange"/></entry>
+        <entry value="24">Störung: Soledruck niedrig<icon name="measure_pressure_bar" color="red"/></entry>
       </mapping>
       <mapping name="eBus">
 		<!-- ehp00 mcOperatingMode : 9/2/100 -->
@@ -507,6 +514,7 @@
             <icon name="scene_bath"/>
           </label>
         </pagejump>
+        <!--
         <pagejump target="Kinderzimmer" name="Kinderzimmer">
           <label>
             <icon name="scene_childs_room" color="#333333"/>
@@ -517,6 +525,7 @@
             <icon name="scene_sleeping" color="#333333"/>
           </label>
         </pagejump>
+      -->
       </group>
       <group name="Diverses">
         <pagejump name="Kalender" target="Kalender">
@@ -565,11 +574,11 @@
             <address transform="DPT:9.004" mode="read">7/3/33</address>
           </diagram_info>
           <switch mapping="PM_EinAus_Preussen" align="center" flavour="lithium">
-		    <layout colspan="3" colspan-m="3"/>
+		        <layout colspan="3" colspan-m="3"/>
             <label>sperren</label>
             <address transform="DPT:1.001" mode="readwrite">7/3/34</address>
           </switch>
-		</group>
+		    </group>
         <group name="Garagentor">
           <layout colspan="6" colspan-m="6"/>
           <info mapping="GarageDoorOpenClose" styling="GreyGreen">
@@ -616,7 +625,7 @@
       </group>
       <group name="Ereignisse">
         <layout colspan="6" colspan-m="6" rowspan="10"/>
-        <rsslog src="plugins/rsslog/rsslog.php" refresh="60" filter="garage,hwr" limit="20" mode="last" timeformat="%d.%m. %H:%M">
+        <rsslog src="plugins/rsslog/rsslog.php" refresh="60" filter="garage,hwr" limit="50" mode="last" timeformat="%d.%m. %H:%M">
           <layout rowspan="10" colspan="6" colspan-m="6"/>
         </rsslog>
       </group>
@@ -763,7 +772,7 @@
       </group>
       <group name="Ereignisse">
         <layout colspan="6" colspan-m="6" rowspan="10"/>
-        <rsslog src="plugins/rsslog/rsslog.php" refresh="60" filter="aussen,garten" limit="20" mode="last" timeformat="%d.%m. %H:%M">
+        <rsslog src="plugins/rsslog/rsslog.php" refresh="60" filter="aussen,garten" limit="50" mode="last" timeformat="%d.%m. %H:%M">
           <layout rowspan="10" colspan="6" colspan-m="6"/>
         </rsslog>
       </group>
@@ -954,19 +963,19 @@
         <layout colspan="12" colspan-m="12"/>
         <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
           <layout colspan="3" colspan-m="3"/>
-          <label>KZ1</label>
+          <label>Lotta</label>
           <address transform="DPT:1.001" mode="readwrite">1/2/60</address>
           <address transform="DPT:1.001" mode="read">1/2/0</address>
         </switch>
         <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
           <layout colspan="3" colspan-m="3"/>
-          <label>KZ2</label>
+          <label>Moritz</label>
           <address transform="DPT:1.001" mode="readwrite">1/2/90</address>
           <address transform="DPT:1.001" mode="read">1/2/91</address>
         </switch>
         <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
           <layout colspan="3" colspan-m="3"/>
-          <label>GZ</label>
+          <label>Grete</label>
           <address transform="DPT:1.001" mode="readwrite">1/2/120</address>
           <address transform="DPT:1.001" mode="read">1/2/121</address>
         </switch>
@@ -1003,7 +1012,7 @@
     </page>
     <group name="Wetter">
       <layout colspan="12" colspan-m="12"/>
-      <web src="http://wiregate302/wunder/wunderground_weather.html" height="224px" frameborder="false" refresh="600" scrolling="no" width="650px"/>
+      <web src="http://10.64.242.44/wunder/wunderground_weather.html" height="224px" frameborder="false" refresh="600" scrolling="no" width="650px"/>
     </group>
     <group name="Klingel / Telefon">
       <layout colspan="12" colspan-m="12"/>
@@ -1538,30 +1547,30 @@
           <layout colspan="3" colspan-m="3"/>
           <label>Decke EZ</label>
           <address transform="DPT:1.001" mode="readwrite">1/1/120</address>
-          <address transform="DPT:1.001" mode="readwrite">1/1/121</address>
+          <address transform="DPT:1.001" mode="read">1/1/121</address>
         </switch>
         <switch mapping="OnOff_Licht" styling="GreyGrey" bind_click_to_widget="false">
           <layout colspan="3" colspan-m="3"/>
           <label>Decke WZ</label>
           <address transform="DPT:1.001" mode="readwrite">1/1/90</address>
-          <address transform="DPT:1.001" mode="readwrite">1/1/91</address>
+          <address transform="DPT:1.001" mode="read">1/1/91</address>
         </switch>
-        <switch mapping="OnOff_Licht" styling="GreyGrey">
+        <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="3" colspan-m="3"/>
-          <label>TV-Licht</label>
-          <address transform="DPT:1.001" mode="readwrite">2/1/92</address>
-          <address transform="DPT:1.001" mode="readwrite">2/1/93</address>
+          <label>Fenster</label>
+          <address transform="DPT:1.001" mode="readwrite">2/1/94</address>
+          <address transform="DPT:1.001" mode="read">2/1/95</address>
         </switch>
         <switch mapping="OnOff_Licht" styling="GreyGrey" bind_click_to_widget="false">
           <layout colspan="3" colspan-m="3"/>
           <label>Stehlampe</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/96</address>
-          <address transform="DPT:1.001" mode="readwrite">2/1/97</address>
+          <address transform="DPT:1.001" mode="read">2/1/97</address>
         </switch>
       </group>
       <group name="Fernseher">
         <layout colspan="12" colspan-m="12"/>
-        <switch mapping="OnOff" styling="GreyGreen">
+        <switch mapping="TelevisionOnOff">
           <layout colspan="3" colspan-m="3"/>
           <label>TV</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/90</address>
@@ -1576,7 +1585,7 @@
             <layout colspan="3" colspan-m="3"/>
             <label>TV-Licht</label>
             <address transform="DPT:1.001" mode="readwrite">2/1/92</address>
-            <address transform="DPT:1.001" mode="readwrite">2/1/93</address>
+            <address transform="DPT:1.001" mode="read">2/1/93</address>
           </switch>
           <switch mapping="OnOff" styling="GreyGreen">
             <layout colspan="3" colspan-m="3"/>
@@ -1691,10 +1700,12 @@
           <address transform="DPT:1.001" mode="readwrite">5/1/126</address>
         </info>
       </group>
+      <!--
     <group name="Neue Filme">
       <layout colspan="12" colspan-m="12"/>
       <web src="http://wiregate302/visu.git/latestMovies.php" height="280px" frameborder="false" refresh="600" scrolling="yes" width="745px"/>
     </group>
+  -->
 
 	</page>
     <page name="Schlafzimmer" visible="false">
@@ -1970,17 +1981,17 @@
         </info>
         <info format="%.1f °C">
           <layout colspan="3" colspan-m="3"/>
-          <label><icon name="scene_sleeping_twin_1_1"/>KZ1</label>
+          <label><icon name="scene_sleeping_twin_1_1"/>Lotta</label>
           <address transform="DPT:9.001" mode="read">5/2/60</address>
         </info>
         <info format="%.1f °C">
           <layout colspan="3" colspan-m="3"/>
-          <label><icon name="scene_childs_room"/>KZ2</label>
+          <label><icon name="scene_childs_room"/>Moritz</label>
           <address transform="DPT:9.001" mode="read">5/2/90</address>
         </info>
         <info format="%.1f °C">
           <layout colspan="3" colspan-m="3"/>
-          <label><icon name="scene_visit_guests"/>GZ</label>
+          <label><icon name="scene_visit_guests"/>Grete</label>
           <address transform="DPT:9.001" mode="read">5/2/120</address>
         </info>
         <info format="%.1f °C">
@@ -2134,14 +2145,14 @@
 	    <layout colspan="12" colspan-m="12"/>
 		<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://fritz.box/" target="_blank"&gt;Fritz!Box&lt;/a&gt;</label></text>
 		<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://mediaserver:9000/" target="_blank"&gt;SqueezeBox&lt;/a&gt;</label></text>
-		<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://wiregate302:10000/wiregate/view_log.cgi?view=1&amp;file=/var/log/eib.log" target="_blank"&gt;EIB Log&lt;/a&gt;</label></text>
-		<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://wiregate302:10000/wiregate/view_log.cgi?view=1&amp;file=/var/log/wiregate_plugin.log" target="_blank"&gt;Plugin Log&lt;/a&gt;</label></text>
-		<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://wiregate302:10000/wiregate/edit_owsensorconf.cgi" target="_blank"&gt;Sensoren&lt;/a&gt;</label></text>
-		<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://wiregate302:10000/wiregate/graph2.cgi" target="_blank"&gt;Graph&lt;/a&gt;</label></text>
-		<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://admin:monit@wiregate302:2812" target="_blank"&gt;Monit WG&lt;/a&gt;</label></text>
+		<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://10.64.242.44:10000/wiregate/view_log.cgi?view=1&amp;file=/var/log/eib.log" target="_blank"&gt;EIB Log&lt;/a&gt;</label></text>
+		<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://10.64.242.44:10000/wiregate/view_log.cgi?view=1&amp;file=/var/log/wiregate_plugin.log" target="_blank"&gt;Plugin Log&lt;/a&gt;</label></text>
+		<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://10.64.242.44:10000/wiregate/edit_owsensorconf.cgi" target="_blank"&gt;Sensoren&lt;/a&gt;</label></text>
+		<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://10.64.242.44:10000/wiregate/graph2.cgi" target="_blank"&gt;Graph&lt;/a&gt;</label></text>
+		<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://admin:monit@10.64.242.44:2812" target="_blank"&gt;Monit WG&lt;/a&gt;</label></text>
 		<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://admin:monit@ebusd-raspi:2812" target="_blank"&gt;Monit ebusd-raspi&lt;/a&gt;</label></text>
-		<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://wiregate302/visu.git/plugins/rsslog/rsslog.php?dump" target="_blank"&gt;RSS Dump&lt;/a&gt;</label></text>
-		<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://wiregate302/visu.git/latestMovies.php" target="_blank"&gt;Movie List&lt;/a&gt;</label></text>
+		<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://10.64.242.44/visu.git/plugins/rsslog/rsslog.php?dump" target="_blank"&gt;RSS Dump&lt;/a&gt;</label></text>
+		<!--<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://10.64.242.44/visu.git/latestMovies.php" target="_blank"&gt;Movie List&lt;/a&gt;</label></text>-->
 	  </group>
       <group name="/var/log/eib.log">
         <layout colspan="11"/>
@@ -2151,9 +2162,9 @@
         <layout colspan="11"/>
         <web src="http://wiregate302:10000/wiregate/view_log2.cgi?view=1&amp;file=/var/log/wiregate_plugin.log&amp;lines=33" height="600px" frameborder="0" scrolling="yes" width="900px"/>
       </group>
-	  <group name="RSS System">
+	    <group name="RSS System">
         <layout colspan="11"/>
-		<rsslog src="plugins/rsslog/rsslog.php" refresh="60" limit="50" mode="last" filter="system,1-Wire,multimedia" timeformat="%d.%m. %H:%M">
+		    <rsslog src="plugins/rsslog/rsslog.php" refresh="60" limit="50" mode="last" filter="system,1-Wire,multimedia" timeformat="%d.%m. %H:%M">
           <layout colspan="11" rowspan="6"/>
         </rsslog>
       </group>
@@ -2173,72 +2184,85 @@
           <address transform="DPT:1.001" mode="read">2/1/61</address>
         </switch>
       </group>
+
       <group name="Raffstore links">
         <layout colspan="12" colspan-m="12"/>
         <group nowidget="true" flavour="sodium">
-          <layout colspan="9" colspan-m="9"/>
+          <layout colspan="8" colspan-m="8"/>
           <info mapping="Jalousie">
             <layout colspan="1" colspan-m="1"/>
-            <address transform="DPT:5.001" mode="read">3/1/45</address>
+            <address transform="DPT:5.001" mode="read">3/1/145</address>
           </info>
           <info format="%.0f %%" align="center">
-            <layout colspan="2" colspan-m="2"/>
-            <address transform="DPT:5.001" mode="read">3/1/45</address>
+            <layout colspan="1" colspan-m="1"/>
+            <address transform="DPT:5.001" mode="read">3/1/145</address>
           </info>
           <trigger value="0" styling="GreyGrey" mapping="UpDown">
             <layout colspan="2" colspan-m="2"/>
-            <address transform="DPT:1.001" mode="write">3/1/41</address>
+            <address transform="DPT:1.001" mode="write">3/1/141</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="Stop">
             <layout colspan="2" colspan-m="2"/>
-            <address transform="DPT:1.001" mode="write">3/1/42</address>
+            <address transform="DPT:1.001" mode="write">3/1/142</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="UpDown">
             <layout colspan="2" colspan-m="2"/>
-            <address transform="DPT:1.001" mode="write">3/1/41</address>
+            <address transform="DPT:1.001" mode="write">3/1/141</address>
           </trigger>
         </group>
         <group nowidget="true" flavour="sodium">
-          <layout colspan="3" colspan-m="3"/>
-          <trigger mapping="Lueften" styling="GreyGrey" value="50">
-            <label>Lüften</label>
-            <address transform="DPT:5.001" mode="write">3/1/44</address>
+          <layout colspan="2" colspan-m="2"/>
+          <switch mapping="UnlockLock" styling="GreyRed" align="center">
+            <address transform="DPT:1.001" mode="readwrite">3/1/147</address>
+          </switch>
+        </group>
+        <group nowidget="true" flavour="sodium">
+          <layout colspan="2" colspan-m="2"/>
+          <trigger mapping="Lueften" styling="GreyGrey" value="50" align="center">
+            <address transform="DPT:5.001" mode="write">3/1/144</address>
           </trigger>
         </group>
       </group>
+
       <group name="Raffstore rechts">
         <layout colspan="12" colspan-m="12"/>
         <group nowidget="true" flavour="sodium">
-          <layout colspan="9" colspan-m="9"/>
+          <layout colspan="8" colspan-m="8"/>
           <info mapping="Jalousie">
             <layout colspan="1" colspan-m="1"/>
-            <address transform="DPT:5.001" mode="read">3/1/65</address>
+            <address transform="DPT:5.001" mode="read">3/1/155</address>
           </info>
           <info format="%.0f %%" align="center">
-            <layout colspan="2" colspan-m="2"/>
-            <address transform="DPT:5.001" mode="read">3/1/65</address>
+            <layout colspan="1" colspan-m="1"/>
+            <address transform="DPT:5.001" mode="read">3/1/155</address>
           </info>
           <trigger value="0" styling="GreyGrey" mapping="UpDown">
             <layout colspan="2" colspan-m="2"/>
-            <address transform="DPT:1.001" mode="write">3/1/61</address>
+            <address transform="DPT:1.001" mode="write">3/1/151</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="Stop">
             <layout colspan="2" colspan-m="2"/>
-            <address transform="DPT:1.001" mode="write">3/1/62</address>
+            <address transform="DPT:1.001" mode="write">3/1/152</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="UpDown">
             <layout colspan="2" colspan-m="2"/>
-            <address transform="DPT:1.001" mode="write">3/1/61</address>
+            <address transform="DPT:1.001" mode="write">3/1/151</address>
           </trigger>
         </group>
         <group nowidget="true" flavour="sodium">
-          <layout colspan="3" colspan-m="3"/>
-          <trigger mapping="Lueften" styling="GreyGrey" value="50">
-            <label>Lüften</label>
-            <address transform="DPT:5.001" mode="write">3/1/64</address>
+          <layout colspan="2" colspan-m="2"/>
+          <switch mapping="UnlockLock" styling="GreyRed" align="center">
+            <address transform="DPT:1.001" mode="readwrite">3/1/157</address>
+          </switch>
+        </group>
+        <group nowidget="true" flavour="sodium">
+          <layout colspan="2" colspan-m="2"/>
+          <trigger mapping="Lueften" styling="GreyGrey" value="50" align="center">
+            <address transform="DPT:5.001" mode="write">3/1/154</address>
           </trigger>
         </group>
       </group>
+
       <group name="Steckdosen">
         <layout colspan="12" colspan-m="12"/>
         <switch mapping="OnOff" styling="GreyGreen">
@@ -2259,11 +2283,13 @@
           <address transform="DPT:1.001" mode="readwrite">2/1/66</address>
           <address transform="DPT:1.001" mode="read">2/1/67</address>
         </switch>
+<!--
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="4" colspan-m="4"/>
           <label>WLAN an/aus</label>
           <address transform="DPT:1.001" mode="readwrite">12/7/13</address>
         </switch>
+-->
       </group>
     </page>
     <page name="Steckdosen" visible="false" shownavbar-left="false">
@@ -2328,6 +2354,17 @@
       </group>
       <group name="Ess/Wohnzimmer">
         <layout colspan="12" colspan-m="12"/>
+        <switch mapping="TelevisionOnOff">
+          <layout colspan="3" colspan-m="3"/>
+          <label>Fernseher</label>
+          <address transform="DPT:1.001" mode="readwrite">2/1/90</address>
+          <address transform="DPT:1.001" mode="read">2/1/91</address>
+        </switch>
+        <switch mapping="UnlockLock" styling="GreyRed">
+          <layout colspan="3" colspan-m="3"/>
+          <label>Schalter</label>
+          <address transform="DPT:1.001" mode="readwrite">10/1/92</address>
+        </switch>
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="3" colspan-m="3"/>
           <label>TV-Licht</label>
@@ -2336,9 +2373,9 @@
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="3" colspan-m="3"/>
-          <label>Fernseher</label>
-          <address transform="DPT:1.001" mode="readwrite">2/1/90</address>
-          <address transform="DPT:1.001" mode="read">2/1/91</address>
+          <label>Laptop</label>
+          <address transform="DPT:1.001" mode="readwrite">2/1/98</address>
+          <address transform="DPT:1.001" mode="read">2/1/99</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="3" colspan-m="3"/>
@@ -2352,36 +2389,30 @@
           <address transform="DPT:1.001" mode="readwrite">2/1/96</address>
           <address transform="DPT:1.001" mode="read">2/1/97</address>
         </switch>
-        <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan="3" colspan-m="3"/>
-          <label>Laptop</label>
-          <address transform="DPT:1.001" mode="readwrite">2/1/98</address>
-          <address transform="DPT:1.001" mode="read">2/1/99</address>
-        </switch>
       </group>
       <group name="Kinder">
         <layout colspan="12" colspan-m="12"/>
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="3" colspan-m="3"/>
-          <label>Schlafzimmer</label>
+          <label>Lotta</label>
           <address transform="DPT:1.001" mode="readwrite">2/2/60</address>
           <address transform="DPT:1.001" mode="read">2/2/61</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="3" colspan-m="3"/>
-          <label>Spielzimmer</label>
+          <label>Moritz</label>
           <address transform="DPT:1.001" mode="readwrite">2/2/90</address>
           <address transform="DPT:1.001" mode="read">2/2/91</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="3" colspan-m="3"/>
-          <label>Fenster</label>
+          <label>Fenster L&amp;M</label>
           <address transform="DPT:1.001" mode="readwrite">2/2/10</address>
           <address transform="DPT:1.001" mode="read">2/2/11</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="3" colspan-m="3"/>
-          <label>Gästezimmer</label>
+          <label>Grete</label>
           <address transform="DPT:1.001" mode="readwrite">2/2/120</address>
           <address transform="DPT:1.001" mode="read">2/2/121</address>
         </switch>
@@ -2444,6 +2475,18 @@
           <label>Garage außen</label>
           <address transform="DPT:1.001" mode="readwrite">2/3/30</address>
           <address transform="DPT:1.001" mode="read">2/3/31</address>
+        </switch>
+        <switch mapping="OnOff" styling="GreyGreen">
+          <layout colspan="3" colspan-m="3"/>
+          <label>Licht SB</label>
+          <address transform="DPT:1.001" mode="readwrite">1/2/210</address>
+          <address transform="DPT:1.001" mode="read">1/2/211</address>
+        </switch>
+        <switch mapping="OnOff" styling="GreyGreen">
+          <layout colspan="3" colspan-m="3"/>
+          <label>SD SB</label>
+          <address transform="DPT:1.001" mode="readwrite">2/2/212</address>
+          <address transform="DPT:1.001" mode="read">2/2/213</address>
         </switch>
       </group>
       <group name="Weihnachten">
@@ -2516,19 +2559,24 @@
         <group nowidget="true">
           <layout colspan="6" colspan-m="6" rowspan="10"/>
             <trigger mapping="Sonnenschutz" value="1">
-              <layout colspan="2" />
+              <layout colspan="3" />
               <label>Ost</label>
               <address transform="DPT:1.001" mode="write">10/0/21</address>
             </trigger>
             <trigger mapping="Sonnenschutz" value="1">
-              <layout colspan="2" />
+              <layout colspan="3" />
               <label>Süd</label>
               <address transform="DPT:1.001" mode="write">10/0/22</address>
             </trigger>
             <trigger mapping="Sonnenschutz" value="1">
-              <layout colspan="2" />
+              <layout colspan="3" />
               <label>West</label>
               <address transform="DPT:1.001" mode="write">10/0/23</address>
+            </trigger>
+            <trigger mapping="Sonnenschutz" value="1">
+              <layout colspan="3" />
+              <label>Nord</label>
+              <address transform="DPT:1.001" mode="write">10/0/24</address>
             </trigger>
           <switch mapping="AutomatikSperre_Raffstores" styling="GreenRed">
             <layout colspan="3" colspan-m="6"/>
@@ -2558,8 +2606,13 @@
           <info mapping="Text_AusEin" styling="GreenRed">
             <layout colspan="3" colspan-m="3"/>
             <label><icon name="weather_wind_speed_ms"/>Alarm</label>
-            <address transform="DPT:1.001" mode="readwrite">6/5/53</address>
+            <address transform="DPT:1.001" mode="read">6/5/53</address>
           </info>
+          <trigger value="0" mapping="WindalarmAus" align="center">
+            <layout colspan="3" colspan-m="3"/>
+            <label>Windalarm</label>
+            <address transform="DPT:1.001" mode="write">6/5/53</address>
+          </trigger>
           <diagram_info series="day" period="3" refresh="300" format="%.1f °C" tooltip="true">
             <layout colspan="3" colspan-m="3"/>
             <label><icon name="temp_temperature"/>WS</label>
@@ -2592,7 +2645,7 @@
             <address transform="DPT:1.001" mode="readwrite">6/5/52</address>
           </info>
           <page name="Verschattung" align="center" bind_click_to_widget="false">
-            <layout colspan="6" colspan-m="3"/>
+            <layout colspan="3" colspan-m="3"/>
             <group name="Verschattung">
               <layout colspan="12" colspan-m="12"/>
               <diagram popup="true" previewlabels="true" height="200" series="day" period="3" refresh="300" gridcolor="#707070" legendposition="nw">
@@ -2788,46 +2841,6 @@
             <address transform="DPT:5.001" mode="write">3/1/104</address>
           </trigger>
         </group>
-        <!--
-        <group nowidget="true" flavour="sodium">
-          <layout colspan="6" colspan-m="6"/>
-          <info mapping="Jalousie">
-            <layout colspan="2" colspan-m="2"/>
-            <label>EZ Lam</label>
-            <address transform="DPT:5.001" mode="read">3/1/106</address>
-          </info>
-          <info format="%.0f %%" align="center">
-            <layout colspan="1" colspan-m="1"/>
-            <address transform="DPT:5.001" mode="read">3/1/106</address>
-          </info>
-          <trigger value="0" styling="GreyGrey" mapping="UpDown">
-            <layout colspan="1" colspan-m="1"/>
-            <address transform="DPT:1.001" mode="write">3/1/102</address>
-          </trigger>
-          <trigger value="1" styling="GreyGrey" mapping="Stop">
-            <layout colspan="1" colspan-m="1"/>
-            <address transform="DPT:1.001" mode="write">3/1/102</address>
-          </trigger>
-          <trigger value="1" styling="GreyGrey" mapping="UpDown">
-            <layout colspan="1" colspan-m="1"/>
-            <address transform="DPT:1.001" mode="write">3/1/102</address>
-          </trigger>
-        </group>
-        <group nowidget="true" flavour="sodium">
-          <layout colspan="3" colspan-m="3"/>
-          <switch mapping="UnlockLock" styling="GreyRed">
-            <label>Sperre</label>
-            <address transform="DPT:1.001" mode="readwrite">3/1/107</address>
-          </switch>
-        </group>
-        <group nowidget="true" flavour="sodium">
-          <layout colspan="3" colspan-m="3"/>
-          <trigger mapping="Lueften" styling="GreyGrey" value="50">
-            <label>Lüften</label>
-            <address transform="DPT:5.001" mode="write">3/1/104</address>
-          </trigger>
-        </group>
-      -->
         <group nowidget="true" flavour="sodium">
           <layout colspan="6" colspan-m="6"/>
           <info mapping="Jalousie">
@@ -2921,46 +2934,6 @@
             <address transform="DPT:5.001" mode="read">3/1/126</address>
           </info>
         </group>
-        <!--
-        <group nowidget="true" flavour="sodium">
-          <layout colspan="6" colspan-m="6"/>
-          <info mapping="Jalousie">
-            <layout colspan="2" colspan-m="2"/>
-            <label>K Tür Lam</label>
-            <address transform="DPT:5.001" mode="read">3/1/126</address>
-          </info>
-          <info format="%.0f %%" align="center">
-            <layout colspan="1" colspan-m="1"/>
-            <address transform="DPT:5.001" mode="read">3/1/126</address>
-          </info>
-          <trigger value="0" styling="GreyGrey" mapping="UpDown">
-            <layout colspan="1" colspan-m="1"/>
-            <address transform="DPT:1.001" mode="write">3/1/122</address>
-          </trigger>
-          <trigger value="1" styling="GreyGrey" mapping="Stop">
-            <layout colspan="1" colspan-m="1"/>
-            <address transform="DPT:1.001" mode="write">3/1/122</address>
-          </trigger>
-          <trigger value="1" styling="GreyGrey" mapping="UpDown">
-            <layout colspan="1" colspan-m="1"/>
-            <address transform="DPT:1.001" mode="write">3/1/122</address>
-          </trigger>
-        </group>
-        <group nowidget="true" flavour="sodium">
-          <layout colspan="3" colspan-m="3"/>
-          <switch mapping="UnlockLock" styling="GreyRed">
-            <label>Sperre</label>
-            <address transform="DPT:1.001" mode="readwrite">3/1/127</address>
-          </switch>
-        </group>
-        <group nowidget="true" flavour="sodium">
-          <layout colspan="3" colspan-m="3"/>
-          <trigger mapping="Lueften" styling="GreyGrey" value="50">
-            <label>Lüften</label>
-            <address transform="DPT:5.001" mode="read">3/1/124</address>
-          </trigger>
-        </group>
-      -->
         <group nowidget="true" flavour="sodium">
           <layout colspan="6" colspan-m="6"/>
           <info mapping="Jalousie">
@@ -3003,6 +2976,44 @@
           <layout colspan="6" colspan-m="6"/>
           <info mapping="Jalousie">
             <layout colspan="2" colspan-m="2"/>
+            <label>HWR</label>
+            <address transform="DPT:5.001" mode="read">3/1/165</address>
+          </info>
+          <info format="%.0f %%" align="center">
+            <layout colspan="1" colspan-m="1"/>
+            <address transform="DPT:5.001" mode="read">3/1/165</address>
+          </info>
+          <trigger value="0" styling="GreyGrey" mapping="UpDown">
+            <layout colspan="1" colspan-m="1"/>
+            <address transform="DPT:1.001" mode="write">3/1/161</address>
+          </trigger>
+          <trigger value="1" styling="GreyGrey" mapping="Stop">
+            <layout colspan="1" colspan-m="1"/>
+            <address transform="DPT:1.001" mode="write">3/1/162</address>
+          </trigger>
+          <trigger value="1" styling="GreyGrey" mapping="UpDown">
+            <layout colspan="1" colspan-m="1"/>
+            <address transform="DPT:1.001" mode="write">3/1/161</address>
+          </trigger>
+        </group>
+        <group nowidget="true" flavour="sodium">
+          <layout colspan="3" colspan-m="3"/>
+          <switch mapping="UnlockLock" styling="GreyRed">
+            <label>Sperre</label>
+            <address transform="DPT:1.001" mode="readwrite">3/1/167</address>
+          </switch>
+        </group>
+        <group nowidget="true" flavour="sodium">
+          <layout colspan="3" colspan-m="3"/>
+          <trigger mapping="Lueften" styling="GreyGrey" value="50">
+            <label>Lüften</label>
+            <address transform="DPT:5.001" mode="write">3/1/164</address>
+          </trigger>
+        </group>
+        <group nowidget="true" flavour="sodium">
+          <layout colspan="6" colspan-m="6"/>
+          <info mapping="Jalousie">
+            <layout colspan="2" colspan-m="2"/>
             <label>Bad EG</label>
             <address transform="DPT:5.001" mode="read">3/1/185</address>
           </info>
@@ -3035,6 +3046,120 @@
           <trigger mapping="Lueften" styling="GreyGrey" value="50">
             <label>Lüften</label>
             <address transform="DPT:5.001" mode="write">3/1/184</address>
+          </trigger>
+        </group>
+        <group nowidget="true" flavour="sodium">
+          <layout colspan="6" colspan-m="6"/>
+          <info mapping="Jalousie">
+            <layout colspan="2" colspan-m="2"/>
+            <label>Garderobe</label>
+            <address transform="DPT:5.001" mode="read">3/1/15</address>
+          </info>
+          <info format="%.0f %%" align="center">
+            <layout colspan="1" colspan-m="1"/>
+            <address transform="DPT:5.001" mode="read">3/1/15</address>
+          </info>
+          <trigger value="0" styling="GreyGrey" mapping="UpDown">
+            <layout colspan="1" colspan-m="1"/>
+            <address transform="DPT:1.001" mode="write">3/1/11</address>
+          </trigger>
+          <trigger value="1" styling="GreyGrey" mapping="Stop">
+            <layout colspan="1" colspan-m="1"/>
+            <address transform="DPT:1.001" mode="write">3/1/12</address>
+          </trigger>
+          <trigger value="1" styling="GreyGrey" mapping="UpDown">
+            <layout colspan="1" colspan-m="1"/>
+            <address transform="DPT:1.001" mode="write">3/1/11</address>
+          </trigger>
+        </group>
+        <group nowidget="true" flavour="sodium">
+          <layout colspan="3" colspan-m="3"/>
+          <switch mapping="UnlockLock" styling="GreyRed">
+            <label>Sperre</label>
+            <address transform="DPT:1.001" mode="readwrite">3/1/17</address>
+          </switch>
+        </group>
+        <group nowidget="true" flavour="sodium">
+          <layout colspan="3" colspan-m="3"/>
+          <trigger mapping="Lueften" styling="GreyGrey" value="50">
+            <label>Lüften</label>
+            <address transform="DPT:5.001" mode="write">3/1/14</address>
+          </trigger>
+        </group>
+        <group nowidget="true" flavour="sodium">
+          <layout colspan="6" colspan-m="6"/>
+          <info mapping="Jalousie">
+            <layout colspan="2" colspan-m="2"/>
+            <label>Treppe</label>
+            <address transform="DPT:5.001" mode="read">3/1/25</address>
+          </info>
+          <info format="%.0f %%" align="center">
+            <layout colspan="1" colspan-m="1"/>
+            <address transform="DPT:5.001" mode="read">3/1/25</address>
+          </info>
+          <trigger value="0" styling="GreyGrey" mapping="UpDown">
+            <layout colspan="1" colspan-m="1"/>
+            <address transform="DPT:1.001" mode="write">3/1/21</address>
+          </trigger>
+          <trigger value="1" styling="GreyGrey" mapping="Stop">
+            <layout colspan="1" colspan-m="1"/>
+            <address transform="DPT:1.001" mode="write">3/1/22</address>
+          </trigger>
+          <trigger value="1" styling="GreyGrey" mapping="UpDown">
+            <layout colspan="1" colspan-m="1"/>
+            <address transform="DPT:1.001" mode="write">3/1/21</address>
+          </trigger>
+        </group>
+        <group nowidget="true" flavour="sodium">
+          <layout colspan="3" colspan-m="3"/>
+          <switch mapping="UnlockLock" styling="GreyRed">
+            <label>Sperre</label>
+            <address transform="DPT:1.001" mode="readwrite">3/1/27</address>
+          </switch>
+        </group>
+        <group nowidget="true" flavour="sodium">
+          <layout colspan="3" colspan-m="3"/>
+          <trigger mapping="Lueften" styling="GreyGrey" value="50">
+            <label>Lüften</label>
+            <address transform="DPT:5.001" mode="write">3/1/24</address>
+          </trigger>
+        </group>
+        <group nowidget="true" flavour="sodium">
+          <layout colspan="6" colspan-m="6"/>
+          <info mapping="Jalousie">
+            <layout colspan="2" colspan-m="2"/>
+            <label>AZ</label>
+            <address transform="DPT:5.001" mode="read">3/1/55</address>
+          </info>
+          <info format="%.0f %%" align="center">
+            <layout colspan="1" colspan-m="1"/>
+            <address transform="DPT:5.001" mode="read">3/1/55</address>
+          </info>
+          <trigger value="0" styling="GreyGrey" mapping="UpDown">
+            <layout colspan="1" colspan-m="1"/>
+            <address transform="DPT:1.001" mode="write">3/1/61</address>
+          </trigger>
+          <trigger value="1" styling="GreyGrey" mapping="Stop">
+            <layout colspan="1" colspan-m="1"/>
+            <address transform="DPT:1.001" mode="write">3/1/62</address>
+          </trigger>
+          <trigger value="1" styling="GreyGrey" mapping="UpDown">
+            <layout colspan="1" colspan-m="1"/>
+            <address transform="DPT:1.001" mode="write">3/1/61</address>
+          </trigger>
+        </group>
+        <group nowidget="true" flavour="sodium">
+          <layout colspan="3" colspan-m="3"/>
+          <switch mapping="UnlockLock" styling="GreyRed">
+            <label>Sperre</label>
+            <address transform="DPT:1.001" mode="readwrite">3/1/67</address>
+          </switch>
+        </group>
+        <group nowidget="true" flavour="sodium">
+          <layout colspan="3" colspan-m="3"/>
+          <trigger mapping="Lueften" styling="GreyGrey" value="50">
+            <label>Lüften</label>
+            <address transform="DPT:5.001" mode="write">3/1/64</address>
           </trigger>
         </group>
       </group>
@@ -3082,7 +3207,7 @@
           <layout colspan="6" colspan-m="6"/>
           <info mapping="Jalousie">
             <layout colspan="2" colspan-m="2"/>
-            <label>KZ1</label>
+            <label>Lotta</label>
             <address transform="DPT:5.001" mode="read">3/2/65</address>
           </info>
           <info format="%.0f %%" align="center">
@@ -3120,7 +3245,7 @@
           <layout colspan="6" colspan-m="6"/>
           <info mapping="Jalousie">
             <layout colspan="2" colspan-m="2"/>
-            <label>KZ2</label>
+            <label>Moritz</label>
             <address transform="DPT:5.001" mode="read">3/2/95</address>
           </info>
           <info format="%.0f %%" align="center">
@@ -3158,7 +3283,7 @@
           <layout colspan="6" colspan-m="6"/>
           <info mapping="Jalousie">
             <layout colspan="2" colspan-m="2"/>
-            <label>GZ</label>
+            <label>Grete</label>
             <address transform="DPT:5.001" mode="read">3/2/125</address>
           </info>
           <info format="%.0f %%" align="center">
@@ -3192,84 +3317,6 @@
             <address transform="DPT:5.001" mode="write">3/2/144</address>
           </trigger>
         </group>
-<!--
-        <group nowidget="true" flavour="sodium">
-          <layout colspan="6" colspan-m="6"/>
-          <info mapping="Jalousie">
-            <layout colspan="2" colspan-m="2"/>
-            <label>GZ li</label>
-            <address transform="DPT:5.001" mode="read">3/2/125</address>
-          </info>
-          <info format="%.0f %%" align="center">
-            <layout colspan="1" colspan-m="1"/>
-            <address transform="DPT:5.001" mode="read">3/2/125</address>
-          </info>
-          <trigger value="0" styling="GreyGrey" mapping="UpDown">
-            <layout colspan="1" colspan-m="1"/>
-            <address transform="DPT:1.001" mode="write">3/2/121</address>
-          </trigger>
-          <trigger value="1" styling="GreyGrey" mapping="Stop">
-            <layout colspan="1" colspan-m="1"/>
-            <address transform="DPT:1.001" mode="write">3/2/122</address>
-          </trigger>
-          <trigger value="1" styling="GreyGrey" mapping="UpDown">
-            <layout colspan="1" colspan-m="1"/>
-            <address transform="DPT:1.001" mode="write">3/2/121</address>
-          </trigger>
-        </group>
-        <group nowidget="true" flavour="sodium">
-          <layout colspan="3" colspan-m="3"/>
-          <switch mapping="UnlockLock" styling="GreyRed">
-            <label>Sperre</label>
-            <address transform="DPT:1.001" mode="readwrite">3/2/127</address>
-          </switch>
-        </group>
-        <group nowidget="true" flavour="sodium">
-          <layout colspan="3" colspan-m="3"/>
-          <trigger mapping="Lueften" styling="GreyGrey" value="50">
-            <label>Lüften</label>
-            <address transform="DPT:5.001" mode="write">3/2/124</address>
-          </trigger>
-        </group>
-        <group nowidget="true" flavour="sodium">
-          <layout colspan="6" colspan-m="6"/>
-          <info mapping="Jalousie">
-            <layout colspan="2" colspan-m="2"/>
-            <label>GZ re</label>
-            <address transform="DPT:5.001" mode="read">3/2/135</address>
-          </info>
-          <info format="%.0f %%" align="center">
-            <layout colspan="1" colspan-m="1"/>
-            <address transform="DPT:5.001" mode="read">3/2/135</address>
-          </info>
-          <trigger value="0" styling="GreyGrey" mapping="UpDown">
-            <layout colspan="1" colspan-m="1"/>
-            <address transform="DPT:1.001" mode="write">3/2/131</address>
-          </trigger>
-          <trigger value="1" styling="GreyGrey" mapping="Stop">
-            <layout colspan="1" colspan-m="1"/>
-            <address transform="DPT:1.001" mode="write">3/2/132</address>
-          </trigger>
-          <trigger value="1" styling="GreyGrey" mapping="UpDown">
-            <layout colspan="1" colspan-m="1"/>
-            <address transform="DPT:1.001" mode="write">3/2/131</address>
-          </trigger>
-        </group>
-        <group nowidget="true" flavour="sodium">
-          <layout colspan="3" colspan-m="3"/>
-          <switch mapping="UnlockLock" styling="GreyRed">
-            <label>Sperre</label>
-            <address transform="DPT:1.001" mode="readwrite">3/2/137</address>
-          </switch>
-        </group>
-        <group nowidget="true" flavour="sodium">
-          <layout colspan="3" colspan-m="3"/>
-          <trigger mapping="Lueften" styling="GreyGrey" value="50">
-            <label>Lüften</label>
-            <address transform="DPT:5.001" mode="write">3/2/134</address>
-          </trigger>
-        </group>
--->
         <group nowidget="true" flavour="sodium">
           <layout colspan="6" colspan-m="6"/>
           <info mapping="Jalousie">
@@ -3657,9 +3704,9 @@
           <layout colspan="6" colspan-m="6"/>
           <label>Raumtemperaturen OG</label>
           <axis position="left" label="Temperatur" unit=" °C">temp</axis>
-          <rrd yaxis="temp" color="#ff0000" label="KZ1">28.2379DE030000_temp</rrd>
-          <rrd yaxis="temp" color="#0000ff" label="KZ2">28.7B85DE030000_temp</rrd>
-          <rrd yaxis="temp" color="#6600CC" label="GZ">28.2D5ADE030000_temp</rrd>
+          <rrd yaxis="temp" color="#ff0000" label="Lotta">28.2379DE030000_temp</rrd>
+          <rrd yaxis="temp" color="#0000ff" label="Moritz">28.7B85DE030000_temp</rrd>
+          <rrd yaxis="temp" color="#6600CC" label="Grete">28.2D5ADE030000_temp</rrd>
           <rrd yaxis="temp" color="#FFCC00" label="Bad AMS">26.86AB30010000_temp</rrd>
           <rrd yaxis="temp" color="#006295" label="Bad Luft">TODO_temp</rrd>
           <rrd yaxis="temp" color="#70822E" label="Schlafzimmer">28.396FDE030000_temp</rrd>
@@ -3722,7 +3769,7 @@
       </group>
       <group name="Ereignisse">
         <layout colspan="6" colspan-m="6" rowspan="6"/>
-        <rsslog src="plugins/rsslog/rsslog.php" refresh="60" filter="heizung" limit="20" mode="last" timeformat="%d.%m. %H:%M">
+        <rsslog src="plugins/rsslog/rsslog.php" refresh="60" filter="heizung" limit="50" mode="last" timeformat="%d.%m. %H:%M">
           <layout colspan="6" colspan-m="6" rowspan="6"/>
         </rsslog>
       </group>	  
@@ -3828,17 +3875,27 @@
         <group name="Einstellungen">
           <layout colspan="12" colspan-m="12"/>
           <switch mapping="OnOff" styling="GreyGreen">
-            <layout colspan="6" colspan-m="6"/>
+            <layout colspan="3" colspan-m="3"/>
             <label>Zisterne</label>
             <address transform="DPT:1.001" mode="readwrite">2/1/184</address>
             <address transform="DPT:1.001" mode="read">2/1/185</address>
           </switch>
           <switch mapping="OnOff" styling="GreyGreen">
-            <layout colspan="6" colspan-m="6"/>
-            <label>Zisterne Nachspeisung</label>
+            <layout colspan="3" colspan-m="3"/>
+            <label>Nachspeisung</label>
             <address transform="DPT:1.001" mode="readwrite">2/1/182</address>
             <address transform="DPT:1.001" mode="read">2/1/183</address>
           </switch>
+          <info mapping="Zisterne" styling="Zisterne">
+            <layout colspan="3" colspan-m="3"/>
+            <address transform="DPT:5.001" mode="read">6/4/32</address>
+          </info>
+          <diagram_info series="week" period="3" refresh="300" format="%.1f %%" tooltip="true">
+            <layout colspan="3" colspan-m="3" />
+            <axis position="right" unit=" %">Füllstand</axis>
+            <rrd color="red" label="Füllstand Zisterne">fuellstandZisterne</rrd>
+            <address transform="DPT:5.001" mode="read">6/4/32</address>
+          </diagram_info>          
           <switch mapping="OnOff" styling="GreyGreen">
             <layout colspan="6" colspan-m="6"/>
             <label><icon name="message_socket"/>Trafo</label>

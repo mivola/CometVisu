@@ -42,6 +42,7 @@
 }
 #navbarLeft .navbar .widget {
     min-height: 0px;
+    padding: 0.1em;
 }
 #navbarLeft .navbar .widget_container:not(.widgetinfo) > .widget > .actor .value {
   padding-left: 3em;
