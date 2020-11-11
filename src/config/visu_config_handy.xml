@@ -464,16 +464,22 @@
       <pagejump target="Temperaturen">
         <layout colspan="0"/>
         <label><icon name="sani_heating_temp"/>Klima</label>
-		<widgetinfo>
+		    <widgetinfo>
           <info format="%d °C">
           <layout colspan="0" />
-            <address transform="DPT:9.001" variant="">5/4/120</address>
+            <address transform="DPT:9.001" variant="">5/4/128</address>
           </info>
         </widgetinfo>
       </pagejump>
       <pagejump target="Bewaesserung">
         <layout colspan="0"/>
         <label><icon name="sani_sprinkling"/>Rasen</label>
+        <widgetinfo>
+          <info format="%d %%">
+          <layout colspan="0" />
+            <address transform="DPT:5.001" variant="">6/4/32</address>
+          </info>
+        </widgetinfo>
       </pagejump>
       <pagejump target="Garage">
         <layout colspan="0"/>
@@ -496,119 +502,158 @@
         <layout colspan="0"/>
         <label><icon name="edit_settings"/>Sys</label>
       </pagejump>
+      <refresh value="Refresh">
+        <layout colspan="0"/>
+        <label><icon name="audio_repeat"/></label>
+      </refresh>
     </navbar>
+    <group name="Wetter">
+      <layout colspan="12"/>
+      <web src="http://10.64.242.44/darkSky/darksky_weather.html" height="224px" frameborder="false" refresh="600" scrolling="no" width="650px"/>
+    </group>
+    <group name="Strom">
+      <layout colspan="12"/>
+      <diagram_info series="day" refresh="300" format="%.0f kWh" tooltip="true">
+        <layout colspan="6"/>
+        <label>Verbrauch</label>
+        <axis unit="kWh"/>
+        <rrd color="red">SmartMeter_Haus_Verbrauch_g</rrd>
+        <address transform="DPT:14.001" mode="read">6/3/1</address>
+      </diagram_info>
+      <diagram_info series="day" refresh="300" format="%.0f W" tooltip="true">
+        <layout colspan="6"/>
+        <label>Leistung</label>
+        <axis unit="Watt"/>
+        <rrd color="red">SmartMeter_Haus_Leistung_g</rrd>
+        <address transform="DPT:9.001" mode="read">6/3/2</address>
+      </diagram_info>
+      <diagram_info series="day" refresh="300" format="%.0f kWh" tooltip="true">
+        <layout colspan="6"/>
+        <label>Verbrauch WP</label>
+        <axis unit="kWh"/>
+        <rrd color="red">SmartMeter_WP_Verbrauch_g</rrd>
+        <address transform="DPT:14.001" mode="read">6/3/21</address>
+      </diagram_info>
+      <diagram_info series="day" refresh="300" format="%.0f W" tooltip="true">
+        <layout colspan="6"/>
+        <label>Leistung WP</label>
+        <axis unit="Watt"/>
+        <rrd color="red">SmartMeter_WP_Leistung_g</rrd>
+        <address transform="DPT:9.001" mode="read">6/3/22</address>
+      </diagram_info>
+    </group>
   <group name="Klingel / Telefon">
-      <layout colspan-s="12"/>
+      <layout colspan="12"/>
       <switch mapping="GongMute" styling="RedGrey" bind_click_to_widget="false">
-        <layout colspan-s="6"/>
+        <layout colspan="6"/>
         <label>Haustür</label>
         <address transform="DPT:1.001" mode="readwrite">8/0/10</address>
         <address transform="DPT:1.001" mode="read">8/0/11</address>
       </switch>
       <switch mapping="GongMute" styling="RedGrey" bind_click_to_widget="false">
-        <layout colspan-s="6"/>
+        <layout colspan="6"/>
         <label>Hoftor</label>
         <address transform="DPT:1.001" mode="readwrite">8/0/12</address>
         <address transform="DPT:1.001" mode="read">8/0/13</address>
       </switch>
   </group>
 	<group name="Tür/Tor">
-      <layout colspan-s="12"/>
+      <layout colspan="12"/>
       <info mapping="DoorOpenClose" styling="GreyGreen">
-        <layout colspan-s="4"/>
+        <layout colspan="4"/>
         <label>Haustür</label>
         <address transform="DPT:1.001" mode="readwrite">5/1/31</address>
       </info>
       <info mapping="DoorOpenClose" styling="GreyGreen">
-        <layout colspan-s="4"/>
+        <layout colspan="4"/>
         <label>Terrasse</label>
         <address transform="DPT:1.001" mode="readwrite">5/1/126</address>
       </info>
       <info mapping="DoorOpenClose" styling="GreyGreen">
-        <layout colspan-s="4"/>
+        <layout colspan="4"/>
         <label>Küche</label>
         <address transform="DPT:1.001" mode="readwrite">5/1/151</address>
       </info>
-      <layout colspan-s="12"/>
+      <layout colspan="12"/>
       <info mapping="DoorOpenClose" styling="GreyGreen">
-        <layout colspan-s="6"/>
+        <layout colspan="6"/>
         <label>Garagentür</label>
         <address transform="DPT:1.001" mode="readwrite">5/3/34</address>
       </info>
       <info mapping="GarageDoorOpenClose" styling="GreyGreen">
-        <layout colspan-s="6"/>
+        <layout colspan="6"/>
         <label>Garagentor</label>
         <address transform="DPT:1.001" mode="readwrite">5/3/41</address>
       </info>
     </group>
     <group name="Leckagesensoren">
-      <layout colspan-s="12"/>
+      <layout colspan="12"/>
       <info mapping="LeackageOpenClose" styling="GreyGreen">
-        <layout colspan-s="6"/>
+        <layout colspan="6"/>
         <label>in Spüle</label>
         <address transform="DPT:1.001" mode="readwrite">5/1/155</address>
       </info>
       <info mapping="LeackageOpenClose">
-        <layout colspan-s="6"/>
+        <layout colspan="6"/>
         <label>unt. Spüle</label>
         <address transform="DPT:1.001" mode="readwrite">5/1/156</address>
       </info>
       <info mapping="LeackageOpenClose" styling="GreyGreen">
-        <layout colspan-s="6"/>
+        <layout colspan="6"/>
         <label>Geschirrsp.</label>
         <address transform="DPT:1.001" mode="readwrite">5/1/153</address>
       </info>
       <info mapping="LeackageOpenClose">
-        <layout colspan-s="6"/>
+        <layout colspan="6"/>
         <label>Kühlschrank</label>
         <address transform="DPT:1.001" mode="readwrite">5/1/154</address>
       </info>
       <info mapping="LeackageOpenClose">
-        <layout colspan-s="6"/>
+        <layout colspan="6"/>
         <label>Dusche</label>
         <address transform="DPT:1.001" mode="readwrite">5/2/157</address>
       </info>
       <info mapping="LeackageOpenClose">
-        <layout colspan-s="6"/>
+        <layout colspan="6"/>
         <label>Badewanne</label>
         <address transform="DPT:1.001" mode="readwrite">5/2/156</address>
       </info>
       <info mapping="LeackageOpenClose">
-        <layout colspan-s="6"/>
+        <layout colspan="6"/>
         <label>Waschm.</label>
         <address transform="DPT:1.001" mode="readwrite">5/1/181</address>
       </info>
     <!--
       <info mapping="LeackageOpenClose">
-        <layout colspan-s="6"/>
+        <layout colspan="6"/>
         <label>Trockner</label>
         <address transform="DPT:1.001" mode="readwrite">5/1/181</address>
       </info>
     -->
       <info mapping="LeackageOpenClose">
-        <layout colspan-s="6"/>
+        <layout colspan="6"/>
         <label>in WP</label>
         <address transform="DPT:1.001" mode="readwrite">5/1/184</address>
       </info>
     </group>
     <group name="Temperaturen und Luftfeuchte">
-      <layout colspan-s="12"/>
+      <layout colspan="12"/>
       <diagram_info series="week" refresh="300" format="%.1f °C" styling="BlueGreenRedTemp" tooltip="true">
-        <layout colspan-s="6"/>
+        <layout colspan="6"/>
         <label>außen</label>
         <axis unit="°C"/>
-        <rrd color="red">26.E0AF30010000_temp</rrd>
-        <address transform="DPT:9.001" mode="read">5/4/120</address>
+        <rrd color="red">AT_aussen</rrd>
+        <address transform="DPT:9.001" mode="read">5/4/128</address>
       </diagram_info>
       <diagram_info series="week" refresh="300" format="%.1f %%" styling="BlueGreenRedHum" tooltip="true">
-        <layout colspan-s="6"/>
+        <layout colspan="6"/>
         <label>außen</label>
         <axis unit="%"/>
         <rrd color="red">26.E0AF30010000_hum</rrd>
         <address transform="DPT:5.001" mode="read">5/4/122</address>
       </diagram_info>
       <diagram_info series="week" refresh="300" format="%.1f °C" styling="BlueGreenRedTemp" tooltip="true">
-        <layout colspan-s="6"/>
+        <layout colspan="6"/>
         <label>Garage</label>
         <axis unit="°C"/>
         <rrd color="red">26.968E30010000_temp</rrd>
@@ -616,14 +661,14 @@
         <address transform="DPT:9.001" mode="read">5/3/30</address>
       </diagram_info>
       <diagram_info series="week" refresh="300" format="%.1f %%" styling="BlueGreenRedHum" tooltip="true">
-        <layout colspan-s="6"/>
+        <layout colspan="6"/>
         <label>Garage</label>
         <axis unit="%"/>
         <rrd color="red">26.968E30010000_hum</rrd>
         <address transform="DPT:5.001" mode="read">5/3/32</address>
       </diagram_info>
       <diagram_info series="week" refresh="300" format="%.1f °C" styling="BlueGreenRedTemp" tooltip="true">
-        <layout colspan-s="6"/>
+        <layout colspan="6"/>
         <label>G.Dach</label>
         <axis unit="°C"/>
         <rrd color="red">26.81B62E010000_temp</rrd>
@@ -631,14 +676,14 @@
         <address transform="DPT:9.001" mode="read">5/3/60</address>
       </diagram_info>
       <diagram_info series="week" refresh="300" format="%.1f %%" styling="BlueGreenRedHum" tooltip="true">
-        <layout colspan-s="6"/>
+        <layout colspan="6"/>
         <label>G.Dach</label>
         <axis unit="%"/>
         <rrd color="red">26.81B62E010000_hum</rrd>
         <address transform="DPT:5.001" mode="read">5/3/62</address>
       </diagram_info>
       <diagram_info series="week" refresh="300" format="%.1f °C" styling="BlueGreenRedTemp" tooltip="true">
-        <layout colspan-s="6"/>
+        <layout colspan="6"/>
         <label>Spitzboden</label>
         <axis unit="°C"/>
         <rrd color="red">26.D29730010000_temp</rrd>
@@ -646,14 +691,14 @@
         <address transform="DPT:9.001" mode="read">5/2/210</address>
       </diagram_info>
       <diagram_info series="week" refresh="300" format="%.1f %%" styling="BlueGreenRedHum" tooltip="true">
-        <layout colspan-s="6"/>
+        <layout colspan="6"/>
         <label>Spitzboden</label>
         <axis unit="%"/>
         <rrd color="red">26.D29730010000_hum</rrd>
         <address transform="DPT:5.001" mode="read">5/2/212</address>
       </diagram_info>
       <diagram_info series="day" period="3" refresh="300" format="%.1f %%" styling="BlueGreenRedHum" tooltip="true">
-        <layout colspan-s="6"/>
+        <layout colspan="6"/>
         <label>Bad EG</label>
         <axis unit="%"/>
         <rrd yaxis="hum" color="white" label="BadEG">26.F6B92E010000_hum</rrd>
@@ -663,7 +708,7 @@
         <address transform="DPT:5.001" mode="read">5/1/213</address>
       </diagram_info>
       <diagram_info series="week" period="1" refresh="300" format="%.1f %%" styling="BlueGreenRedHum" tooltip="true">
-        <layout colspan-s="6"/>
+        <layout colspan="6"/>
         <label>Bad OG</label>
         <axis unit="%"/>
         <rrd yaxis="hum" color="white" label="BadEG">26.F6B92E010000_hum</rrd>
@@ -673,7 +718,7 @@
         <address transform="DPT:5.001" mode="read">5/2/153</address>
       </diagram_info>
       <diagram_info series="week" period="3" refresh="300" format="%.1f %%" styling="BlueGreenRedHum" tooltip="true">
-        <layout colspan-s="6"/>
+        <layout colspan="6"/>
         <label>WZ</label>
         <axis unit="%"/>
         <rrd yaxis="hum" color="white" label="BadEG">26.F6B92E010000_hum</rrd>
@@ -683,7 +728,7 @@
         <address transform="DPT:5.001" mode="read">5/1/123</address>
       </diagram_info>
       <diagram_info series="week" period="8" refresh="300" format="%.1f %%" styling="BlueGreenRedHum" tooltip="true">
-        <layout colspan-s="6"/>
+        <layout colspan="6"/>
         <label>HWR???</label>
         <axis unit="%"/>
         <rrd yaxis="hum" color="white" label="BadEG">26.F6B92E010000_hum</rrd>
@@ -694,35 +739,34 @@
       </diagram_info>
     </group>
     <page name="Garage" shownavbar-left="false" visible="false">
-      <group nowidget="true">
         <layout colspan="6"/>
         <group name="Licht Garage">
           <layout colspan="6"/>
           <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label>Decke</label>
             <address transform="DPT:1.001" mode="write">1/3/30</address>
             <address transform="DPT:1.001" mode="read">1/3/31</address>
           </switch>
           <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label>Decke groß</label>
             <address transform="DPT:1.001" mode="write">1/3/28</address>
             <address transform="DPT:1.001" mode="read">1/3/29</address>
           </switch>
           <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label>Werkbank</label>
             <address transform="DPT:1.001" mode="write">1/3/32</address>
             <address transform="DPT:1.001" mode="read">1/3/33</address>
           </switch>
           <info mapping="DoorOpenClose" styling="GreyGreen">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label>Garagentür</label>
             <address transform="DPT:1.001" mode="readwrite">5/3/34</address>
           </info>
           <diagram_info series="day" period="2" refresh="300" format="%.1f lx" tooltip="true">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label>
               <icon name="weather_light_meter"/>
             </label>
@@ -732,96 +776,52 @@
             <address transform="DPT:9.004" mode="read">7/3/33</address>
           </diagram_info>
           <switch mapping="PM_EinAus_Preussen" align="center" flavour="lithium">
-		        <layout colspan-s="6"/>
+		        <layout colspan="6"/>
             <label>sperren</label>
             <address transform="DPT:1.001" mode="readwrite">7/3/34</address>
           </switch>
 		    </group>
-        <group name="Garagentor">
-          <layout colspan="6"/>
-          <info mapping="GarageDoorOpenClose" styling="GreyGreen">
-            <layout colspan-s="6"/>
-            <label>Status</label>
-            <address transform="DPT:1.001" mode="readwrite">5/3/41</address>
-          </info>
-          <trigger value="1" mapping="FahrenStop" align="center">
-            <layout colspan-s="6"/>
-            <address transform="DPT:1.001" mode="write">5/3/40</address>
-          </trigger>
-          <!--
-          <info>
-            <layout colspan-s="4" />
-            <label>Trigger</label>
-            <address transform="DPT:1.001" mode="readwrite">5/3/40</address>
-          </info>
-        -->
-          <trigger value="0" mapping="Text_AusEin">
-            <layout colspan-s="4"/>
-            <label>Trigger</label>
-            <address transform="DPT:1.001" mode="write">5/3/40</address>            
-          </trigger>
-          <info mapping="Text_AusEin" styling="GreenRed" flavour="lithium">
-            <layout colspan-s="2" />
-            <address transform="DPT:1.001" mode="read">5/3/40</address>
-          </info>
-          <switch mapping="Text_AusEin" styling="RedGreen" flavour="lithium">
-            <layout colspan-s="6"/>
-            <label>Motor</label>
-            <address transform="DPT:1.001" mode="readwrite">2/3/32</address>
-          </switch>
-		      <switch mapping="Text_AusEin" styling="GreenRed" flavour="lithium">
-            <layout colspan-s="6"/>
-            <label>Alarmsperre</label>
-            <address transform="DPT:1.001" mode="readwrite">9/4/40</address>
-          </switch>
-		      <info mapping="Text_AusEin" styling="GreenRed" flavour="lithium">
-            <layout colspan-s="6" />
-            <label>Alarm</label>
-            <address transform="DPT:1.001" mode="read">9/4/41</address>
-          </info>
-        </group>
-      </group>
-	    <group name="Licht aussen">
+      <group name="Licht aussen">
           <layout colspan="6"/>
           <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
-            <layout colspan-s="6"/>
-            <label>Terrasse li</label>
-            <address transform="DPT:1.001" mode="write">1/4/1</address>
-            <address transform="DPT:1.001" mode="read">1/4/2</address>
-          </switch>
-          <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label>Haustür</label>
             <address transform="DPT:1.001" mode="write">1/4/62</address>
             <address transform="DPT:1.001" mode="read">1/4/63</address>
           </switch>
           <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
-            <layout colspan-s="6"/>
-            <label>Terrasse Mi</label>
-            <address transform="DPT:1.001" mode="write">1/4/3</address>
-            <address transform="DPT:1.001" mode="read">1/4/4</address>
-          </switch>
-          <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label>Garage Nord</label>
             <address transform="DPT:1.001" mode="write">1/4/60</address>
             <address transform="DPT:1.001" mode="read">1/4/61</address>
           </switch>
           <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
-            <layout colspan-s="6"/>
-            <label>Terrasse re</label>
-            <address transform="DPT:1.001" mode="write">1/4/5</address>
-            <address transform="DPT:1.001" mode="read">1/4/6</address>
-          </switch>
-          <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label>Garage Süd</label>
             <address transform="DPT:1.001" mode="write">1/4/120</address>
             <address transform="DPT:1.001" mode="read">1/4/121</address>
           </switch>
+          <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
+            <layout colspan="6"/>
+            <label>Terrasse links</label>
+            <address transform="DPT:1.001" mode="write">1/4/1</address>
+            <address transform="DPT:1.001" mode="read">1/4/2</address>
+          </switch>
+          <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
+            <layout colspan="6"/>
+            <label>Terrasse Mitte</label>
+            <address transform="DPT:1.001" mode="write">1/4/3</address>
+            <address transform="DPT:1.001" mode="read">1/4/4</address>
+          </switch>
+          <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
+            <layout colspan="6"/>
+            <label>Terrasse rechts</label>
+            <address transform="DPT:1.001" mode="write">1/4/5</address>
+            <address transform="DPT:1.001" mode="read">1/4/6</address>
+          </switch>
       <!--
           <diagram_info series="day" period="3" refresh="300" format="%.1f °C" tooltip="true">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label>
               <icon name="temp_outside"/>
             </label>
@@ -832,21 +832,63 @@
             <address transform="DPT:9.004" mode="read">5/4/120</address>
           </diagram_info>
           <switch mapping="PM_EinAus" align="center" flavour="lithium">
-		    <layout colspan-s="6"/>
+        <layout colspan="6"/>
             <label>Garage</label>
             <address transform="DPT:1.001" mode="readwrite">7/4/34</address>
           </switch>
-		-->
-		    </group>
+    -->
+        </group>
+        <group name="Garagentor">
+          <layout colspan="12"/>
+          <info mapping="GarageDoorOpenClose" styling="GreyGreen">
+            <layout colspan="1"/>
+            <address transform="DPT:1.001" mode="readwrite">5/3/41</address>
+          </info>
+          <trigger value="1" mapping="FahrenStop" align="center">
+            <layout colspan="2"/>
+            <address transform="DPT:1.001" mode="write">5/3/40</address>
+          </trigger>
+          <!--
+          <info>
+            <layout colspan="4" />
+            <label>Trigger</label>
+            <address transform="DPT:1.001" mode="readwrite">5/3/40</address>
+          </info>
+        -->
+          <trigger value="0" mapping="Text_AusEin">
+            <layout colspan="2"/>
+            <label>Trigger</label>
+            <address transform="DPT:1.001" mode="write">5/3/40</address>            
+          </trigger>
+          <info mapping="Text_AusEin" styling="GreenRed" flavour="lithium">
+            <layout colspan="1" />
+            <address transform="DPT:1.001" mode="read">5/3/40</address>
+          </info>
+          <switch mapping="Text_AusEin" styling="RedGreen" flavour="lithium">
+            <layout colspan="2"/>
+            <label>Motor</label>
+            <address transform="DPT:1.001" mode="readwrite">2/3/32</address>
+          </switch>
+		      <switch mapping="Text_AusEin" styling="GreenRed" flavour="lithium">
+            <layout colspan="2"/>
+            <label>Alarmsperre</label>
+            <address transform="DPT:1.001" mode="readwrite">9/4/40</address>
+          </switch>
+		      <info mapping="Text_AusEin" styling="GreenRed" flavour="lithium">
+            <layout colspan="2" />
+            <label>Alarm</label>
+            <address transform="DPT:1.001" mode="read">9/4/41</address>
+          </info>
+        </group>
         <group name="Bewegungsmelder">
-          <layout colspan="6"/>
+          <layout colspan="12"/>
           <switch mapping="PM_EinAus" align="center" flavour="lithium">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label>Garage N</label>
             <address transform="DPT:1.001" mode="readwrite">7/4/122</address>
           </switch>
           <diagram_info series="day" period="1" refresh="300" format="%.1f lx" tooltip="true">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label>
               <icon name="weather_light_meter"/>
             </label>
@@ -860,12 +902,12 @@
             <address transform="DPT:9.004" mode="read">7/4/121</address>
           </diagram_info>
           <switch mapping="PM_EinAus" align="center" flavour="lithium">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label>Garage S</label>
             <address transform="DPT:1.001" mode="readwrite">7/4/182</address>
           </switch>
           <diagram_info series="week" period="1" refresh="300" format="%.1f lx" tooltip="true">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label>
               <icon name="weather_light_meter"/>
             </label>
@@ -879,12 +921,12 @@
             <address transform="DPT:9.004" mode="read">7/4/181</address>
           </diagram_info>
           <switch mapping="PM_EinAus" align="center" flavour="lithium">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label>Terrasse</label>
             <address transform="DPT:1.001" mode="readwrite">7/4/62</address>
           </switch>
           <diagram_info series="week" period="2" refresh="300" format="%.1f lx" tooltip="true">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label>
               <icon name="weather_light_meter"/>
             </label>
@@ -899,129 +941,163 @@
           </diagram_info>
 		    </group>
         <group name="Zisterne">
-          <layout colspan="6"/>
+          <layout colspan="12"/>
+          <switch mapping="OnOff" styling="GreyGreen">
+            <layout colspan="1"/>
+            <address transform="DPT:1.001" mode="write">2/1/184</address>
+            <address transform="DPT:1.001" mode="read">2/1/185</address>
+          </switch>
           <diagram_info series="day" period="3" refresh="300" format="%.1f mA" tooltip="true">
-            <layout colspan-s="3"/>
+            <layout colspan="1"/>
             <axis position="right" unit=" mA">Stromwert</axis>
             <rrd color="red" label="Stromwert Gardena Pumpe Zisterne">zisternenPumpeStromwert</rrd>
             <address transform="DPT:5.010" mode="read">2/1/186</address>
           </diagram_info>
           <diagram_info series="day" period="3" refresh="300" format="%.1f Wh" tooltip="true">
-            <layout colspan-s="3" />
+            <layout colspan="2" />
             <axis position="right" unit=" Wh">Energieverbrauch</axis>
             <rrd color="red" label="Energieverbrauch Gardena Pumpe Zisterne">zisternenPumpeEnergieverbrauch</rrd>
             <address transform="DPT:5.010" mode="read">2/1/187</address>
           </diagram_info>
           <info mapping="Zisterne" styling="Zisterne">
-            <layout colspan-s="3" />
+            <layout colspan="1" />
             <address transform="DPT:5.001" mode="read">6/4/32</address>
           </info>
           <diagram_info series="week" period="3" refresh="300" format="%.1f %%" tooltip="true">
-            <layout colspan-s="3" />
+            <layout colspan="1" />
             <axis position="right" unit=" %">Füllstand</axis>
             <rrd color="red" label="Füllstand Zisterne">fuellstandZisterne</rrd>
             <address transform="DPT:5.001" mode="read">6/4/32</address>
           </diagram_info>
         </group>
+        <group name="Sole-Verteiler-Pumpe">
+          <layout colspan="12"/>
+          <switch mapping="OnOff" styling="GreyGreen">
+            <layout colspan="1"/>
+            <address transform="DPT:1.001" mode="write">2/1/194</address>
+            <address transform="DPT:1.001" mode="read">2/1/195</address>
+          </switch>
+          <diagram_info series="day" period="3" refresh="300" format="%.1f mA" tooltip="true">
+            <layout colspan="1"/>
+            <axis position="right" unit=" mA">Stromwert</axis>
+            <rrd color="red" label="Stromwert SoleVertPumpe">soleVertPumpeStromwert</rrd>
+            <address transform="DPT:5.010" mode="read">2/1/196</address>
+          </diagram_info>
+          <diagram_info series="day" period="3" refresh="300" format="%.1f Wh" tooltip="true">
+            <layout colspan="2" />
+            <axis position="right" unit=" Wh">Energieverbrauch</axis>
+            <rrd color="red" label="Energieverbrauch SoleVertPumpe">soleVertPumpeEnergieverbrauch</rrd>
+            <address transform="DPT:5.010" mode="read">2/1/197</address>
+          </diagram_info>
+          <info mapping="Zisterne" styling="Zisterne">
+            <layout colspan="1" />
+            <address transform="DPT:5.001" mode="read">6/4/36</address>
+          </info>
+          <diagram_info series="week" period="3" refresh="300" format="%.1f %%" tooltip="true">
+            <layout colspan="1" />
+            <axis position="right" unit=" %">Füllstand</axis>
+            <rrd color="red" label="Füllstand SoleVertPumpe">fuellstandSoleVerteiler</rrd>
+            <address transform="DPT:5.001" mode="read">6/4/36</address>
+          </diagram_info>
+        </group>
       <group name="Ereignisse">
-        <layout colspan="6" rowspan="25"/>
+        <layout colspan="12" rowspan="25"/>
         <rsslog src="plugins/rsslog/rsslog.php" refresh="60" filter="garage,hwr,aussen,garten,alarm" limit="50" mode="last" timeformat="%d.%m. %H:%M">
-          <layout rowspan="25" colspan="6"/>
+          <layout rowspan="25" colspan="12"/>
         </rsslog>
       </group>
     </page>
     <page name="Licht" shownavbar-left="false" visible="false">
       <group name="Flur Erdgeschoss">
-        <layout colspan-s="12"/>
+        <layout colspan="12"/>
         <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
-          <layout colspan-s="2"/>
+          <layout colspan="1"/>
           <label></label>
           <address transform="DPT:1.001" mode="readwrite">1/5/20</address>
           <address transform="DPT:1.001" mode="read">1/5/23</address>
         </switch>
         <slide min="0" max="90" step="1" format="%d%%" styling="GreyGrey" flavour="lithium">
-          <layout colspan-s="6"/>
+          <layout colspan="4"/>
           <address transform="DPT:5.001" mode="write">1/5/22</address>
           <address transform="DPT:5.001" mode="read">1/5/24</address>
         </slide>
         <switch mapping="PM_EinAus" styling="GreyGrey" align="center" flavour="lithium">
-          <layout colspan-s="2"/>
+          <layout colspan="1"/>
           <label></label>
           <address transform="DPT:1.001" mode="readwrite">7/1/32</address>
         </switch>
         <info format="%.1f lx">
-          <layout colspan-s="2"/>
+          <layout colspan="1"/>
           <address transform="DPT:9.004" mode="read">7/1/37</address>
         </info>
       </group>
       <group name="Flur Obergeschoss">
-        <layout colspan-s="12"/>
+        <layout colspan="12"/>
         <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
-          <layout colspan-s="2"/>
+          <layout colspan="1"/>
           <label></label>
           <address transform="DPT:1.001" mode="readwrite">1/5/90</address>
           <address transform="DPT:1.001" mode="read">1/5/93</address>
         </switch>
         <slide min="0" max="90" step="1" format="%d%%" styling="GreyGrey" flavour="lithium">
-          <layout colspan-s="6"/>
+          <layout colspan="4"/>
           <address transform="DPT:5.001" mode="write">1/5/92</address>
           <address transform="DPT:5.001" mode="read">1/5/94</address>
         </slide>
         <switch mapping="PM_EinAus" styling="GreyGrey" align="center" flavour="lithium">
-          <layout colspan-s="2"/>
+          <layout colspan="1"/>
           <label></label>
           <address transform="DPT:1.001" mode="readwrite">7/2/32</address>
         </switch>
         <info format="%.1f lx">
-          <layout colspan-s="2"/>
+          <layout colspan="1"/>
           <address transform="DPT:9.004" mode="read">7/2/37</address>
         </info>
       </group>
       <group name="Treppe">
-        <layout colspan-s="12"/>
-        <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
-          <layout colspan-s="6"/>
-          <label>Ein/Aus</label>
+        <layout colspan="12"/>
+        <switch mapping="OnOff_Licht" styling="GreyGrey" flavour="lithium">
+          <layout colspan="1" rowspan="2"/>
           <address transform="DPT:1.001" mode="readwrite">1/5/80</address>
           <address transform="DPT:1.001" mode="read">1/5/83</address>
         </switch>
         <slide min="0" max="90" step="1" format="%d%%" styling="GreyGrey" flavour="lithium">
-          <layout colspan-s="6"/>
+          <layout colspan="4" rowspan="2"/>
           <address transform="DPT:5.001" mode="write">1/5/82</address>
           <address transform="DPT:5.001" mode="read">1/5/84</address>
         </slide>
-        <switch mapping="PM_EinAus" styling="GreyGrey" align="center" flavour="lithium">
-          <layout colspan-s="6"/>
-          <label>BM EG</label>
+        <switch mapping="PM_EinAus" styling="GreyGrey" flavour="lithium">
+          <layout colspan="1" rowspan="2"/>
+          <label>EG</label>
           <address transform="DPT:1.001" mode="readwrite">7/1/38</address>
         </switch>
-        <switch mapping="PM_EinAus" styling="GreyGrey" align="center" flavour="lithium">
-          <layout colspan-s="6"/>
-          <label>BM OG</label>
+        <switch mapping="PM_EinAus" styling="GreyGrey" flavour="lithium">
+          <layout colspan="1" rowspan="2"/>
+          <label>OG</label>
           <address transform="DPT:1.001" mode="readwrite">7/2/38</address>
         </switch>
       </group>
       <group name="Küche">
-        <layout colspan-s="12"/>
+        <layout colspan="12"/>
         <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
-          <layout colspan-s="4"/>
+          <layout colspan="2"/>
           <label>Tisch</label>
           <address transform="DPT:1.001" mode="readwrite">1/1/150</address>
           <address transform="DPT:1.001" mode="read">1/1/151</address>
         </switch>
         <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
-          <layout colspan-s="4"/>
+          <layout colspan="2"/>
           <label>Unterschr.</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/152</address>
           <address transform="DPT:1.001" mode="read">2/1/153</address>
         </switch>
         <switch mapping="PM_EinAus" styling="GreyGrey" align="center" flavour="lithium">
-          <layout colspan-s="2"/>
+          <layout colspan="1"/>
           <label></label>
           <address transform="DPT:1.001" mode="readwrite">7/1/152</address>
         </switch>
         <trigger value="0" mapping="Text_AusAus" align="center">
-          <layout colspan-s="2"/>
+          <layout colspan="1"/>
           <address transform="DPT:5.005" mode="write">10/1/150</address>
         </trigger>
         <slide min="0" max="90" step="1" format="%d%%" styling="GreyGrey" flavour="lithium">
@@ -1038,124 +1114,120 @@
         </slide>
       </group>
       <group name="Bad EG">
-        <layout colspan-s="12"/>
+        <layout colspan="12"/>
         <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
-          <layout colspan-s="6"/>
-          <label>Ein/Aus</label>
+          <layout colspan="1"/>
           <address transform="DPT:1.001" mode="readwrite">1/5/30</address>
           <address transform="DPT:1.001" mode="read">1/5/33</address>
         </switch>
+        <info format="%.1f lx" align="center">
+          <layout colspan="1"/>
+          <address transform="DPT:9.004" mode="read">7/1/217</address>
+        </info>
+        <switch mapping="PM_EinAus" styling="GreyGrey" align="center" flavour="lithium">
+          <layout colspan="1"/>
+          <address transform="DPT:1.001" mode="readwrite">7/1/212</address>
+        </switch>
         <slide min="0" max="90" step="1" format="%d%%" styling="GreyGrey" flavour="lithium">
-          <layout colspan-s="6"/>
+          <layout colspan="3"/>
           <address transform="DPT:5.001" mode="write">1/5/32</address>
           <address transform="DPT:5.001" mode="read">1/5/34</address>
         </slide>
-        <switch mapping="PM_EinAus" styling="GreyGrey" align="center" flavour="lithium">
-          <layout colspan-s="6"/>
-          <label>sperren</label>
-          <address transform="DPT:1.001" mode="readwrite">7/1/212</address>
-        </switch>
-        <info format="%.1f lx" align="center">
-          <layout colspan-s="6"/>
-          <address transform="DPT:9.004" mode="read">7/1/217</address>
-        </info>
       </group>
       <group name="Bad OG">
-        <layout colspan-s="12"/>
+        <layout colspan="12"/>
         <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
-          <layout colspan-s="6"/>
-          <label>Ein/Aus</label>
+          <layout colspan="1"/>
           <address transform="DPT:1.001" mode="readwrite">1/5/100</address>
           <address transform="DPT:1.001" mode="read">1/5/103</address>
         </switch>
+        <info format="%.1f lx" align="center">
+          <layout colspan="1"/>
+          <address transform="DPT:9.004" mode="read">7/2/157</address>
+        </info>
+        <switch mapping="PM_EinAus" styling="GreyGrey" align="center" flavour="lithium">
+          <layout colspan="1"/>
+          <address transform="DPT:1.001" mode="readwrite">7/2/152</address>
+        </switch>
         <slide min="0" max="90" step="1" format="%d%%" styling="GreyGrey" flavour="lithium">
-          <layout colspan-s="6"/>
+          <layout colspan="3"/>
           <address transform="DPT:5.001" mode="write">1/5/102</address>
           <address transform="DPT:5.001" mode="read">1/5/104</address>
         </slide>
-        <switch mapping="PM_EinAus" styling="GreyGrey" align="center" flavour="lithium">
-          <layout colspan-s="6"/>
-          <label>sperren</label>
-          <address transform="DPT:1.001" mode="readwrite">7/2/152</address>
-        </switch>
-        <info format="%.1f lx" align="center">
-          <layout colspan-s="6"/>
-          <address transform="DPT:9.004" mode="read">7/2/157</address>
-        </info>
       </group>
       <group name="Erdgeschoss">
-        <layout colspan-s="12"/>
+        <layout colspan="12"/>
         <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>HWR</label>
           <address transform="DPT:1.001" mode="readwrite">1/1/180</address>
           <address transform="DPT:1.001" mode="read">1/1/181</address>
         </switch>
         <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>AZ</label>
           <address transform="DPT:1.001" mode="readwrite">1/1/60</address>
           <address transform="DPT:1.001" mode="read">1/1/61</address>
         </switch>
         <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>WZ</label>
           <address transform="DPT:1.001" mode="readwrite">1/1/90</address>
           <address transform="DPT:1.001" mode="read">1/1/91</address>
         </switch>
         <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>EZ</label>
           <address transform="DPT:1.001" mode="readwrite">1/1/120</address>
           <address transform="DPT:1.001" mode="read">1/1/121</address>
         </switch>
       </group>
       <group name="Obergeschoss">
-        <layout colspan-s="12"/>
+        <layout colspan="12"/>
         <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Lotta</label>
           <address transform="DPT:1.001" mode="readwrite">1/2/60</address>
           <address transform="DPT:1.001" mode="read">1/2/0</address>
         </switch>
         <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Moritz</label>
           <address transform="DPT:1.001" mode="readwrite">1/2/90</address>
           <address transform="DPT:1.001" mode="read">1/2/91</address>
         </switch>
         <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Grete</label>
           <address transform="DPT:1.001" mode="readwrite">1/2/120</address>
           <address transform="DPT:1.001" mode="read">1/2/121</address>
         </switch>
         <switch mapping="OnOff_Licht" styling="GreyGrey" align="center" flavour="lithium">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>SZ</label>
           <address transform="DPT:1.001" mode="readwrite">1/2/180</address>
           <address transform="DPT:1.001" mode="read">1/2/0</address>
         </switch>
       </group>
       <group name="Zentral">
-        <layout colspan-s="12"/>
+        <layout colspan="12"/>
         <switch mapping="OnOff_Licht" styling="GreyGrey" bind_click_to_widget="false">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Licht EG</label>
           <address transform="DPT:1.001" mode="readwrite">1/1/0</address>
         </switch>
         <switch mapping="OnOff_Licht" styling="GreyGrey" bind_click_to_widget="false">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Licht OG</label>
           <address transform="DPT:1.001" mode="readwrite">1/2/0</address>
         </switch>
         <switch mapping="OnOff_Licht" styling="GreyGrey" bind_click_to_widget="false">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Licht Garage</label>
           <address transform="DPT:1.001" mode="readwrite">1/3/0</address>
         </switch>
         <switch mapping="OnOff_Licht" styling="GreyGrey" bind_click_to_widget="false">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Licht Außen</label>
           <address transform="DPT:1.001" mode="readwrite">1/4/0</address>
         </switch>
@@ -1163,72 +1235,72 @@
     </page>
     <page name="Temperaturen" visible="false" shownavbar-left="false">
       <group name="Temperaturen">
-        <layout colspan-s="12"/>
+        <layout colspan="12"/>
         <info format="%.1f °C">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label><icon name="scene_dinner"/>EZ</label>
           <address transform="DPT:9.001" mode="read">5/1/120</address>
         </info>
         <info format="%.1f °C">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label><icon name="scene_baking_oven"/>Küche</label>
           <address transform="DPT:9.001" mode="read">5/1/150</address>
         </info>
         <info format="%.1f °C">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label><icon name="scene_office"/>AZ</label>
           <address transform="DPT:9.001" mode="read">5/1/60</address>
         </info>
         <info format="%.1f °C">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label><icon name="scene_shower"/>Bad</label>
           <address transform="DPT:9.001" mode="read">5/1/210</address>
         </info>
         <info format="%.1f °C">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label><icon name="edit_settings"/>HWR</label>
           <address transform="DPT:9.001" mode="read">7/1/182</address>
         </info>
         <info format="%.1f °C">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label><icon name="fts_garage"/>Garage</label>
           <address transform="DPT:9.001" mode="read">5/3/30</address>
         </info>
         <info format="%.1f °C">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label><icon name="scene_bath"/>Bad OG</label>
           <address transform="DPT:9.001" mode="read">5/2/170</address>
         </info>
         <info format="%.1f °C">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label><icon name="temp_inside"/>SB</label>
           <address transform="DPT:9.001" mode="read">5/2/210</address>
         </info>
         <info format="%.1f °C">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label><icon name="scene_sleeping_twin_1_1"/>Lotta</label>
           <address transform="DPT:9.001" mode="read">5/2/60</address>
         </info>
         <info format="%.1f °C">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label><icon name="scene_childs_room"/>Moritz</label>
           <address transform="DPT:9.001" mode="read">5/2/90</address>
         </info>
         <info format="%.1f °C">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label><icon name="scene_visit_guests"/>Grete</label>
           <address transform="DPT:9.001" mode="read">5/2/120</address>
         </info>
         <info format="%.1f °C">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label><icon name="scene_sleeping"/>SZ</label>
           <address transform="DPT:9.001" mode="read">5/2/180</address>
         </info>
 	  </group>
       <group name="Luftfeuchte">
-	    <layout colspan-s="12"/>
+	    <layout colspan="12"/>
         <diagram_info format="%.1f %%" series="week" period="2" refresh="300" styling="BlueGreenRedHum" gridcolor="#707070" tooltip="true" legendposition="nw">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label><icon name="weather_humidity_rel"/>EZ</label>
           <axis position="left" label="Luftfeuchte" unit=" %">hum</axis>
           <rrd yaxis="hum" color="#ff0000" label="Bad EG">26.F6B92E010000_hum</rrd>
@@ -1237,7 +1309,7 @@
 		  <address transform="DPT:5.001" mode="read">5/1/123</address>
         </diagram_info>
         <diagram_info format="%.1f %%" series="day" period="5" refresh="300" styling="BlueGreenRedHum" gridcolor="#707070" tooltip="true" legendposition="nw">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label><icon name="weather_humidity_rel"/>Bad EG</label>
           <axis position="left" label="Luftfeuchte" unit=" %">hum</axis>
 		  <rrd yaxis="hum" color="#ff0000" label="Bad EG">26.F6B92E010000_hum</rrd>
@@ -1245,7 +1317,7 @@
           <rrd yaxis="hum" color="#00CCFF" label="Bad OG">26.86AB30010000_hum</rrd><address transform="DPT:5.001" mode="read">5/1/213</address>
         </diagram_info>
 	    <diagram_info format="%.1f %%" series="day" period="2" refresh="300" styling="BlueGreenRedHum" gridcolor="#707070" tooltip="true" legendposition="nw">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label><icon name="weather_humidity_rel"/>Bad OG</label>
           <axis position="left" label="Luftfeuchte" unit=" %">hum</axis>
           <rrd yaxis="hum" color="#ff0000" label="Bad EG">26.F6B92E010000_hum</rrd>
@@ -1254,7 +1326,7 @@
           <address transform="DPT:5.001" mode="read">5/2/153</address>
         </diagram_info>
 	    <diagram_info format="%.1f %%" series="day" period="2" refresh="300" styling="BlueGreenRedHum" gridcolor="#707070" tooltip="true" legendposition="nw">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label><icon name="weather_humidity_rel"/>SB Haus</label>
           <axis position="left" label="Luftfeuchte" unit=" %">hum</axis>
 		  <rrd yaxis="hum" color="white" label="aussen">26.E0AF30010000_hum</rrd>
@@ -1265,14 +1337,14 @@
         </diagram_info>
 	  </group>
       <group name="Aussen">
-	    <layout colspan-s="12"/>
+	    <layout colspan="12"/>
         <info format="%.1f °C">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label><icon name="temp_outside"/>aktuell</label>
           <address transform="DPT:9.001" mode="read">5/4/120</address>
         </info>
 		<diagram_info series="day" period="7" refresh="300" format="%.1f °C" tooltip="true">
-		  <layout colspan-s="6"/>
+		  <layout colspan="6"/>
           <label><icon name="temp_outside"/>gestern</label>
           <axis unit=" °C"/>
 		  <!-- TODO: resolution="86400" angeben! -->
@@ -1280,73 +1352,70 @@
           <address transform="DPT:9.001" mode="read">5/4/125</address>
         </diagram_info>
         <info format="%.1f °C">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label><icon name="temp_outside"/>1 Woche</label>
           <address transform="DPT:9.001" mode="read">5/4/126</address>
         </info>
         <info format="%.1f °C">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label><icon name="temp_outside"/>1 Monat</label>
           <address transform="DPT:9.001" mode="read">5/4/127</address>
         </info>
 	  </group>
       <group name="Wetterstation">
-        <layout colspan-s="12"/>
+        <layout colspan="12"/>
         <info format="%.1f °C">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label><icon name="temp_temperature"/>Temp</label>
           <address transform="DPT:9.001" mode="read">6/5/55</address>
         </info>
         <info format="%.1f lx">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>
             <icon name="weather_light_meter"/>
           </label>
           <address transform="DPT:9.004" mode="read">6/5/51</address>
         </info>
         <diagram_info series="day" period="1" refresh="300" format="%.1f m/s" styling="GreenRedSpeed" tooltip="true">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label><icon name="weather_wind_speed_ms"/>Wind</label>
           <axis unit=" m/s"/>
           <rrd color="red">wetterStationWind</rrd>
           <address transform="DPT:9.005" mode="read">6/5/54</address>
         </diagram_info>
         <info mapping="Text_AusEin" styling="GreenRed">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label><icon name="weather_wind_speed_ms"/>Alarm</label>
           <address transform="DPT:1.001" mode="readwrite">6/5/53</address>
         </info>
       </group>
       <group name="wunderground Vorhersage">
-        <layout colspan-s="12"/>
+        <layout colspan="12"/>
         <info format="%.1f °C">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label><icon name="temp_temperature"/>Temp</label>
           <address transform="DPT:9.001" mode="read">9/1/0</address>
         </info>
         <info format="%.1f %%">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label><icon name="weather_humidity_rel"/>Feuchte</label>
           <address transform="DPT:9.007" mode="read">9/1/1</address>
         </info>
         <info format="%.1f °C">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label><icon name="temp_temperature_max"/>max</label>
           <address transform="DPT:9.001" mode="read">9/1/2</address>
         </info>
         <info format="%.1f °C">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label><icon name="temp_temperature_min"/>min</label>
           <address transform="DPT:9.001" mode="read">9/1/3</address>
         </info>
       </group>
     </page>
     <page name="System" visible="false" shownavbar-left="false">
-	  <group name="Refresh KNX Values">
-      <refresh mapping="Refresh"></refresh>
-    </group>  
-	  <group name="CPU Load">
-	    <layout colspan-s="12"/>
+    <group name="CPU Load">
+      <layout colspan="12"/>
 	    <diagram popup="true" previewlabels="true" height="200" series="hour" period="24" refresh="300" gridcolor="#707070" legendposition="nw">
 		  <layout colspan="6"/>
 		  <axis position="left"/>
@@ -1364,17 +1433,17 @@
 	  </group>
 	
 	  <group name="Links">
-	    <layout colspan-s="12"/>
-    <text><layout colspan-s="6"/><label>&lt;a href="http://fritz.box/" target="_blank"&gt;Fritz!Box&lt;/a&gt;</label></text>
-    <text><layout colspan-s="6"/><label>&lt;a href="http://mediaserver:9000/" target="_blank"&gt;SqueezeBox&lt;/a&gt;</label></text>
-    <text><layout colspan-s="6"/><label>&lt;a href="http://10.64.242.44:10000/wiregate/view_log.cgi?view=1&amp;file=/var/log/eib.log" target="_blank"&gt;EIB Log&lt;/a&gt;</label></text>
-    <text><layout colspan-s="6"/><label>&lt;a href="http://10.64.242.44:10000/wiregate/view_log.cgi?view=1&amp;file=/var/log/wiregate_plugin.log" target="_blank"&gt;Plugin Log&lt;/a&gt;</label></text>
-    <text><layout colspan-s="6"/><label>&lt;a href="http://10.64.242.44:10000/wiregate/edit_owsensorconf.cgi" target="_blank"&gt;Sensoren&lt;/a&gt;</label></text>
-    <text><layout colspan-s="6"/><label>&lt;a href="http://10.64.242.44:10000/wiregate/graph2.cgi" target="_blank"&gt;Graph&lt;/a&gt;</label></text>
-    <text><layout colspan-s="6"/><label>&lt;a href="http://admin:monit@10.64.242.44:2812" target="_blank"&gt;Monit WG&lt;/a&gt;</label></text>
-    <text><layout colspan-s="6"/><label>&lt;a href="http://admin:monit@mediaserver:2812" target="_blank"&gt;Monit Mediacenter&lt;/a&gt;</label></text>
-    <text><layout colspan-s="6"/><label>&lt;a href="http://10.64.242.44/visu.git/plugins/rsslog/rsslog.php?dump" target="_blank"&gt;RSS Dump&lt;/a&gt;</label></text>
-    <text><layout colspan-s="6"/><label>&lt;a href="http://10.64.242.44/visu.git/latestMovies.php" target="_blank"&gt;Movie List&lt;/a&gt;</label></text>
+	    <layout colspan="12"/>
+    <text><layout colspan="6"/><label>&lt;a href="http://fritz.box/" target="_blank"&gt;Fritz!Box&lt;/a&gt;</label></text>
+    <text><layout colspan="6"/><label>&lt;a href="http://mediaserver:9000/" target="_blank"&gt;SqueezeBox&lt;/a&gt;</label></text>
+    <text><layout colspan="6"/><label>&lt;a href="http://10.64.242.44:10000/wiregate/view_log.cgi?view=1&amp;file=/var/log/eib.log" target="_blank"&gt;EIB Log&lt;/a&gt;</label></text>
+    <text><layout colspan="6"/><label>&lt;a href="http://10.64.242.44:10000/wiregate/view_log.cgi?view=1&amp;file=/var/log/wiregate_plugin.log" target="_blank"&gt;Plugin Log&lt;/a&gt;</label></text>
+    <text><layout colspan="6"/><label>&lt;a href="http://10.64.242.44:10000/wiregate/edit_owsensorconf.cgi" target="_blank"&gt;Sensoren&lt;/a&gt;</label></text>
+    <text><layout colspan="6"/><label>&lt;a href="http://10.64.242.44:10000/wiregate/graph2.cgi" target="_blank"&gt;Graph&lt;/a&gt;</label></text>
+    <text><layout colspan="6"/><label>&lt;a href="http://admin:monit@10.64.242.44:2812" target="_blank"&gt;Monit WG&lt;/a&gt;</label></text>
+    <text><layout colspan="6"/><label>&lt;a href="http://admin:monit@10.64.242.28:2812" target="_blank"&gt;Monit ServerPi01&lt;/a&gt;</label></text>
+    <text><layout colspan="6"/><label>&lt;a href="http://10.64.242.44/visu.git/plugins/rsslog/rsslog.php?dump" target="_blank"&gt;RSS Dump&lt;/a&gt;</label></text>
+    <text><layout colspan="6"/><label>&lt;a href="http://10.64.242.44/visu.git/latestMovies.php" target="_blank"&gt;Movie List&lt;/a&gt;</label></text>
 	  </group>
       <group name="/var/log/eib.log">
         <layout colspan="11"/>
@@ -1393,246 +1462,253 @@
     </page>
     <page name="Steckdosen" visible="false" shownavbar-left="false">
       <group name="Arbeitszimmer">
-        <layout colspan-s="12"/>
+        <layout colspan="12"/>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
-          <label>Drucker</label>
+          <layout colspan="6"/>
+          <label>Leuchte</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/64</address>
           <address transform="DPT:1.001" mode="read">2/1/65</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
-          <label>PC (SD)</label>
+          <layout colspan="6"/>
+          <label>Nähmaschine</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/62</address>
           <address transform="DPT:1.001" mode="read">2/1/63</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
-          <label>PC (Szene)</label>
-          <address transform="DPT:1.001" mode="readwrite">10/1/62</address>
-        </switch>
-        <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Fenster</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/66</address>
           <address transform="DPT:1.001" mode="read">2/1/67</address>
         </switch>
       </group>
       <group name="Küche">
-        <layout colspan-s="12"/>
+        <layout colspan="12"/>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>SD Arbeitsfl</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/150</address>
           <address transform="DPT:1.001" mode="read">2/1/151</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Licht ArbFl</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/152</address>
           <address transform="DPT:1.001" mode="read">2/1/153</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Twist</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/154</address>
           <address transform="DPT:1.001" mode="read">2/1/155</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Fenster</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/156</address>
           <address transform="DPT:1.001" mode="read">2/1/157</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Sideboard</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/158</address>
           <address transform="DPT:1.001" mode="read">2/1/159</address>
         </switch>
       </group>
       <group name="Ess/Wohnzimmer">
-        <layout colspan-s="12"/>
+        <layout colspan="12"/>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>TV-Licht</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/92</address>
           <address transform="DPT:1.001" mode="read">2/1/93</address>
         </switch>
         <switch mapping="TelevisionOnOff">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Fernseher</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/90</address>
           <address transform="DPT:1.001" mode="read">2/1/91</address>
         </switch>
         <switch mapping="UnlockLock" styling="GreyRed">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Schalter</label>
           <address transform="DPT:1.001" mode="readwrite">10/1/92</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Fenster</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/94</address>
           <address transform="DPT:1.001" mode="read">2/1/95</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Stehlampe</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/96</address>
           <address transform="DPT:1.001" mode="read">2/1/97</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Laptop</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/98</address>
           <address transform="DPT:1.001" mode="read">2/1/99</address>
         </switch>
       </group>
       <group name="Kinder">
-        <layout colspan-s="12"/>
+        <layout colspan="12"/>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Lotta</label>
           <address transform="DPT:1.001" mode="readwrite">2/2/60</address>
           <address transform="DPT:1.001" mode="read">2/2/61</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Moritz</label>
           <address transform="DPT:1.001" mode="readwrite">2/2/90</address>
           <address transform="DPT:1.001" mode="read">2/2/91</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Fenster L&amp;M</label>
           <address transform="DPT:1.001" mode="readwrite">2/2/10</address>
           <address transform="DPT:1.001" mode="read">2/2/11</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Grete</label>
           <address transform="DPT:1.001" mode="readwrite">2/2/120</address>
           <address transform="DPT:1.001" mode="read">2/2/121</address>
         </switch>
+        <switch mapping="OnOff" styling="GreyGreen">
+          <layout colspan="6"/>
+          <label>Grete Fenster</label>
+          <address transform="DPT:1.001" mode="readwrite">2/2/122</address>
+          <address transform="DPT:1.001" mode="read">2/2/123</address>
+        </switch>
       </group>
       <group name="Schlafzimmer">
-        <layout colspan-s="12"/>
+        <layout colspan="12"/>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Bett Micha</label>
           <address transform="DPT:1.001" mode="readwrite">2/2/180</address>
           <address transform="DPT:1.001" mode="read">2/2/181</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Bett Anni</label>
           <address transform="DPT:1.001" mode="readwrite">2/2/182</address>
           <address transform="DPT:1.001" mode="read">2/2/183</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Außenwand</label>
           <address transform="DPT:1.001" mode="readwrite">2/2/186</address>
           <address transform="DPT:1.001" mode="read">2/2/187</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Fenster</label>
           <address transform="DPT:1.001" mode="readwrite">2/2/188</address>
           <address transform="DPT:1.001" mode="read">2/2/189</address>
         </switch>
       </group>
       <group name="Diverses">
-        <layout colspan-s="12"/>
+        <layout colspan="12"/>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
+          <label>SolePumpe</label>
+          <address transform="DPT:1.001" mode="readwrite">2/1/194</address>
+          <address transform="DPT:1.001" mode="read">2/1/195</address>
+        </switch>
+        <switch mapping="OnOff" styling="GreyGreen">
+          <layout colspan="6"/>
           <label>Zisterne</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/184</address>
           <address transform="DPT:1.001" mode="read">2/1/185</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Zist. Nachsp.</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/182</address>
           <address transform="DPT:1.001" mode="read">2/1/183</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
-          <label>Dachrinnenheizung</label>
-          <address transform="DPT:1.001" mode="readwrite">2/2/210</address>
-          <address transform="DPT:1.001" mode="read">2/2/211</address>
-        </switch>
-        <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
-          <label>Terrasse</label>
-          <address transform="DPT:1.001" mode="readwrite">2/4/60</address>
-          <address transform="DPT:1.001" mode="read">2/4/61</address>
-        </switch>
-        <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
-          <label>Garage außen</label>
-          <address transform="DPT:1.001" mode="readwrite">2/3/30</address>
-          <address transform="DPT:1.001" mode="read">2/3/31</address>
-        </switch>
-        <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan="3" colspan-m="3"/>
+          <layout colspan="6"/>
           <label>Licht SB</label>
           <address transform="DPT:1.001" mode="readwrite">1/2/210</address>
           <address transform="DPT:1.001" mode="read">1/2/211</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan="3" colspan-m="3"/>
+          <layout colspan="6"/>
           <label>SD SB</label>
           <address transform="DPT:1.001" mode="readwrite">2/2/212</address>
           <address transform="DPT:1.001" mode="read">2/2/213</address>
         </switch>
+        <switch mapping="OnOff" styling="GreyGreen">
+          <layout colspan="6"/>
+          <label>Dachrinnenheizung</label>
+          <address transform="DPT:1.001" mode="readwrite">2/2/210</address>
+          <address transform="DPT:1.001" mode="read">2/2/211</address>
+        </switch>
+        <switch mapping="OnOff" styling="GreyGreen">
+          <layout colspan="6"/>
+          <label>Terrasse</label>
+          <address transform="DPT:1.001" mode="readwrite">2/4/60</address>
+          <address transform="DPT:1.001" mode="read">2/4/61</address>
+        </switch>
+        <switch mapping="OnOff" styling="GreyGreen">
+          <layout colspan="6"/>
+          <label>Garage außen</label>
+          <address transform="DPT:1.001" mode="readwrite">2/3/30</address>
+          <address transform="DPT:1.001" mode="read">2/3/31</address>
+        </switch>
       </group>
       <group name="Weihnachten">
-        <layout colspan-s="12"/>
+        <layout colspan="12"/>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>ALLES</label>
           <address transform="DPT:1.001" mode="readwrite">2/0/1</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>WZ</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/94</address>
           <address transform="DPT:1.001" mode="read">2/1/95</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Küche</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/156</address>
           <address transform="DPT:1.001" mode="read">2/1/157</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Flur EG</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/30</address>
           <address transform="DPT:1.001" mode="read">2/1/31</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Flur OG</label>
           <address transform="DPT:1.001" mode="readwrite">2/2/30</address>
           <address transform="DPT:1.001" mode="read">2/2/31</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Kinderzimmer</label>
           <address transform="DPT:1.001" mode="readwrite">2/2/10</address>
           <address transform="DPT:1.001" mode="read">2/2/11</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Stern &amp; Baum</label>
           <address transform="DPT:1.001" mode="readwrite">2/4/62</address>
           <address transform="DPT:1.001" mode="read">2/4/63</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Auto-Timer</label>
           <address transform="DPT:1.001" mode="readwrite">2/0/3</address>
         </switch>
@@ -1640,30 +1716,30 @@
     </page>
     <page name="Raffstores" visible="false" shownavbar-left="false">
       <group name="Sonnenschutz">
-        <layout colspan-s="12"/>
+        <layout colspan="12"/>
         <group nowidget="true" flavour="sodium">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <trigger mapping="Sonnenschutz" value="1">
             <label>Ost</label>
             <address transform="DPT:1.001" mode="write">10/0/21</address>
           </trigger>
         </group>
         <group nowidget="true" flavour="sodium">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <trigger mapping="Sonnenschutz" value="1">
             <label>Süd</label>
             <address transform="DPT:1.001" mode="write">10/0/22</address>
           </trigger>
         </group>
         <group nowidget="true" flavour="sodium">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <trigger mapping="Sonnenschutz" value="1">
             <label>West</label>
             <address transform="DPT:1.001" mode="write">10/0/23</address>
           </trigger>
         </group>
         <group nowidget="true" flavour="sodium">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <trigger mapping="Sonnenschutz" value="1">
             <label>Nord</label>
             <address transform="DPT:1.001" mode="write">10/0/24</address>
@@ -1671,88 +1747,94 @@
         </group>
       </group>
       <group name="Einstellungen">
-        <layout colspan-s="12"/>
+        <layout colspan="12"/>
         <group nowidget="true">
-          <layout colspan-s="12"/>
+          <layout colspan="12"/>
           <switch mapping="AutomatikSperre_Raffstores" styling="GreenRed">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label>Auto down</label>
             <!-- 1=gesperrt -->
             <address transform="DPT:1.003" mode="readwrite">6/5/60</address>
           </switch>
           <switch mapping="AutomatikSperre_Raffstores" styling="GreenRed">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label>Auto up (Zeit)</label>
             <!-- 1=gesperrt -->
             <address transform="DPT:1.001" mode="readwrite">9/4/1</address>
           </switch>
           <switch mapping="Wintermodus_Raffstores">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label>Wintermodus</label>
             <!-- 1=gesperrt -->
             <address transform="DPT:1.001" mode="readwrite">9/4/2</address>
           </switch>
           <diagram_info series="day" period="1" refresh="300" format="%.1f m/s" styling="GreenRedSpeed" tooltip="true">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label><icon name="weather_wind_speed_ms"/>Wind</label>
             <axis unit="m/s"/>
             <rrd color="red" label="Wetterstation">wetterStationWind</rrd>
             <address transform="DPT:9.005" mode="read">6/5/54</address>
           </diagram_info>
           <info mapping="Text_AusEin" styling="GreenRed">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label><icon name="weather_wind_speed_ms"/>Alarm</label>
             <address transform="DPT:1.001" mode="readwrite">6/5/53</address>
           </info>
           <trigger value="0" mapping="WindalarmAus" align="center">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label>Windalarm</label>
             <address transform="DPT:1.001" mode="write">6/5/53</address>
           </trigger>
           <diagram_info series="day" period="3" refresh="300" format="%.1f °C" tooltip="true">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label><icon name="temp_temperature"/>WS</label>
             <axis unit="°C"/>
             <rrd color="red" label="Wetterstation">wetterStationTemp</rrd>
             <rrd color="blue" label="AMS">26.E0AF30010000_temp</rrd>
             <address transform="DPT:9.001" mode="read">6/5/55</address>
           </diagram_info>
-          <info format="%.1f °C">
-            <layout colspan-s="6"/>
+          <diagram_info series="day" period="7" refresh="300" format="%.1f °C" tooltip="true">
+            <layout colspan="6"/>
             <label><icon name="temp_temperature"/>AMS</label>
+            <axis unit="°C"/>
+            <rrd color="red" label="Wetterstation">wetterStationTemp</rrd>
+            <rrd color="blue" label="AMS">26.E0AF30010000_temp</rrd>
             <address transform="DPT:9.001" mode="read">5/4/120</address>
-          </info>
+          </diagram_info>
           <diagram_info series="day" period="3" refresh="300" format="%.0f lx" tooltip="true">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label><icon name="weather_light_meter"/>WS</label>
             <axis unit="lx"/>
             <rrd color="red" label="Wetterstation">wetterStationLicht</rrd>
             <rrd color="blue" label="AMS">26.E0AF30010000_light</rrd>
             <address transform="DPT:9.004" mode="read">6/5/51</address>
           </diagram_info>
-          <info format="%.0f lx">
-            <layout colspan-s="6"/>
+          <diagram_info series="day" period="7" refresh="300" format="%.0f lx" tooltip="true">
+            <layout colspan="6"/>
             <label><icon name="weather_light_meter"/>AMS</label>
+            <axis unit="lx"/>
+            <rrd color="red" label="Wetterstation">wetterStationLicht</rrd>
+            <rrd color="blue" label="AMS">26.E0AF30010000_light</rrd>
             <address transform="DPT:9.004" mode="read">5/4/124</address>
-          </info>
+          </diagram_info>
           <info mapping="NachtTag">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label>Tag/Nacht</label>
             <address transform="DPT:1.001" mode="readwrite">6/5/52</address>
           </info>
           <page name="Verschattung" align="center" bind_click_to_widget="false">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <group name="Verschattung">
-              <layout colspan-s="12"/>
+              <layout colspan="12"/>
               <diagram popup="true" previewlabels="true" height="200" series="day" period="3" refresh="300" gridcolor="#707070" legendposition="nw">
-                <layout colspan-s="12"/>
+                <layout colspan="12"/>
                 <axis unit="lx" position="right"/>
                 <rrd color="red" label="Ost">wetterStationOstHelligkeit</rrd>
                 <rrd color="blue" label="Süd">wetterStationSuedHelligkeit</rrd>
                 <rrd color="green" label="West">wetterStationWestHelligkeit</rrd>
               </diagram>
               <diagram popup="true" previewlabels="true" height="200" series="day" period="3" refresh="300" gridcolor="#707070" legendposition="nw">
-                <layout colspan-s="12"/>
+                <layout colspan="12"/>
                 <axis position="right"/>
                 <rrd color="red" label="Ost (3=ein)">wetterStationOstHelligkeitSchwellwert</rrd>
                 <rrd color="blue" label="Süd (1=ein)">wetterStationSuedHelligkeitSchwellwert</rrd>
@@ -1760,41 +1842,41 @@
               </diagram>
             </group>
             <group name="Verschattung Ost">
-              <layout colspan-s="12"/>
+              <layout colspan="12"/>
               <info format="%.0f lx">
-                <layout colspan-s="6" rowspan="2"/>
+                <layout colspan="6" rowspan="2"/>
                 <label><icon name="weather_light_meter"/>Licht</label>
                 <address transform="DPT:9.004" mode="read">6/5/0</address>
               </info>
               <info mapping="Text_AusEin" styling="GreyGreen">
-                <layout colspan-s="6"/>
+                <layout colspan="6"/>
                 <label>Schwelle 1</label>
                 <address transform="DPT:1.001" mode="readwrite">6/5/1</address>
               </info>
               <info format="%.0f lx">
-                <layout colspan-s="6"/>
+                <layout colspan="6"/>
                 <label><icon name="weather_light_meter"/>min</label>
                 <address transform="DPT:9.004" mode="read">6/5/4</address>
               </info>
               <info format="%.0f lx">
-                <layout colspan-s="6"/>
+                <layout colspan="6"/>
                 <label><icon name="weather_light_meter"/>max</label>
                 <address transform="DPT:9.004" mode="read">6/5/3</address>
               </info>
               <info mapping="Text_AusEin" styling="GreyGreen">
-                <layout colspan-s="6"/>
+                <layout colspan="6"/>
                 <label>Schwelle 2</label>
                 <address transform="DPT:1.001" mode="readwrite">6/5/2</address>
               </info>
               <group nowidget="true" flavour="sodium">
-                <layout colspan-s="6"/>
+                <layout colspan="6"/>
                 <switch mapping="UnlockLock" styling="GreyRed">
                   <label>Schwellwert</label>
                   <address transform="DPT:1.001" mode="readwrite">6/5/5</address>
                 </switch>
               </group>
               <group nowidget="true" flavour="sodium">
-                <layout colspan-s="6"/>
+                <layout colspan="6"/>
                 <switch mapping="UnlockLock" styling="GreyRed">
                   <label>Fassade</label>
                   <address transform="DPT:1.001" mode="readwrite">6/5/8</address>
@@ -1802,41 +1884,41 @@
               </group>
             </group>
             <group name="Verschattung Süd">
-              <layout colspan-s="12"/>
+              <layout colspan="12"/>
               <info format="%.0f lx">
-                <layout colspan-s="6" rowspan="2"/>
+                <layout colspan="6" rowspan="2"/>
                 <label><icon name="weather_light_meter"/>Licht</label>
                 <address transform="DPT:9.004" mode="read">6/5/17</address>
               </info>
               <info mapping="Text_AusEin" styling="GreyGreen">
-                <layout colspan-s="6"/>
+                <layout colspan="6"/>
                 <label>Schwelle 1</label>
                 <address transform="DPT:1.001" mode="readwrite">6/5/18</address>
               </info>
               <info format="%.0f lx">
-                <layout colspan-s="6"/>
+                <layout colspan="6"/>
                 <label><icon name="weather_light_meter"/>min</label>
                 <address transform="DPT:9.004" mode="read">6/5/21</address>
               </info>
               <info format="%.0f lx">
-                <layout colspan-s="6"/>
+                <layout colspan="6"/>
                 <label><icon name="weather_light_meter"/>max</label>
                 <address transform="DPT:9.004" mode="read">6/5/20</address>
               </info>
               <info mapping="Text_AusEin" styling="GreyGreen">
-                <layout colspan-s="6"/>
+                <layout colspan="6"/>
                 <label>Schwelle 2</label>
                 <address transform="DPT:1.001" mode="readwrite">6/5/19</address>
               </info>
               <group nowidget="true" flavour="sodium">
-                <layout colspan-s="6"/>
+                <layout colspan="6"/>
                 <switch mapping="UnlockLock" styling="GreyRed">
                   <label>Schwellwert</label>
                   <address transform="DPT:1.001" mode="readwrite">6/5/22</address>
                 </switch>
               </group>
               <group nowidget="true" flavour="sodium">
-                <layout colspan-s="6"/>
+                <layout colspan="6"/>
                 <switch mapping="UnlockLock" styling="GreyRed">
                   <label>Fassade</label>
                   <address transform="DPT:1.001" mode="readwrite">6/5/25</address>
@@ -1844,41 +1926,41 @@
               </group>
             </group>
             <group name="Verschattung West">
-              <layout colspan-s="12"/>
+              <layout colspan="12"/>
               <info format="%.0f lx">
-                <layout colspan-s="6" rowspan="2"/>
+                <layout colspan="6" rowspan="2"/>
                 <label><icon name="weather_light_meter"/>Licht</label>
                 <address transform="DPT:9.004" mode="read">6/5/34</address>
               </info>
               <info mapping="Text_AusEin" styling="GreyGreen">
-                <layout colspan-s="6"/>
+                <layout colspan="6"/>
                 <label>Schwelle 1</label>
                 <address transform="DPT:1.001" mode="readwrite">6/5/35</address>
               </info>
               <info format="%.0f lx">
-                <layout colspan-s="6"/>
+                <layout colspan="6"/>
                 <label><icon name="weather_light_meter"/>min</label>
                 <address transform="DPT:9.004" mode="read">6/5/38</address>
               </info>
               <info format="%.0f lx">
-                <layout colspan-s="6"/>
+                <layout colspan="6"/>
                 <label><icon name="weather_light_meter"/>max</label>
                 <address transform="DPT:9.004" mode="read">6/5/37</address>
               </info>
               <info mapping="Text_AusEin" styling="GreyGreen">
-                <layout colspan-s="6"/>
+                <layout colspan="6"/>
                 <label>Schwelle 2</label>
                 <address transform="DPT:1.001" mode="readwrite">6/5/35</address>
               </info>
               <group nowidget="true" flavour="sodium">
-                <layout colspan-s="6"/>
+                <layout colspan="6"/>
                 <switch mapping="UnlockLock" styling="GreyRed">
                   <label>Schwellwert</label>
                   <address transform="DPT:1.001" mode="readwrite">6/5/39</address>
                 </switch>
               </group>
               <group nowidget="true" flavour="sodium">
-                <layout colspan-s="6"/>
+                <layout colspan="6"/>
                 <switch mapping="UnlockLock" styling="GreyRed">
                   <label>Fassade</label>
                   <address transform="DPT:1.001" mode="readwrite">6/5/42</address>
@@ -1888,471 +1970,503 @@
           </page>
 		  <!-- TODO: addseries="custom" seriesStart="now-2week" seriesEnd="now-1d" -->
 		  <diagram popup="true" previewlabels="true" height="150" series="day" period="14" refresh="300" gridcolor="#707070" legendposition="nw" tooltip="true">
-			<layout colspan="6"/>
-			<axis position="right"/>
-			<rrd color="yellow" label="Sonnenaufgang" consolidationFunction="LAST">wetterStationDaemmerungMorgens</rrd>
-			<rrd color="orange" label="Sonnenuntergang" consolidationFunction="LAST">wetterStationDaemmerungAbends</rrd>
+  			<layout colspan="12"/>
+  			<axis position="right"/>
+  			<rrd color="yellow" label="Sonnenaufgang" consolidationFunction="LAST">wetterStationDaemmerungMorgens</rrd>
+  			<rrd color="orange" label="Sonnenuntergang" consolidationFunction="LAST">wetterStationDaemmerungAbends</rrd>
 		  </diagram>
 		</group>
       </group>
+
       <group>
+        <layout colspan="12"/>
         <group name="EZ" nowidget="true">
-          <layout colspan-s="12"/>
+          <layout colspan="12"/>
           <info format="%.0f %%" align="center">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/1/105</address>
           </info>
           <trigger value="0" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/1/101</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="Stop">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/1/102</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/1/101</address>
           </trigger>
           <switch mapping="UnlockLock" styling="GreyRed">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="readwrite">3/1/107</address>
           </switch>
           <trigger mapping="Lueften" styling="GreyGrey" value="50">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:5.001" mode="write">3/1/104</address>
           </trigger>
         </group>
         <group name="WZ" nowidget="true">
-          <layout colspan-s="12"/>
+          <layout colspan="12"/>
           <info format="%.0f %%" align="center">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/1/85</address>
           </info>
           <trigger value="0" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/1/81</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="Stop">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/1/82</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/1/81</address>
           </trigger>
           <switch mapping="UnlockLock" styling="GreyRed">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="readwrite">3/1/87</address>
           </switch>
           <trigger mapping="Lueften" styling="GreyGrey" value="50">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:5.001" mode="write">3/1/84</address>
           </trigger>
         </group>
         <group name="Küche Tür" nowidget="true">
-          <layout colspan-s="12"/>
+          <layout colspan="12"/>
           <info format="%.0f %%" align="center">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/1/125</address>
           </info>
           <trigger value="0" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/1/121</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="Stop">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/1/122</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/1/121</address>
           </trigger>
           <switch mapping="UnlockLock" styling="GreyRed">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="readwrite">3/1/127</address>
           </switch>
           <trigger mapping="Lueften" styling="GreyGrey" value="50">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:5.001" mode="write">3/1/124</address>
           </trigger>
         </group>
         <group name="Küche Fenster" nowidget="true">
-          <layout colspan-s="12"/>
+          <layout colspan="12"/>
           <info format="%.0f %%" align="center">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/1/145</address>
           </info>
           <trigger value="0" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/1/141</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="Stop">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/1/142</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/1/141</address>
           </trigger>
           <switch mapping="UnlockLock" styling="GreyRed">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="readwrite">3/1/147</address>
           </switch>
           <trigger mapping="Lueften" styling="GreyGrey" value="50">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:5.001" mode="write">3/1/144</address>
           </trigger>
         </group>
-        <group name="Bad EG" nowidget="true">
-          <layout colspan-s="12"/>
+        <group name="HWR" nowidget="true">
+          <layout colspan="12"/>
           <info format="%.0f %%" align="center">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
+            <address transform="DPT:5.001" mode="read">3/1/165</address>
+          </info>
+          <trigger value="0" styling="GreyGrey" mapping="UpDown">
+            <layout colspan="1"/>
+            <address transform="DPT:1.001" mode="write">3/1/161</address>
+          </trigger>
+          <trigger value="1" styling="GreyGrey" mapping="Stop">
+            <layout colspan="1"/>
+            <address transform="DPT:1.001" mode="write">3/1/162</address>
+          </trigger>
+          <trigger value="1" styling="GreyGrey" mapping="UpDown">
+            <layout colspan="1"/>
+            <address transform="DPT:1.001" mode="write">3/1/161</address>
+          </trigger>
+          <switch mapping="UnlockLock" styling="GreyRed">
+            <layout colspan="1"/>
+            <address transform="DPT:1.001" mode="readwrite">3/1/167</address>
+          </switch>
+          <trigger mapping="Lueften" styling="GreyGrey" value="50">
+            <layout colspan="1"/>
+            <address transform="DPT:5.001" mode="write">3/1/164</address>
+          </trigger>
+        </group>
+        <group name="Bad EG" nowidget="true">
+          <layout colspan="12"/>
+          <info format="%.0f %%" align="center">
+            <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/1/185</address>
           </info>
           <trigger value="0" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/1/181</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="Stop">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/1/182</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/1/181</address>
           </trigger>
           <switch mapping="UnlockLock" styling="GreyRed">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="readwrite">3/1/187</address>
           </switch>
           <trigger mapping="Lueften" styling="GreyGrey" value="50">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:5.001" mode="write">3/1/184</address>
           </trigger>
         </group>
         <group name="Garderobe" nowidget="true">
-          <layout colspan-s="12"/>
+          <layout colspan="12"/>
           <info format="%.0f %%" align="center">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/1/15</address>
           </info>
           <trigger value="0" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/1/11</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="Stop">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/1/12</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/1/11</address>
           </trigger>
           <switch mapping="UnlockLock" styling="GreyRed">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="readwrite">3/1/17</address>
           </switch>
           <trigger mapping="Lueften" styling="GreyGrey" value="50">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:5.001" mode="write">3/1/14</address>
           </trigger>
         </group>
         <group name="Treppe" nowidget="true">
-          <layout colspan-s="12"/>
+          <layout colspan="12"/>
           <info format="%.0f %%" align="center">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/1/25</address>
           </info>
           <trigger value="0" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/1/21</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="Stop">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/1/22</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/1/21</address>
           </trigger>
           <switch mapping="UnlockLock" styling="GreyRed">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="readwrite">3/1/27</address>
           </switch>
           <trigger mapping="Lueften" styling="GreyGrey" value="50">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:5.001" mode="write">3/1/24</address>
           </trigger>
         </group>
         <group name="AZ" nowidget="true">
-          <layout colspan-s="12"/>
+          <layout colspan="12"/>
           <info format="%.0f %%" align="center">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/1/45</address>
           </info>
           <trigger value="0" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/1/41</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="Stop">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/1/42</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/1/41</address>
           </trigger>
           <switch mapping="UnlockLock" styling="GreyRed">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="readwrite">3/1/47</address>
           </switch>
           <trigger mapping="Lueften" styling="GreyGrey" value="50">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:5.001" mode="write">3/1/44</address>
           </trigger>
           <info format="%.0f %%" align="center">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/1/55</address>
           </info>
           <trigger value="0" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/1/51</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="Stop">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/1/52</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/1/51</address>
           </trigger>
           <switch mapping="UnlockLock" styling="GreyRed">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="readwrite">3/1/57</address>
           </switch>
           <trigger mapping="Lueften" styling="GreyGrey" value="50">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:5.001" mode="write">3/1/54</address>
           </trigger>
         </group>        
       </group>
 
       <group>
+        <layout colspan="12"/>
         <group name="SZ" nowidget="true">
-          <layout colspan-s="12"/>
+          <layout colspan="12"/>
           <info format="%.0f %%" align="center">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/2/185</address>
           </info>
           <trigger value="0" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/2/181</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="Stop">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/2/182</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/2/181</address>
           </trigger>
           <switch mapping="UnlockLock" styling="GreyRed">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="readwrite">3/2/187</address>
           </switch>
           <trigger mapping="Lueften" styling="GreyGrey" value="50">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:5.001" mode="write">3/2/184</address>
           </trigger>
         </group>
         <group name="Lotta" nowidget="true">
-          <layout colspan-s="12"/>
+          <layout colspan="12"/>
           <info format="%.0f %%" align="center">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/2/65</address>
           </info>
           <trigger value="0" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/2/61</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="Stop">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/2/62</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/2/61</address>
           </trigger>
           <switch mapping="UnlockLock" styling="GreyRed">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="readwrite">3/2/67</address>
           </switch>
           <trigger mapping="Lueften" styling="GreyGrey" value="50">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:5.001" mode="write">3/2/64</address>
           </trigger>
         </group>        
         <group name="Moritz" nowidget="true">
-          <layout colspan-s="12"/>
+          <layout colspan="12"/>
           <info format="%.0f %%" align="center">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/2/95</address>
           </info>
           <trigger value="0" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/2/91</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="Stop">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/2/92</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/2/91</address>
           </trigger>
           <switch mapping="UnlockLock" styling="GreyRed">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="readwrite">3/2/97</address>
           </switch>
           <trigger mapping="Lueften" styling="GreyGrey" value="50">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:5.001" mode="write">3/2/94</address>
           </trigger>
         </group>
         <group name="Grete" nowidget="true">
-          <layout colspan-s="12"/>
+          <layout colspan="12"/>
           <info format="%.0f %%" align="center">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/2/125</address>
           </info>
           <trigger value="0" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/2/121</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="Stop">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/2/122</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/2/121</address>
           </trigger>
           <switch mapping="UnlockLock" styling="GreyRed">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="readwrite">3/2/127</address>
           </switch>
           <trigger mapping="Lueften" styling="GreyGrey" value="50">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:5.001" mode="write">3/2/124</address>
           </trigger>
           <info format="%.0f %%" align="center">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/2/135</address>
           </info>
           <trigger value="0" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/2/131</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="Stop">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/2/132</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/2/131</address>
           </trigger>
           <switch mapping="UnlockLock" styling="GreyRed">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="readwrite">3/2/137</address>
           </switch>
           <trigger mapping="Lueften" styling="GreyGrey" value="50">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:5.001" mode="write">3/2/134</address>
           </trigger>
         </group>        
         <group name="Bad OG" nowidget="true">
-          <layout colspan-s="12"/>
+          <layout colspan="12"/>
           <info format="%.0f %%" align="center">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:5.001" mode="read">3/2/155</address>
           </info>
           <trigger value="0" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/2/151</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="Stop">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/2/152</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/2/151</address>
           </trigger>
           <switch mapping="UnlockLock" styling="GreyRed">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="readwrite">3/2/157</address>
           </switch>
           <trigger mapping="Lueften" styling="GreyGrey" value="50">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:5.001" mode="write">3/2/154</address>
           </trigger>
         </group>
       </group>
 
       <group name="Zentral">
-        <layout colspan-s="12"/>
+        <layout colspan="12"/>
         <group nowidget="true" flavour="sodium">
-          <layout colspan="6"/>
+          <layout colspan="12"/>
           <text>
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <label>EG</label>
           </text>
-          <switch mapping="UnlockLock" styling="GreyRed" align="center">
-            <layout colspan-s="4"/>
-            <address transform="DPT:1.001" mode="readwrite">3/1/7</address>
-          </switch>
           <trigger value="0" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/1/1</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="Stop">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/1/2</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/1/1</address>
           </trigger>
+          <switch mapping="UnlockLock" styling="GreyRed" align="center">
+            <layout colspan="1"/>
+            <address transform="DPT:1.001" mode="readwrite">3/1/7</address>
+          </switch>
+          <text><layout colspan="1"/><label></label></text>
         </group>
         <group nowidget="true" flavour="sodium">
-          <layout colspan="6"/>
+          <layout colspan="12"/>
           <text>
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <label>OG</label>
           </text>
-          <switch mapping="UnlockLock" styling="GreyRed" align="center">
-            <layout colspan-s="4"/>
-            <address transform="DPT:1.001" mode="readwrite">3/2/7</address>
-          </switch>
           <trigger value="0" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/2/1</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="Stop">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/2/2</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="UpDown">
-            <layout colspan-s="2"/>
+            <layout colspan="1"/>
             <address transform="DPT:1.001" mode="write">3/2/1</address>
           </trigger>
+          <switch mapping="UnlockLock" styling="GreyRed" align="center">
+            <layout colspan="1"/>
+            <address transform="DPT:1.001" mode="readwrite">3/2/7</address>
+          </switch>
+          <text><layout colspan="1"/><label></label></text>
         </group>
       </group>
       <group name="RSS">
-        <layout colspan-s="12"/>
+        <layout colspan="12"/>
         <group nowidget="true">
-          <layout colspan-s="12"/>
+          <layout colspan="12"/>
           <rsslog src="plugins/rsslog/rsslog.php" refresh="60" limit="20" mode="last" filter="raffstores" timeformat="%d.%m. %H:%M">
             <layout colspan="6" rowspan="9"/>
           </rsslog>
@@ -2361,136 +2475,133 @@
 	</page>
     <page name="Heizung" visible="false" shownavbar-left="false">
       <group name="Steuerung">
-        <layout colspan-s="12"/>
+        <layout colspan="12"/>
         <info mapping="systemMode" align="left">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label></label>
           <!-- get ci mode : 9/2/0 -->
           <address transform="DPT:6.020" mode="read">9/2/0</address>
         </info>
         <info mapping="WP-Betrieb" align="left">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label></label>
           <!-- get amu wp_stat : 9/2/1 -->
           <address transform="DPT:6" mode="read">9/2/1</address>
         </info>
         <info mapping="eBus">
-          <layout colspan-s="6"/>
-          <label>Heizung:</label>
+          <layout colspan="1"/>
+          <label>Hzng:</label>
           <!-- get cir2 mode : 9/2/100 -->
           <address transform="DPT:6.020" mode="read">9/2/100</address>
         </info>
         <trigger mapping="eBus" value="1">
-          <layout colspan-s="2"/>
+          <layout colspan="1"/>
           <address transform="DPT:6.020" mode="write">9/3/100</address>
           <address transform="DPT:6.020" mode="read">9/2/100</address>
         </trigger>
         <trigger mapping="eBus" value="2">
-          <layout colspan-s="2"/>
+          <layout colspan="1"/>
           <address transform="DPT:6.020" mode="write">9/3/100</address>
           <address transform="DPT:6.020" mode="read">9/2/100</address>
         </trigger>
-		<text>
-          <layout colspan-s="2"/>
-          <label></label>
-        </text>
-		<text>
-          <layout colspan-s="6"/>
-          <label></label>
-        </text>
         <trigger mapping="eBus" value="3">
-          <layout colspan-s="2"/>
+          <layout colspan="1"/>
           <address transform="DPT:6.020" mode="write">9/3/100</address>
           <address transform="DPT:6.020" mode="read">9/2/100</address>
         </trigger>
         <trigger mapping="eBus" value="4">
-          <layout colspan-s="2"/>
+          <layout colspan="1"/>
           <address transform="DPT:6.020" mode="write">9/3/100</address>
           <address transform="DPT:6.020" mode="read">9/2/100</address>
         </trigger>
         <trigger mapping="eBus" value="5">
-          <layout colspan-s="2"/>
+          <layout colspan="1"/>
           <address transform="DPT:6.020" mode="write">9/3/100</address>
           <address transform="DPT:6.020" mode="read">9/2/100</address>
         </trigger>
         <break/>
         <info mapping="eBus">
-          <layout colspan-s="6"/>
-          <label>Wasser:</label>
+          <layout colspan="1"/>
+          <label>H2O:</label>
           <address transform="DPT:6.020" mode="read">9/2/200</address>
         </info>
         <trigger mapping="eBus" value="1">
-          <layout colspan-s="2"/>
+          <layout colspan="1"/>
           <address transform="DPT:6.020" mode="write">9/3/200</address>
           <address transform="DPT:6.020" mode="read">9/2/200</address>
         </trigger>
         <trigger mapping="eBus" value="2">
-          <layout colspan-s="2"/>
+          <layout colspan="1"/>
           <address transform="DPT:6.020" mode="write">9/3/200</address>
           <address transform="DPT:6.020" mode="read">9/2/200</address>
         </trigger>
         <trigger mapping="eBus" value="3">
-          <layout colspan-s="2"/>
+          <layout colspan="1"/>
           <address transform="DPT:6.020" mode="write">9/3/200</address>
           <address transform="DPT:6.020" mode="read">9/2/200</address>
         </trigger>
+        <text><layout colspan="2"/><label></label></text>
         <diagram_info format="%.1f °C" series="week" refresh="300" align="center" gridcolor="#707070" tooltip="true">
-          <layout colspan-s="8" />
+          <layout colspan="3" />
           <label>Speicherladung</label>
           <axis position="right" min="15" max="55" label="Temperatur °C" unit=" °C">temp</axis>
           <rrd yaxis="temp" color="#ff0000" label="Speichertemperatur">eBus_mv_boiler_temp</rrd>
           <address transform="DPT:9.001" mode="read">9/2/201</address>
         </diagram_info>
         <multitrigger button1label="Start" button1value="1" button2label="Stop" button2value="0">
-          <layout colspan-s="4"/>
+          <layout colspan="3"/>
           <label></label>
           <address transform="DPT:1.001" mode="write">9/3/1</address>
         </multitrigger>
         <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%1$.0f °C" change="absolute" min="15" max="25">
-          <label>Komfort-Temperatur</label>
+          <layout colspan="2"/>
+          <label>Komfort</label>
           <address transform="DPT:9.001" mode="write">9/3/120</address>
           <address transform="DPT:9.001" mode="read">9/2/120</address>
         </infotrigger>
         <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%1$.0f °C" change="absolute" min="15" max="25">
-          <label>Ferien-Temperatur</label>
+          <layout colspan="2"/>
+          <label>Ferien</label>
           <address transform="DPT:9.001" mode="write">9/3/122</address>
           <address transform="DPT:9.001" mode="read">9/2/122</address>
         </infotrigger>
         <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%1$.0f °C" change="absolute" min="15" max="25">
-          <label>Absenk-Temperatur</label>
+          <layout colspan="2"/>
+          <label>Absenk</label>
           <address transform="DPT:9.001" mode="write">9/3/121</address>
           <address transform="DPT:9.001" mode="read">9/2/121</address>
         </infotrigger>
         <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%1$.0f °C" change="absolute" min="15" max="25">
+          <layout colspan="12"/>
           <label>AT-Abschalttemperatur</label>
           <address transform="DPT:9.001" mode="write">9/3/11</address>
           <address transform="DPT:9.001" mode="read">9/2/11</address>
         </infotrigger>
 	  </group>
       <group name="Pumpen">
-	    <layout colspan-s="12"/>
+	    <layout colspan="12"/>
 		<info mapping="PumpOnOff">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Zirkulationspumpe</label>
           <address transform="DPT:1.001" mode="read">9/2/84</address>
         </info>
 		<info mapping="PumpOnOff">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
 		  <label>Heizkreispumpe</label>
           <address transform="DPT:1.001" mode="read">9/2/111</address>
         </info>
 		<!--
 		<info >
-          <layout colspan-s="8"/>
+          <layout colspan="8"/>
 		  <label>Wochentag</label>
           <address transform="DPT:16.000" mode="read">9/2/86</address>
         </info>		
 		-->
 	  </group>
       <group name="Wärmepumpe">
-        <layout colspan-s="12"/>
+        <layout colspan="12"/>
         <diagram_info format="%.0f kW" series="day" period="7" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Energieertrag</label>
           <axis position="right" label="Ertrag" unit=" kWh">Leistung</axis>
           <axis position="left" min="-15" max="35" label="Aussentemperatur °C" unit=" °C">temp_out</axis>
@@ -2499,14 +2610,14 @@
           <address transform="DPT:12.001" mode="readwrite">9/2/22</address>
         </diagram_info>
         <diagram_info format="%.1f kW" series="hour" period="24" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>akt. Leistung</label>
           <axis position="left" label="Leistung" unit=" kW">Leistung</axis>
           <rrd yaxis="temp" color="#ff0000" label="Leistung">WPLeistung</rrd>
           <address transform="DPT:9.001" mode="read">9/2/26</address>
         </diagram_info>
         <diagram_info format="%.0f h" series="month" period="3" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Laufzeit</label>
           <axis position="right" label="Stunden" unit=" h">stunden</axis>
           <axis position="left" min="-15" max="35" label="Aussentemperatur °C" unit=" °C">temp_out</axis>
@@ -2516,7 +2627,7 @@
           <address transform="DPT:12.001" mode="readwrite">9/2/61</address>
         </diagram_info>
         <diagram_info format="%.0f" series="week" period="2" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Starts</label>
           <axis position="right" label="Starts" unit=" ">Anzahl</axis>
           <axis position="left" min="-15" max="35" label="Aussentemperatur °C" unit=" °C">temp_out</axis>
@@ -2527,7 +2638,7 @@
           <address transform="DPT:7" mode="readwrite">9/2/68</address>
         </diagram_info>
         <diagram_info format="%.0f h" series="day" period="4" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Laufzeit (Heiz.)</label>
           <axis position="right" label="Stunden" unit=" h">stunden</axis>
           <axis position="right" label="Stunden WW" unit=" h">stundenWW</axis>
@@ -2539,7 +2650,7 @@
           <address transform="DPT:12.001" mode="readwrite">9/2/66</address>
         </diagram_info>
         <diagram_info format="%.0f" series="week" period="2" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Starts (Heiz.)</label>
           <axis position="right" label="Starts" unit=" ">Anzahl</axis>
           <axis position="left" min="-15" max="35" label="Aussentemperatur °C" unit=" °C">temp_out</axis>
@@ -2550,7 +2661,7 @@
           <address transform="DPT:7" mode="readwrite">9/2/69</address>
         </diagram_info>
         <diagram_info format="%.0f h" series="week" period="4" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Laufzeit (H2O)</label>
           <axis position="right" label="Stunden" unit=" h">stunden</axis>
           <axis position="left" min="-15" max="35" label="Aussentemperatur °C" unit=" °C">temp_out</axis>
@@ -2561,7 +2672,7 @@
           <address transform="DPT:12.001" mode="readwrite">9/2/67</address>
         </diagram_info>
         <diagram_info format="%.0f" series="week" period="2" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Starts (H2O)</label>
           <axis position="right" label="Starts" unit=" ">Anzahl</axis>
           <axis position="left" min="-15" max="35" label="Aussentemperatur °C" unit=" °C">temp_out</axis>
@@ -2572,7 +2683,7 @@
           <address transform="DPT:7" mode="readwrite">9/2/70</address>
         </diagram_info>
         <diagram_info format="%.1f °C" series="month" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>AT</label>
           <axis position="left" label="Aussentemperatur °C" unit=" °C">temp_out</axis>
           <rrd yaxis="temp_out" color="#ffff00" label="WP">eBus_mv_at_temp_temp</rrd>
@@ -2582,14 +2693,14 @@
           <address transform="DPT:9.001" mode="read">9/2/10</address>
         </diagram_info>
         <diagram_info format="%.1f °min" series="day" period="2" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Energieintegral</label>
           <axis position="right" label="Energieintegral" unit=" °min">energie</axis>
           <rrd yaxis="energie" color="#ff0000" label="Energieintegral">eBus_mv_EI_current</rrd>
           <address transform="DPT:9.001" mode="read">9/2/20</address>
         </diagram_info>
         <diagram_info format="%.1f °C" series="day" period="2" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Sole VL</label>
           <axis position="left" label="Quellentemperatur °C" unit=" °C">temp_out</axis>
           <rrd yaxis="temp_out" color="#FF00FF" label="eBus Quelle VL">eBus_mv_brine_in_temp</rrd>
@@ -2597,7 +2708,7 @@
           <address transform="DPT:9.001" mode="read">9/2/42</address>
         </diagram_info>
         <diagram_info format="%.1f °C" series="hour" period="6" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Sole RL</label>
           <axis position="left" label="Quellentemperatur °C" unit=" °C">temp_out</axis>
           <rrd yaxis="temp_out" color="#FF00FF" label="eBus Quelle VL">eBus_mv_brine_in_temp</rrd>
@@ -2605,14 +2716,14 @@
           <address transform="DPT:9.001" mode="read">9/2/41</address>
         </diagram_info>
         <diagram_info format="%.2f bar" series="day" period="10" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw" styling="RedGreenRedDruck">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Soledruck</label>
           <axis position="right" label="Druck" unit=" bar" min="0.25" max="2">druck</axis>
           <rrd yaxis="druck" color="#ffaa00" label="Soledruck">eBus_mv_brine_press_press</rrd>
           <address transform="DPT:9.001" mode="read">9/2/43</address>
         </diagram_info>
         <diagram_info format="%.1f °C" series="hour" period="12" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>HK Rücklauf</label>
           <axis position="left" label="Temperatur °C" unit=" °C">temp</axis>
           <rrd yaxis="temp" color="#0088ff" label="Rücklauf">eBus_mv_T5_temp</rrd>
@@ -2621,7 +2732,7 @@
           <address transform="DPT:9.001" mode="read">9/2/52</address>
         </diagram_info>
         <diagram_info format="%.1f °C" series="day" period="2" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>HK Vorlauf Soll</label>
           <axis position="right" label="°C" unit=" °C">temp</axis>
           <rrd yaxis="temp" color="#0088ff" label="Rücklauf">eBus_mv_T5_temp</rrd>
@@ -2630,7 +2741,7 @@
           <address transform="DPT:9.001" mode="read">9/2/150</address>
         </diagram_info>
         <diagram_info format="%.1f °C" series="day" period="1" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>HK Vorlauf Ist</label>
           <axis position="right" label="Temperatur °C" unit=" °C">temp</axis>
           <axis position="left" min="0" max="2" label="Kompressor">io</axis>
@@ -2643,9 +2754,9 @@
         </diagram_info>
       </group>
       <group name="Raumtemperaturen">
-        <layout colspan-s="12"/>
+        <layout colspan="12"/>
         <diagram_info format="%.1f °C" series="day" period="5" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>EG</label>
           <axis position="left" label="Temperatur" unit=" °C">temp</axis>
           <rrd yaxis="temp" color="#ff0000" label="Bad AMS">26.F6B92E010000_temp</rrd>
@@ -2658,7 +2769,7 @@
           <address transform="DPT:9.001" mode="read">9/2/82</address>
         </diagram_info>
         <diagram_info format="%.1f °C" series="day" period="2" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>OG</label>
           <axis position="left" label="Temperatur" unit=" °C">temp</axis>
           <rrd yaxis="temp" color="#ff0000" label="Lotta">28.2379DE030000_temp</rrd>
@@ -2670,7 +2781,7 @@
           <address transform="DPT:9.001" mode="read">9/2/82</address>
         </diagram_info>
         <diagram_info format="%.1f °C" series="day" period="4" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Außen/Garage</label>
           <axis position="left" label="Temperatur" unit=" °C">temp</axis>
           <rrd yaxis="temp" color="#21ffA8" label="Garage">26.968E30010000_temp</rrd>
@@ -2685,7 +2796,7 @@
           <address transform="DPT:9.001" mode="read">9/2/82</address>
         </diagram_info>
         <diagram_info format="%.1f °C" series="day" period="3" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
-          <layout colspan-s="6"/>
+          <layout colspan="6"/>
           <label>Estrich</label>
           <axis position="left" label="Temperatur" unit=" °C">temp</axis>
           <rrd yaxis="temp" color="#0000ff" label="Bad EG">28.E7B31B030000_temp</rrd>
@@ -2697,256 +2808,252 @@
     </page>
     <page name="Bewaesserung" visible="false" shownavbar-left="false">
         <group name="Automatik">
-          <layout colspan-s="12"/>
+          <layout colspan="12"/>
           <switch mapping="OnOff" styling="GreyGreen">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label><icon name="time_clock"/>01:00 Uhr</label>
             <address transform="DPT:1.001" mode="readwrite">9/6/241</address>
           </switch>
           <switch mapping="OnOff" styling="GreyGreen">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label><icon name="time_clock"/>02:00 Uhr</label>
             <address transform="DPT:1.001" mode="readwrite">9/6/242</address>
           </switch>
           <switch mapping="OnOff" styling="GreyGreen">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label><icon name="time_clock"/>03:00 Uhr</label>
             <address transform="DPT:1.001" mode="readwrite">9/6/243</address>
           </switch>
           <switch mapping="OnOff" styling="GreyGreen">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label><icon name="time_clock"/>04:00 Uhr</label>
             <address transform="DPT:1.001" mode="readwrite">9/6/244</address>
           </switch>
           <switch mapping="OnOff" styling="GreyGreen">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label><icon name="time_clock"/>10:00 Uhr</label>
             <address transform="DPT:1.001" mode="readwrite">9/6/245</address>
           </switch>
           <switch mapping="OnOff" styling="GreyGreen">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label><icon name="time_clock"/>19:10 Uhr</label>
             <address transform="DPT:1.001" mode="readwrite">9/6/246</address>
           </switch>
         </group>         
         <group name="Einstellungen">
-          <layout colspan-s="12"/>
+          <layout colspan="12"/>
           <switch mapping="OnOff" styling="GreyGreen">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label>Zisterne</label>
             <address transform="DPT:1.001" mode="readwrite">2/1/184</address>
             <address transform="DPT:1.001" mode="read">2/1/185</address>
           </switch>
           <switch mapping="OnOff" styling="GreyGreen">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label>Zist. Nachsp.</label>
             <address transform="DPT:1.001" mode="readwrite">2/1/182</address>
             <address transform="DPT:1.001" mode="read">2/1/183</address>
           </switch>
           <info mapping="Zisterne" styling="Zisterne">
             <label>F&#252;llstand</label>
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <address transform="DPT:5.001" mode="read">6/4/32</address>
           </info>
           <diagram_info series="week" period="3" refresh="300" format="%.1f %%" tooltip="true">
-            <layout colspan-s="6" />
+            <layout colspan="6" />
             <label>Verlauf</label>
             <axis position="right" unit=" %">FÃ¼llstand</axis>
             <rrd color="red" label="FÃ¼llstand Zisterne">fuellstandZisterne</rrd>
             <address transform="DPT:5.001" mode="read">6/4/32</address>
           </diagram_info>         
           <switch mapping="OnOff" styling="GreyGreen">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label><icon name="message_socket"/>Trafo</label>
             <address transform="DPT:1.001" mode="readwrite">9/6/250</address>
             <address transform="DPT:1.001" mode="read">9/6/251</address>
           </switch>
           <switch mapping="OnOff" styling="GreyGreen">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label><icon name="secur_open"/>Freigabe</label>
             <address transform="DPT:1.001" mode="readwrite">9/6/0</address>
           </switch>
           <infotrigger uplabel="+" downlabel="-" upvalue="1" downvalue="-1" infoposition="right" format="%.0f" change="absolute" min="0" max="30">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label><icon name="weather_rain_meter"/>Regenlimit</label>
             <address transform="DPT:9.001" mode="read">5/4/101</address>
           </infotrigger>
           <infotrigger uplabel="+" downlabel="-" upvalue="0.1" downvalue="-0.1" infoposition="right" format="%.1f x" change="absolute" min="0.1" max="2">
-            <layout colspan-s="6"/>
+            <layout colspan="6"/>
             <label><icon name="time_timer"/>Zeitfaktor</label>
             <address transform="DPT:9.001" mode="readwrite">9/6/5</address>
           </infotrigger>
         </group>         
         <group name="Manuelle Bedienung">
           <layout colspan="12"/>
+          <info format="%.1f min">
+            <layout colspan="6"/>
+            <label>Summe</label>
+            <address transform="DPT:9.001" mode="read">9/6/3</address>
+          </info> 
           <switch mapping="Text_AusEin" styling="GreyGreen">
-            <layout colspan-s="8"/>
+            <layout colspan="6"/>
             <label><icon name="sani_sprinkling"/>Bewässerung</label>
             <address transform="DPT:1.001" mode="readwrite">9/6/1</address>
 			      <address transform="DPT:1.001" mode="read">9/6/2</address>
           </switch>
           <info format="%.1f min">
-            <layout colspan-s="4"/>
-            <label>Summe</label>
-            <address transform="DPT:9.001" mode="read">9/6/3</address>
-          </info> 
+            <layout colspan="3"/>
+            <label><icon name="time_timer"/></label>
+            <address transform="DPT:9.001" mode="read">9/6/13</address>
+          </info>   
           <switch mapping="Text_AusEin" styling="GreyGreen">
-            <layout colspan-s="8"/>
+            <layout colspan="6"/>
             <label>A - Soleverteiler</label>
             <address transform="DPT:1.001" mode="readwrite">9/6/10</address>
             <address transform="DPT:1.001" mode="read">9/6/11</address>
           </switch>
           <info format="%.1f min">
-            <layout colspan-s="4"/>
-            <label><icon name="time_timer"/></label>
-            <address transform="DPT:9.001" mode="read">9/6/13</address>
-          </info>   
-          <switch mapping="Text_AusEin" styling="GreyGreen">
-            <layout colspan-s="8"/>
-            <label>B - Sandkasten</label>
-            <address transform="DPT:1.001" mode="readwrite">9/6/20</address>
-            <address transform="DPT:1.001" mode="read">9/6/21</address>
-          </switch>
-          <info format="%.1f min">
-            <layout colspan-s="4"/>
+            <layout colspan="3"/>
             <label><icon name="time_timer"/></label>
             <address transform="DPT:9.001" mode="read">9/6/23</address>
           </info>
           <switch mapping="Text_AusEin" styling="GreyGreen">
-            <layout colspan-s="8"/>
+            <layout colspan="6"/>
+            <label>B - Terrasse</label>
+            <address transform="DPT:1.001" mode="readwrite">9/6/20</address>
+            <address transform="DPT:1.001" mode="read">9/6/21</address>
+          </switch>
+          <info format="%.1f min">
+            <layout colspan="3"/>
+            <label><icon name="time_timer"/></label>
+            <address transform="DPT:9.001" mode="read">9/6/33</address>
+          </info>
+          <switch mapping="Text_AusEin" styling="GreyGreen">
+            <layout colspan="6"/>
             <label>C - Süd/Beet</label>
             <address transform="DPT:1.001" mode="readwrite">9/6/30</address>
             <address transform="DPT:1.001" mode="read">9/6/31</address>
           </switch>
           <info format="%.1f min">
-            <layout colspan-s="4"/>
-            <label><icon name="time_timer"/></label>
-            <address transform="DPT:9.001" mode="read">9/6/33</address>
-          </info>
-          <switch mapping="Text_AusEin" styling="GreyGreen">
-            <layout colspan-s="8"/>
-            <label>D - Mitte360</label>
-            <address transform="DPT:1.001" mode="readwrite">9/6/40</address>
-            <address transform="DPT:1.001" mode="read">9/6/41</address>
-          </switch>
-          <info format="%.1f min">
-            <layout colspan-s="4"/>
+            <layout colspan="3"/>
             <label><icon name="time_timer"/></label>
             <address transform="DPT:9.001" mode="read">9/6/43</address>
           </info>
           <switch mapping="Text_AusEin" styling="GreyGreen">
-            <layout colspan-s="8"/>
+            <layout colspan="6"/>
+            <label>D - Mitte</label>
+            <address transform="DPT:1.001" mode="readwrite">9/6/40</address>
+            <address transform="DPT:1.001" mode="read">9/6/41</address>
+          </switch>
+          <info format="%.1f min">
+            <layout colspan="3"/>
+            <label><icon name="time_timer"/></label>
+            <address transform="DPT:9.001" mode="read">9/6/53</address>
+          </info>
+          <switch mapping="Text_AusEin" styling="GreyGreen">
+            <layout colspan="6"/>
             <label>E - Ost</label>
             <address transform="DPT:1.001" mode="readwrite">9/6/50</address>
             <address transform="DPT:1.001" mode="read">9/6/51</address>
           </switch>
           <info format="%.1f min">
-            <layout colspan-s="4"/>
+            <layout colspan="3"/>
             <label><icon name="time_timer"/></label>
-            <address transform="DPT:9.001" mode="read">9/6/53</address>
+            <address transform="DPT:9.001" mode="read">9/6/63</address>
           </info>
           <switch mapping="Text_AusEin" styling="GreyGreen">
-            <layout colspan-s="8"/>
+            <layout colspan="6"/>
             <label>F - Vorgarten</label>
             <address transform="DPT:1.001" mode="readwrite">9/6/60</address>
             <address transform="DPT:1.001" mode="read">9/6/61</address>
           </switch>
           <info format="%.1f min">
-            <layout colspan-s="4"/>
+            <layout colspan="3"/>
             <label><icon name="time_timer"/></label>
-            <address transform="DPT:9.001" mode="read">9/6/63</address>
+            <address transform="DPT:9.001" mode="read">9/6/73</address>
           </info>
           <switch mapping="Text_AusEin" styling="GreyGreen">
-            <layout colspan-s="8"/>
+            <layout colspan="6"/>
             <label>G - Tropfschlauch</label>
             <address transform="DPT:1.001" mode="readwrite">9/6/70</address>
             <address transform="DPT:1.001" mode="read">9/6/71</address>
           </switch>
-          <info format="%.1f min">
-            <layout colspan-s="4"/>
-            <label><icon name="time_timer"/></label>
-            <address transform="DPT:9.001" mode="read">9/6/73</address>
-          </info>
         </group> 
         <group name="Parameter Bewässerungskreise">
           <layout colspan="12"/>
           <trigger value="1" mapping="Text_Reset">
-            <layout colspan-s="10"/>
+            <layout colspan="8"/>
             <label>Standardzeiten</label>
             <address transform="DPT:1.001" mode="readwrite">9/6/4</address>
           </trigger>
-		      <text>
-            <layout colspan-s="2"/>
-			      <label></label>
-          </text>
-          <infotrigger uplabel="+" downlabel="-" upvalue="1" downvalue="-1" align="left" infoposition="right" format="%.0f min" change="absolute" min="0" max="20">
-            <layout colspan-s="10"/>
-            <label>A - Soleverteiler</label>
-            <address transform="DPT:9.001" mode="readwrite">9/6/12</address>
-          </infotrigger>
           <switch mapping="UnlockLock" styling="GreenRed">
-            <layout colspan-s="2"/>
+            <layout colspan="3"/>
+            <label>A - Soleverteiler</label>
             <address transform="DPT:1.001" mode="readwrite">9/6/14</address>
           </switch>
           <infotrigger uplabel="+" downlabel="-" upvalue="1" downvalue="-1" align="left" infoposition="right" format="%.0f min" change="absolute" min="0" max="20">
-            <layout colspan-s="10"/>
-            <label>B - Sandkasten</label>
-            <address transform="DPT:9.001" mode="readwrite">9/6/22</address>
+            <layout colspan="3"/>
+            <address transform="DPT:9.001" mode="readwrite">9/6/12</address>
           </infotrigger>
           <switch mapping="UnlockLock" styling="GreenRed">
-            <layout colspan-s="2"/>
+            <layout colspan="3"/>
+            <label>B - Terrasse</label>
             <address transform="DPT:1.001" mode="readwrite">9/6/24</address>
           </switch>        
           <infotrigger uplabel="+" downlabel="-" upvalue="1" downvalue="-1" align="left" infoposition="right" format="%.0f min" change="absolute" min="0" max="20">
-            <layout colspan-s="10"/>
-            <label>C - Süd/Beet</label>
-            <address transform="DPT:9.001" mode="readwrite">9/6/32</address>
+            <layout colspan="3"/>
+            <address transform="DPT:9.001" mode="readwrite">9/6/22</address>
           </infotrigger>
           <switch mapping="UnlockLock" styling="GreenRed">
-            <layout colspan-s="2"/>
+            <layout colspan="3"/>
+            <label>C - Süd/Beet</label>
             <address transform="DPT:1.001" mode="readwrite">9/6/34</address>
           </switch>
           <infotrigger uplabel="+" downlabel="-" upvalue="1" downvalue="-1" align="left" infoposition="right" format="%.0f min" change="absolute" min="0" max="20">
-            <layout colspan-s="10"/>
-            <label>D - Mitte360</label>
-            <address transform="DPT:9.001" mode="readwrite">9/6/42</address>
+            <layout colspan="3"/>
+            <address transform="DPT:9.001" mode="readwrite">9/6/32</address>
           </infotrigger>
           <switch mapping="UnlockLock" styling="GreenRed">
-            <layout colspan-s="2"/>
+            <layout colspan="3"/>
+            <label>D - Mitte</label>
             <address transform="DPT:1.001" mode="readwrite">9/6/44</address>
           </switch>        
           <infotrigger uplabel="+" downlabel="-" upvalue="1" downvalue="-1" align="left" infoposition="right" format="%.0f min" change="absolute" min="0" max="20">
-            <layout colspan-s="10"/>
-            <label>E - Ost</label>
-            <address transform="DPT:9.001" mode="readwrite">9/6/52</address>
+            <layout colspan="3"/>
+            <address transform="DPT:9.001" mode="readwrite">9/6/42</address>
           </infotrigger>
           <switch mapping="UnlockLock" styling="GreenRed">
-            <layout colspan-s="2"/>
+            <layout colspan="3"/>
+            <label>E - Ost</label>
             <address transform="DPT:1.001" mode="readwrite">9/6/54</address>
           </switch>
           <infotrigger uplabel="+" downlabel="-" upvalue="1" downvalue="-1" align="left" infoposition="right" format="%.0f min" change="absolute" min="0" max="20">
-            <layout colspan-s="10"/>
-            <label>F - Vorgarten</label>
-            <address transform="DPT:9.001" mode="readwrite">9/6/62</address>
+            <layout colspan="3"/>
+            <address transform="DPT:9.001" mode="readwrite">9/6/52</address>
           </infotrigger>
           <switch mapping="UnlockLock" styling="GreenRed">
-            <layout colspan-s="2"/>
+            <layout colspan="3"/>
+            <label>F - Vorgarten</label>
             <address transform="DPT:1.001" mode="readwrite">9/6/64</address>
           </switch>        
           <infotrigger uplabel="+" downlabel="-" upvalue="1" downvalue="-1" align="left" infoposition="right" format="%.0f min" change="absolute" min="0" max="20">
-            <layout colspan-s="10"/>
-            <label>G - Tropfschlauch</label>
-            <address transform="DPT:9.001" mode="readwrite">9/6/72</address>
+            <layout colspan="3"/>
+            <address transform="DPT:9.001" mode="readwrite">9/6/62</address>
           </infotrigger>
           <switch mapping="UnlockLock" styling="GreenRed">
-            <layout colspan-s="2"/>
+            <layout colspan="3"/>
+            <label>G - Tropfschlauch</label>
             <address transform="DPT:1.001" mode="readwrite">9/6/74</address>
           </switch>        
+          <infotrigger uplabel="+" downlabel="-" upvalue="1" downvalue="-1" align="left" infoposition="right" format="%.0f min" change="absolute" min="0" max="20">
+            <layout colspan="3"/>
+            <address transform="DPT:9.001" mode="readwrite">9/6/72</address>
+          </infotrigger>
         </group>
         <group name="Ereignisse">
-          <layout colspan="6" rowspan="25"/>
+          <layout colspan="12" rowspan="25"/>
           <rsslog src="plugins/rsslog/rsslog.php" refresh="60" filter="garten" limit="50" mode="last" timeformat="%d.%m. %H:%M">
-            <layout rowspan="25" colspan="6"/>
+            <layout rowspan="25" colspan="12"/>
           </rsslog>
         </group>         
       </page>

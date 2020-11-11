@@ -375,6 +375,19 @@
         <entry value="4"><icon name="sani_water_hot"/> WW im Heizb.<icon name="sani_heating"/></entry>
         <entry value="5">WW im Kühlb.</entry>
       </mapping>
+      <mapping name="stateEM">
+        <!-- get uih StateEM : 9/2/2 -->
+        <entry value="0">Aus</entry>
+        <entry value="1">WW Anforderung</entry>
+        <entry value="2">WW Betrieb</entry>
+        <entry value="3">WW Nachlauf</entry>
+        <entry value="4">Heizbetrieb</entry>
+        <entry value="5">WW Überdruck</entry>
+        <entry value="6">Heizung Überdruck</entry>
+        <entry value="7">Überdruck Wartezstd</entry>
+        <entry value="8">Heizung Wartezstd</entry>
+        <entry value="9">WW Wartezustand</entry>
+      </mapping>
     </mappings>
     <stylings>
       <styling name="GreyGreen">
@@ -1012,7 +1025,40 @@
     </page>
     <group name="Wetter">
       <layout colspan="12" colspan-m="12"/>
-      <web src="http://10.64.242.44/wunder/wunderground_weather.html" height="224px" frameborder="false" refresh="600" scrolling="no" width="650px"/>
+      <web src="http://10.64.242.44/darkSky/darksky_weather.html" height="224px" frameborder="false" refresh="600" scrolling="no" width="650px"/>
+    </group>
+    <group name="Strom">
+      <layout colspan="12" colspan-m="12"/>
+      <text><layout colspan="1"/><label>Haus</label></text>
+      <diagram_info series="day" refresh="300" format="%.0f kWh" tooltip="true">
+        <layout colspan="5" colspan-m="5"/>
+        <label>Verbrauch</label>
+        <axis unit="kWh"/>
+        <rrd color="red">SmartMeter_Haus_Verbrauch_g</rrd>
+        <address transform="DPT:14.001" mode="read">6/3/1</address>
+      </diagram_info>
+      <diagram_info series="day" refresh="300" format="%.0f W" tooltip="true">
+        <layout colspan="5" colspan-m="5"/>
+        <label>Leistung</label>
+        <axis unit="Watt"/>
+        <rrd color="red">SmartMeter_Haus_Leistung_g</rrd>
+        <address transform="DPT:9.001" mode="read">6/3/2</address>
+      </diagram_info>
+      <text><layout colspan="1"/><label>WP</label></text>
+      <diagram_info series="day" refresh="300" format="%.0f kWh" tooltip="true">
+        <layout colspan="5" colspan-m="5"/>
+        <label>Verbrauch</label>
+        <axis unit="kWh"/>
+        <rrd color="red">SmartMeter_WP_Verbrauch_g</rrd>
+        <address transform="DPT:14.001" mode="read">6/3/21</address>
+      </diagram_info>
+      <diagram_info series="day" refresh="300" format="%.0f W" tooltip="true">
+        <layout colspan="5" colspan-m="5"/>
+        <label>Leistung</label>
+        <axis unit="Watt"/>
+        <rrd color="red">SmartMeter_WP_Leistung_g</rrd>
+        <address transform="DPT:9.001" mode="read">6/3/22</address>
+      </diagram_info>
     </group>
     <group name="Klingel / Telefon">
       <layout colspan="12" colspan-m="12"/>
@@ -1114,8 +1160,8 @@
         <layout colspan="3" colspan-m="3"/>
         <label>außen</label>
         <axis unit="°C"/>
-        <rrd color="red">26.E0AF30010000_temp</rrd>
-        <address transform="DPT:9.001" mode="read">5/4/120</address>
+        <rrd color="red">AT_aussen</rrd>
+        <address transform="DPT:9.001" mode="read">5/4/128</address>
       </diagram_info>
       <diagram_info series="week" refresh="300" format="%.1f °C" styling="BlueGreenRedTemp" tooltip="true">
         <layout colspan="3" colspan-m="3"/>
@@ -1277,6 +1323,12 @@
       <pagejump target="Bewaesserung">
         <layout colspan="0"/>
         <label><icon name="sani_sprinkling"/>Bewässerung</label>
+        <widgetinfo>
+          <info format="%d %%">
+          <layout colspan="0" />
+            <address transform="DPT:5.001" variant="">6/4/32</address>
+          </info>
+        </widgetinfo>
       </pagejump>
       <!--
       <line>
@@ -1308,7 +1360,7 @@
         <widgetinfo>
           <info format="%d °C">
           <layout colspan="0" />
-            <address transform="DPT:9.001" variant="">5/4/120</address>
+            <address transform="DPT:9.001" variant="">5/4/128</address>
           </info>
         </widgetinfo>
       </pagejump>
@@ -1593,9 +1645,6 @@
             <address transform="DPT:1.001" mode="readwrite">2/1/98</address>
             <address transform="DPT:1.001" mode="read">2/1/99</address>
           </switch>
-      </group>
-      <group name="Steckdosen">
-        <layout colspan="12" colspan-m="12"/>
       </group>
       <group name="Esszimmer">
         <layout colspan="12" colspan-m="12"/>
@@ -2044,7 +2093,7 @@
         <info format="%.1f °C">
           <layout colspan="3" colspan-m="3"/>
           <label><icon name="temp_outside"/>aktuell</label>
-          <address transform="DPT:9.001" mode="read">5/4/120</address>
+          <address transform="DPT:9.001" mode="read">5/4/128</address>
         </info>
 		<diagram_info series="custom" seriesStart="end-2week" seriesEnd="now" seriesResolution="300" refresh="300" format="%.1f °C" tooltip="true">
 		  <layout colspan="3" colspan-m="3"/>
@@ -2092,7 +2141,7 @@
           <address transform="DPT:1.001" mode="readwrite">6/5/53</address>
         </info>
       </group>
-      <group name="wunderground Vorhersage">
+      <group name="darkSky Vorhersage">
         <layout colspan="12" colspan-m="12"/>
         <info format="%.1f °C">
           <layout colspan="3" colspan-m="3"/>
@@ -2141,6 +2190,72 @@
 	    </diagram>
 	  </group>
 	
+    <group name="Strom Haus">
+      <layout colspan="12" colspan-m="12"/>
+      <diagram_info series="day" refresh="300" format="%.0f kWh" tooltip="true">
+        <layout colspan="3" colspan-m="3"/>
+        <label>Counter</label>
+        <axis unit="Wh"/>
+        <rrd color="red">SmartMeter_Haus_Verbrauch_5_c</rrd>
+        <rrd color="blue">SmartMeter_Haus_Verbrauch_15_c</rrd>
+        <rrd color="green">SmartMeter_Haus_Verbrauch_60_c</rrd>
+        <rrd color="yellow">SmartMeter_Haus_Verbrauch_1440_c</rrd>
+        <address transform="DPT:14.001" mode="read">6/3/1</address>
+      </diagram_info>
+      <diagram_info series="day" refresh="300" format="%.0f W" tooltip="true">
+        <layout colspan="3" colspan-m="3"/>
+        <label>Derive</label>
+        <axis unit="Wh"/>
+        <rrd color="red">SmartMeter_Haus_Verbrauch_5_d</rrd>
+        <rrd color="blue">SmartMeter_Haus_Verbrauch_15_d</rrd>
+        <rrd color="green">SmartMeter_Haus_Verbrauch_60_d</rrd>
+        <rrd color="yellow">SmartMeter_Haus_Verbrauch_1440_d</rrd>
+        <address transform="DPT:9.001" mode="read">6/3/2</address>
+      </diagram_info>
+      <diagram_info series="day" refresh="300" format="%.0f W" tooltip="true">
+        <layout colspan="3" colspan-m="3"/>
+        <label>L1/L2/L3</label>
+        <axis unit="W"/>
+        <rrd color="red">SmartMeter_Haus_Leistung_L1_g</rrd>
+        <rrd color="blue">SmartMeter_Haus_Leistung_L2_g</rrd>
+        <rrd color="green">SmartMeter_Haus_Leistung_L3_g</rrd>
+        <address transform="DPT:9.001" mode="read">6/3/2</address>
+      </diagram_info>      
+    </group>
+  
+    <group name="Strom WP">
+      <layout colspan="12" colspan-m="12"/>
+        <diagram_info series="day" refresh="300" format="%.0f kWh" tooltip="true">
+        <layout colspan="3" colspan-m="3"/>
+        <label>Counter</label>
+        <axis unit="Wh"/>
+        <rrd color="red">SmartMeter_WP_Verbrauch_5_c</rrd>
+        <rrd color="blue">SmartMeter_WP_Verbrauch_15_c</rrd>
+        <rrd color="green">SmartMeter_WP_Verbrauch_60_c</rrd>
+        <rrd color="yellow">SmartMeter_WP_Verbrauch_1440_c</rrd>
+        <address transform="DPT:14.001" mode="read">6/3/21</address>
+      </diagram_info>
+      <diagram_info series="day" refresh="300" format="%.0f W" tooltip="true">
+        <layout colspan="3" colspan-m="3"/>
+        <label>Derive</label>
+        <axis unit="Wh"/>
+        <rrd color="red">SmartMeter_WP_Verbrauch_5_d</rrd>
+        <rrd color="blue">SmartMeter_WP_Verbrauch_15_d</rrd>
+        <rrd color="green">SmartMeter_WP_Verbrauch_60_d</rrd>
+        <rrd color="yellow">SmartMeter_WP_Verbrauch_1440_d</rrd>
+        <address transform="DPT:9.001" mode="read">6/3/22</address>
+      </diagram_info>
+      <diagram_info series="day" refresh="300" format="%.0f W" tooltip="true">
+        <layout colspan="3" colspan-m="3"/>
+        <label>L1/L2/L3</label>
+        <axis unit="W"/>
+        <rrd color="red">SmartMeter_WP_Leistung_L1_g</rrd>
+        <rrd color="blue">SmartMeter_WP_Leistung_L2_g</rrd>
+        <rrd color="green">SmartMeter_WP_Leistung_L3_g</rrd>
+        <address transform="DPT:9.001" mode="read">6/3/22</address>
+      </diagram_info>     
+    </group>
+
 	  <group name="Links">
 	    <layout colspan="12" colspan-m="12"/>
 		<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://fritz.box/" target="_blank"&gt;Fritz!Box&lt;/a&gt;</label></text>
@@ -2150,7 +2265,7 @@
 		<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://10.64.242.44:10000/wiregate/edit_owsensorconf.cgi" target="_blank"&gt;Sensoren&lt;/a&gt;</label></text>
 		<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://10.64.242.44:10000/wiregate/graph2.cgi" target="_blank"&gt;Graph&lt;/a&gt;</label></text>
 		<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://admin:monit@10.64.242.44:2812" target="_blank"&gt;Monit WG&lt;/a&gt;</label></text>
-		<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://admin:monit@ebusd-raspi:2812" target="_blank"&gt;Monit ebusd-raspi&lt;/a&gt;</label></text>
+		<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://admin:monit@10.64.242.28:2812" target="_blank"&gt;Monit ServerPi01&lt;/a&gt;</label></text>
 		<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://10.64.242.44/visu.git/plugins/rsslog/rsslog.php?dump" target="_blank"&gt;RSS Dump&lt;/a&gt;</label></text>
 		<!--<text><layout colspan="3" colspan-m="3"/><label>&lt;a href="http://10.64.242.44/visu.git/latestMovies.php" target="_blank"&gt;Movie List&lt;/a&gt;</label></text>-->
 	  </group>
@@ -2191,35 +2306,35 @@
           <layout colspan="8" colspan-m="8"/>
           <info mapping="Jalousie">
             <layout colspan="1" colspan-m="1"/>
-            <address transform="DPT:5.001" mode="read">3/1/145</address>
+            <address transform="DPT:5.001" mode="read">3/1/45</address>
           </info>
           <info format="%.0f %%" align="center">
             <layout colspan="1" colspan-m="1"/>
-            <address transform="DPT:5.001" mode="read">3/1/145</address>
+            <address transform="DPT:5.001" mode="read">3/1/45</address>
           </info>
           <trigger value="0" styling="GreyGrey" mapping="UpDown">
             <layout colspan="2" colspan-m="2"/>
-            <address transform="DPT:1.001" mode="write">3/1/141</address>
+            <address transform="DPT:1.001" mode="write">3/1/41</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="Stop">
             <layout colspan="2" colspan-m="2"/>
-            <address transform="DPT:1.001" mode="write">3/1/142</address>
+            <address transform="DPT:1.001" mode="write">3/1/42</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="UpDown">
             <layout colspan="2" colspan-m="2"/>
-            <address transform="DPT:1.001" mode="write">3/1/141</address>
+            <address transform="DPT:1.001" mode="write">3/1/41</address>
           </trigger>
         </group>
         <group nowidget="true" flavour="sodium">
           <layout colspan="2" colspan-m="2"/>
           <switch mapping="UnlockLock" styling="GreyRed" align="center">
-            <address transform="DPT:1.001" mode="readwrite">3/1/147</address>
+            <address transform="DPT:1.001" mode="readwrite">3/1/47</address>
           </switch>
         </group>
         <group nowidget="true" flavour="sodium">
           <layout colspan="2" colspan-m="2"/>
           <trigger mapping="Lueften" styling="GreyGrey" value="50" align="center">
-            <address transform="DPT:5.001" mode="write">3/1/144</address>
+            <address transform="DPT:5.001" mode="write">3/1/44</address>
           </trigger>
         </group>
       </group>
@@ -2230,35 +2345,35 @@
           <layout colspan="8" colspan-m="8"/>
           <info mapping="Jalousie">
             <layout colspan="1" colspan-m="1"/>
-            <address transform="DPT:5.001" mode="read">3/1/155</address>
+            <address transform="DPT:5.001" mode="read">3/1/55</address>
           </info>
           <info format="%.0f %%" align="center">
             <layout colspan="1" colspan-m="1"/>
-            <address transform="DPT:5.001" mode="read">3/1/155</address>
+            <address transform="DPT:5.001" mode="read">3/1/55</address>
           </info>
           <trigger value="0" styling="GreyGrey" mapping="UpDown">
             <layout colspan="2" colspan-m="2"/>
-            <address transform="DPT:1.001" mode="write">3/1/151</address>
+            <address transform="DPT:1.001" mode="write">3/1/51</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="Stop">
             <layout colspan="2" colspan-m="2"/>
-            <address transform="DPT:1.001" mode="write">3/1/152</address>
+            <address transform="DPT:1.001" mode="write">3/1/52</address>
           </trigger>
           <trigger value="1" styling="GreyGrey" mapping="UpDown">
             <layout colspan="2" colspan-m="2"/>
-            <address transform="DPT:1.001" mode="write">3/1/151</address>
+            <address transform="DPT:1.001" mode="write">3/1/51</address>
           </trigger>
         </group>
         <group nowidget="true" flavour="sodium">
           <layout colspan="2" colspan-m="2"/>
           <switch mapping="UnlockLock" styling="GreyRed" align="center">
-            <address transform="DPT:1.001" mode="readwrite">3/1/157</address>
+            <address transform="DPT:1.001" mode="readwrite">3/1/57</address>
           </switch>
         </group>
         <group nowidget="true" flavour="sodium">
           <layout colspan="2" colspan-m="2"/>
           <trigger mapping="Lueften" styling="GreyGrey" value="50" align="center">
-            <address transform="DPT:5.001" mode="write">3/1/154</address>
+            <address transform="DPT:5.001" mode="write">3/1/54</address>
           </trigger>
         </group>
       </group>
@@ -2267,13 +2382,13 @@
         <layout colspan="12" colspan-m="12"/>
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="4" colspan-m="4"/>
-          <label>PC (Szene)</label>
-          <address transform="DPT:1.001" mode="readwrite">10/1/62</address>
+          <label>Nähmaschine</label>
+          <address transform="DPT:1.001" mode="readwrite">2/1/62</address>
           <address transform="DPT:1.001" mode="read">2/1/63</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="4" colspan-m="4"/>
-          <label>Drucker</label>
+          <label>Leuchte</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/64</address>
           <address transform="DPT:1.001" mode="read">2/1/65</address>
         </switch>
@@ -2297,20 +2412,15 @@
         <layout colspan="12" colspan-m="12"/>
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="3" colspan-m="3"/>
-          <label>Drucker</label>
+          <label>Leuchte</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/64</address>
           <address transform="DPT:1.001" mode="read">2/1/65</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="3" colspan-m="3"/>
-          <label>PC (SD)</label>
+          <label>Nähmaschine</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/62</address>
           <address transform="DPT:1.001" mode="read">2/1/63</address>
-        </switch>
-        <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan="3" colspan-m="3"/>
-          <label>PC (Szene)</label>
-          <address transform="DPT:1.001" mode="readwrite">10/1/62</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="3" colspan-m="3"/>
@@ -2415,6 +2525,12 @@
           <label>Grete</label>
           <address transform="DPT:1.001" mode="readwrite">2/2/120</address>
           <address transform="DPT:1.001" mode="read">2/2/121</address>
+        </switch>
+        <switch mapping="OnOff" styling="GreyGreen">
+          <layout colspan="3" colspan-m="3"/>
+          <label>Grete Fenster</label>
+          <address transform="DPT:1.001" mode="readwrite">2/2/122</address>
+          <address transform="DPT:1.001" mode="read">2/2/123</address>
         </switch>
       </group>
       <group name="Schlafzimmer">
@@ -3410,13 +3526,19 @@
       <group name="Steuerung">
         <layout colspan="12" colspan-m="12"/>
         <info mapping="systemMode" align="left">
-          <layout colspan="6" colspan-m="6"/>
+          <layout colspan="4" colspan-m="4"/>
           <label>Status</label>
           <!-- get ci mode : 9/2/0 -->
           <address transform="DPT:6.020" mode="read">9/2/0</address>
         </info>
+        <info mapping="stateEM" align="left">
+          <layout colspan="4" colspan-m="4"/>
+          <label>Energie Manager</label>
+          <!-- get uih StateEM : 9/2/2 -->
+          <address transform="DPT:6.020" mode="read">9/2/2</address>
+        </info>
         <info mapping="WP-Betrieb" align="left">
-          <layout colspan="6" colspan-m="6"/>
+          <layout colspan="4" colspan-m="4"/>
           <label>WP</label>
           <!-- get amu wp_stat : 9/2/1 -->
           <address transform="DPT:6" mode="read">9/2/1</address>
@@ -3512,24 +3634,23 @@
 	  </group>
       <group name="Pumpen">
 	    <layout colspan="12" colspan-m="12"/>
-		<info mapping="PumpOnOff">
+		    <info mapping="PumpOnOff">
           <layout colspan="6" colspan-m="6"/>
           <label>Zirkulationspumpe</label>
           <address transform="DPT:1.001" mode="read">9/2/84</address>
         </info>
-		<info mapping="PumpOnOff">
-          <layout colspan="6" colspan-m="6"/>
-		  <label>Heizkreispumpe</label>
+		    <info mapping="PumpOnOff">
+          <layout colspan="3" colspan-m="3"/>
+		      <label>Heizkreispumpe</label>
           <address transform="DPT:1.001" mode="read">9/2/111</address>
         </info>
-		<!--
-		<info >
-          <layout colspan="4" colspan-m="4"/>
-		  <label>Wochentag</label>
-          <address transform="DPT:16.000" mode="read">9/2/86</address>
-        </info>		
-		-->
-	  </group>
+        <diagram_info format="%.0f %%" series="day" period="7" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
+          <layout colspan="3" colspan-m="3"/>
+          <axis position="left" min="0" max="100" unit=" %">temp_out</axis>
+          <rrd yaxis="temp_out" color="#ffff00" label="PWM Heizkreispumpe">eBus_cir2_heat_pump_curr</rrd>          
+          <address transform="DPT:5.001" mode="read">9/2/110</address>
+        </diagram_info>
+  	  </group>
       <group name="Wärmepumpe">
         <layout colspan="12" colspan-m="12"/>
         <diagram_info format="%.0f kW" series="day" period="7" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
@@ -3539,7 +3660,7 @@
           <axis position="left" min="-15" max="35" label="Aussentemperatur °C" unit=" °C">temp_out</axis>
           <rrd yaxis="temp_out" color="#ffff00" label="Aussentemperatur">eBus_mv_at_temp_temp</rrd>
           <rrd yaxis="temp" color="#ff0000" label="Energieertrag">eBus_mv_yield_sum</rrd>
-          <address transform="DPT:12.001" mode="readwrite">9/2/22</address>
+          <address transform="DPT:12.001" mode="read">9/2/22</address>
         </diagram_info>
         <diagram_info format="%.1f kW" series="hour" period="24" refresh="300" gridcolor="#707070" tooltip="true" legendposition="nw">
           <layout colspan="6" colspan-m="6"/>
