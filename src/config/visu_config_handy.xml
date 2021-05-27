@@ -515,32 +515,152 @@
       <layout colspan="12"/>
       <diagram_info series="day" refresh="300" format="%.0f kWh" tooltip="true">
         <layout colspan="6"/>
-        <label>Verbrauch</label>
+        <label>Verbrauch Gesamt</label>
         <axis unit="kWh"/>
-        <rrd color="red">SmartMeter_Haus_Verbrauch_g</rrd>
-        <address transform="DPT:14.001" mode="read">6/3/1</address>
+        <rrd color="red">SmartMeter_Gesamt_Verbrauch_g</rrd>
+        <rrd color="green">SmartMeter_Haus_Verbrauch_g</rrd>
+        <address transform="DPT:14.001" mode="read">6/3/41</address>
       </diagram_info>
       <diagram_info series="day" refresh="300" format="%.0f W" tooltip="true">
         <layout colspan="6"/>
-        <label>Leistung</label>
+        <label>Leistung Gesamt</label>
         <axis unit="Watt"/>
-        <rrd color="red">SmartMeter_Haus_Leistung_g</rrd>
+        <rrd color="red">SmartMeter_Gesamt_Leistung_g</rrd>
+        <rrd color="green">SmartMeter_Haus_Leistung_g</rrd>
+        <rrd color="blue">SmartMeter_WP_Leistung_g</rrd>
+        <address transform="DPT:9.001" mode="read">6/3/42</address>
+      </diagram_info>
+      <diagram_info series="week" refresh="300" format="%.0f kWh" tooltip="true">
+        <layout colspan="6"/>
+        <label>Verbrauch Haus</label>
+        <axis unit="kWh"/>
+        <rrd color="red">SmartMeter_Gesamt_Verbrauch_g</rrd>
+        <rrd color="green">SmartMeter_Haus_Verbrauch_g</rrd>
+        <address transform="DPT:14.001" mode="read">6/3/1</address>
+      </diagram_info>
+      <diagram_info series="week" refresh="300" format="%.0f W" tooltip="true">
+        <layout colspan="6"/>
+        <label>Leistung Haus</label>
+        <axis unit="Watt"/>
+        <rrd color="red">SmartMeter_Gesamt_Leistung_g</rrd>
+        <rrd color="green">SmartMeter_Haus_Leistung_g</rrd>
+        <rrd color="blue">SmartMeter_WP_Leistung_g</rrd>
         <address transform="DPT:9.001" mode="read">6/3/2</address>
       </diagram_info>
-      <diagram_info series="day" refresh="300" format="%.0f kWh" tooltip="true">
+      <diagram_info series="month" refresh="300" format="%.0f kWh" tooltip="true">
         <layout colspan="6"/>
         <label>Verbrauch WP</label>
         <axis unit="kWh"/>
-        <rrd color="red">SmartMeter_WP_Verbrauch_g</rrd>
+        <rrd color="red">SmartMeter_Gesamt_Verbrauch_g</rrd>
+        <rrd color="green">SmartMeter_Haus_Verbrauch_g</rrd>
+        <rrd color="blue">SmartMeter_WP_Verbrauch_g</rrd>
         <address transform="DPT:14.001" mode="read">6/3/21</address>
       </diagram_info>
-      <diagram_info series="day" refresh="300" format="%.0f W" tooltip="true">
+      <diagram_info series="month" refresh="300" format="%.0f W" tooltip="true">
         <layout colspan="6"/>
         <label>Leistung WP</label>
         <axis unit="Watt"/>
-        <rrd color="red">SmartMeter_WP_Leistung_g</rrd>
+        <rrd color="red">SmartMeter_Gesamt_Leistung_g</rrd>
+        <rrd color="green">SmartMeter_Haus_Leistung_g</rrd>
+        <rrd color="blue">SmartMeter_WP_Leistung_g</rrd>
         <address transform="DPT:9.001" mode="read">6/3/22</address>
       </diagram_info>
+
+      <page name="Strom" align="center" bind_click_to_widget="false">
+        <group name="Geräte">
+          <layout colspan="12"/>
+          <switch mapping="OnOff" styling="GreyGreen" align="center" flavour="lithium">
+            <layout colspan="2"/>
+            <label>GS</label>
+            <address transform="DPT:1.001" mode="readwrite">2/1/160</address>
+            <address transform="DPT:1.001" mode="read">2/1/161</address>
+          </switch>
+          <diagram_info series="day" period="1" refresh="300" format="%.0f W" tooltip="true">
+            <layout colspan="1" />
+            <axis position="right" unit=" W">Leistung</axis>
+            <rrd color="red" label="Leistung">geschirrspuelerLeistung</rrd>
+            <address transform="DPT:9.021" mode="read">2/1/166</address>
+          </diagram_info>
+          <diagram_info series="day" period="1" refresh="300" format="%.0f Wh" tooltip="true">
+            <layout colspan="1" />
+            <axis position="right" unit=" Wh">Energieverbrauch</axis>
+            <rrd color="red" label="Energieverbrauch">geschirrspuelerEnergieverbrauch</rrd>
+            <address transform="DPT:12.001" mode="read">2/1/163</address>
+          </diagram_info>
+          <diagram_info series="day" period="3" refresh="300" format="# %.0f" tooltip="true">
+            <layout colspan="1" />
+            <axis position="right" unit="">Schaltzähler</axis>
+            <rrd color="red" label="Anzahl">geschirrspuelerSchaltzaehler</rrd>
+            <address transform="DPT:12.001" mode="read">2/1/164</address>
+          </diagram_info>
+          <diagram_info series="day" period="3" refresh="300" format="%.1f h" tooltip="true">
+            <layout colspan="1" />
+            <axis position="right" unit=" h">Betriebsstunden</axis>
+            <rrd color="red" label="Stunden">geschirrspuelerBetriebsstunden</rrd>
+            <address transform="DPT:12.001" mode="read">2/1/165</address>
+          </diagram_info>
+          <switch mapping="OnOff" styling="GreyGreen" align="center" flavour="lithium">
+            <layout colspan="2"/>
+            <label>WM</label>
+            <address transform="DPT:1.001" mode="readwrite">2/1/204</address>
+            <address transform="DPT:1.001" mode="read">2/1/205</address>
+          </switch>
+          <diagram_info series="day" period="1" refresh="300" format="%.0f W" tooltip="true">
+            <layout colspan="1" />
+            <axis position="right" unit=" W">Leistung</axis>
+            <rrd color="red" label="Leistung">waschmaschineLeistung</rrd>
+            <address transform="DPT:9.021" mode="read">2/1/203</address>
+          </diagram_info>
+          <diagram_info series="day" period="1" refresh="300" format="%.0f Wh" tooltip="true">
+            <layout colspan="1" />
+            <axis position="right" unit=" Wh">Energieverbrauch</axis>
+            <rrd color="red" label="Energieverbrauch">waschmaschineEnergieverbrauch</rrd>
+            <address transform="DPT:12.001" mode="read">2/1/207</address>
+          </diagram_info>
+          <diagram_info series="day" period="3" refresh="300" format="# %.0f" tooltip="true">
+            <layout colspan="1" />
+            <axis position="right" unit="">Schaltzähler</axis>
+            <rrd color="red" label="Anzahl">waschmaschineSchaltzaehler</rrd>
+            <address transform="DPT:12.001" mode="read">2/1/208</address>
+          </diagram_info>
+          <diagram_info series="day" period="3" refresh="300" format="%.1f h" tooltip="true">
+            <layout colspan="1" />
+            <axis position="right" unit=" h">Betriebsstunden</axis>
+            <rrd color="red" label="Stunden">waschmaschineBetriebsstunden</rrd>
+            <address transform="DPT:12.001" mode="read">2/1/209</address>
+          </diagram_info>
+          <switch mapping="OnOff" styling="GreyGreen" align="center" flavour="lithium">
+            <layout colspan="2"/>
+            <label>HS</label>
+            <address transform="DPT:1.001" mode="readwrite">2/2/204</address>
+            <address transform="DPT:1.001" mode="read">2/2/205</address>
+          </switch>
+          <diagram_info series="day" period="1" refresh="300" format="%.0f W" tooltip="true">
+            <layout colspan="1" />
+            <axis position="right" unit=" ´W">Leistung</axis>
+            <rrd color="red" label="Leistung">heizstabBadOGLeistung</rrd>
+            <address transform="DPT:9.021" mode="read">2/2/203</address>
+          </diagram_info>
+          <diagram_info series="day" period="1" refresh="300" format="%.0f Wh" tooltip="true">
+            <layout colspan="1" />
+            <axis position="right" unit=" Wh">Energieverbrauch</axis>
+            <rrd color="red" label="Energieverbrauch">heizstabBadOGEnergieverbrauch</rrd>
+            <address transform="DPT:12.001" mode="read">2/2/207</address>
+          </diagram_info>
+          <diagram_info series="day" period="3" refresh="300" format="# %.0f" tooltip="true">
+            <layout colspan="1" />
+            <axis position="right" unit="">Schaltzähler</axis>
+            <rrd color="red" label="Anzahl">heizstabBadOGSchaltzaehler</rrd>
+            <address transform="DPT:12.001" mode="read">2/2/208</address>
+          </diagram_info>
+          <diagram_info series="day" period="3" refresh="300" format="%.1f h" tooltip="true">
+            <layout colspan="1" />
+            <axis position="right" unit=" h">Betriebsstunden</axis>
+            <rrd color="red" label="Stunden">heizstabBadOGBetriebsstunden</rrd>
+            <address transform="DPT:12.001" mode="read">2/2/209</address>
+          </diagram_info>
+        </group>
+      </page>
     </group>
   <group name="Klingel / Telefon">
       <layout colspan="12"/>
@@ -588,6 +708,11 @@
     </group>
     <group name="Leckagesensoren">
       <layout colspan="12"/>
+      <info mapping="LeackageOpenClose" styling="GreyGreen">
+        <layout colspan="6"/>
+        <label>Dampfbremse</label>
+        <address transform="DPT:1.001" mode="readwrite">5/2/214</address>
+      </info>
       <info mapping="LeackageOpenClose" styling="GreyGreen">
         <layout colspan="6"/>
         <label>in Spüle</label>
@@ -1445,6 +1570,10 @@
     <text><layout colspan="6"/><label>&lt;a href="http://10.64.242.44/visu.git/plugins/rsslog/rsslog.php?dump" target="_blank"&gt;RSS Dump&lt;/a&gt;</label></text>
     <text><layout colspan="6"/><label>&lt;a href="http://10.64.242.44/visu.git/latestMovies.php" target="_blank"&gt;Movie List&lt;/a&gt;</label></text>
 	  </group>
+      <group name="smartmeterpi/MBMD">
+        <layout colspan="11"/>
+        <web src="http://smartmeterpi:8080" height="600px" frameborder="0" scrolling="yes" width="900px"/>
+      </group>
       <group name="/var/log/eib.log">
         <layout colspan="11"/>
         <web src="http://wiregate302:10000/wiregate/view_log2.cgi?view=1&amp;file=/var/log/eib.log&amp;lines=33" height="600px" frameborder="0" scrolling="yes" width="900px"/>
@@ -1463,44 +1592,38 @@
     <page name="Steckdosen" visible="false" shownavbar-left="false">
       <group name="Arbeitszimmer">
         <layout colspan="12"/>
+        <switch mapping="TelevisionOnOff" styling="GreyGreen">
+          <layout colspan="6"/>
+          <label>3er links (TV)</label>
+          <address transform="DPT:1.001" mode="readwrite">2/1/60</address>
+          <address transform="DPT:1.001" mode="read">2/1/61</address>
+        </switch>
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="6"/>
-          <label>Leuchte</label>
+          <label>3er Mitte</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/64</address>
           <address transform="DPT:1.001" mode="read">2/1/65</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="6"/>
-          <label>Nähmaschine</label>
+          <label>rechts unt Fe</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/62</address>
           <address transform="DPT:1.001" mode="read">2/1/63</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="6"/>
-          <label>Fenster</label>
-          <address transform="DPT:1.001" mode="readwrite">2/1/66</address>
-          <address transform="DPT:1.001" mode="read">2/1/67</address>
+          <label>Ecke re hi</label>
+          <address transform="DPT:1.001" mode="readwrite">2/1/68</address>
+          <address transform="DPT:1.001" mode="read">2/1/69</address>
         </switch>
       </group>
       <group name="Küche">
         <layout colspan="12"/>
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="6"/>
-          <label>SD Arbeitsfl</label>
-          <address transform="DPT:1.001" mode="readwrite">2/1/150</address>
-          <address transform="DPT:1.001" mode="read">2/1/151</address>
-        </switch>
-        <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan="6"/>
           <label>Licht ArbFl</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/152</address>
           <address transform="DPT:1.001" mode="read">2/1/153</address>
-        </switch>
-        <switch mapping="OnOff" styling="GreyGreen">
-          <layout colspan="6"/>
-          <label>Twist</label>
-          <address transform="DPT:1.001" mode="readwrite">2/1/154</address>
-          <address transform="DPT:1.001" mode="read">2/1/155</address>
         </switch>
         <switch mapping="OnOff" styling="GreyGreen">
           <layout colspan="6"/>
@@ -1551,6 +1674,12 @@
           <label>Laptop</label>
           <address transform="DPT:1.001" mode="readwrite">2/1/98</address>
           <address transform="DPT:1.001" mode="read">2/1/99</address>
+        </switch>
+        <switch mapping="OnOff" styling="GreyGreen">
+          <layout colspan="6"/>
+          <label>EZ Tischlampe</label>
+          <address transform="DPT:1.001" mode="readwrite">2/1/120</address>
+          <address transform="DPT:1.001" mode="read">2/1/121</address>
         </switch>
       </group>
       <group name="Kinder">
@@ -1662,6 +1791,12 @@
           <label>Garage außen</label>
           <address transform="DPT:1.001" mode="readwrite">2/3/30</address>
           <address transform="DPT:1.001" mode="read">2/3/31</address>
+        </switch>
+        <switch mapping="OnOff" styling="GreyGreen">
+          <layout colspan="6"/>
+          <label>Garage SB</label>
+          <address transform="DPT:1.001" mode="readwrite">1/3/58</address>
+          <address transform="DPT:1.001" mode="read">1/3/59</address>
         </switch>
       </group>
       <group name="Weihnachten">
@@ -2554,26 +2689,26 @@
           <address transform="DPT:1.001" mode="write">9/3/1</address>
         </multitrigger>
         <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%1$.0f °C" change="absolute" min="15" max="25">
-          <layout colspan="2"/>
-          <label>Komfort</label>
+          <layout colspan="3"/>
+          <label>Komfort-Temp</label>
           <address transform="DPT:9.001" mode="write">9/3/120</address>
           <address transform="DPT:9.001" mode="read">9/2/120</address>
         </infotrigger>
         <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%1$.0f °C" change="absolute" min="15" max="25">
-          <layout colspan="2"/>
-          <label>Ferien</label>
+          <layout colspan="3"/>
+          <label>Ferien-Temp</label>
           <address transform="DPT:9.001" mode="write">9/3/122</address>
           <address transform="DPT:9.001" mode="read">9/2/122</address>
         </infotrigger>
         <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%1$.0f °C" change="absolute" min="15" max="25">
-          <layout colspan="2"/>
-          <label>Absenk</label>
+          <layout colspan="3"/>
+          <label>Absenk-Temp</label>
           <address transform="DPT:9.001" mode="write">9/3/121</address>
           <address transform="DPT:9.001" mode="read">9/2/121</address>
         </infotrigger>
         <infotrigger uplabel="wärmer" upvalue="1" downlabel="kälter" downvalue="-1" align="center" infoposition="middle" format="%1$.0f °C" change="absolute" min="15" max="25">
-          <layout colspan="12"/>
-          <label>AT-Abschalttemperatur</label>
+          <layout colspan="3"/>
+          <label>AT-Abschalttemp</label>
           <address transform="DPT:9.001" mode="write">9/3/11</address>
           <address transform="DPT:9.001" mode="read">9/2/11</address>
         </infotrigger>
@@ -2805,6 +2940,12 @@
           <address transform="DPT:9.001" mode="read">9/2/82</address>
         </diagram_info>
       </group>
+      <group name="Ereignisse">
+        <layout colspan="12" rowspan="6"/>
+        <rsslog src="plugins/rsslog/rsslog.php" refresh="60" filter="heizung" limit="50" mode="last" timeformat="%d.%m. %H:%M">
+          <layout colspan="12" rowspan="6"/>
+        </rsslog>
+      </group>    
     </page>
     <page name="Bewaesserung" visible="false" shownavbar-left="false">
         <group name="Automatik">
